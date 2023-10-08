@@ -4,7 +4,7 @@ export default class Contact extends Component {
   render() {
     return (
       <>
-        <section className="bg-white overflow-hidden relative z-10">
+        <section className="relative z-10 overflow-hidden bg-white">
           <div className="container">
             <div className="flex flex-wrap py-20 mx-10 lg:justify-between">
               <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
@@ -111,7 +111,7 @@ export default class Contact extends Component {
                     <div>
                       <button
                         type="submit"
-                        className="w-full p-3 text-white transition border rounded border-primary bg-primary hover:bg-opacity-90"
+                        className="w-full p-3 bg-[#3056D3] text-white transition border rounded border-primary bg-primary hover:bg-opacity-90"
                       >
                         Send Message
                       </button>

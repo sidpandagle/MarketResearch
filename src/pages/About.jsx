@@ -621,7 +621,7 @@ export default class About extends Component {
                                     </p>
                                     <a
                                         href="/#"
-                                        className="inline-flex items-center justify-center px-10 py-4 text-base font-normal text-center text-white rounded-lg bg-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
+                                        className=" bg-[#3056D3] inline-flex items-center justify-center px-10 py-4 text-base font-normal text-center text-white rounded-lg bg-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
                                     >
                                         Get Started
                                     </a>

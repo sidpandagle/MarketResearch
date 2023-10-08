@@ -20,7 +20,7 @@ function App() {
         <Route path="/contact" component={Contact} /> */}
 
         <Route path="/" element={<Home />} />
-        <Route path="/category" element={<CategoryReportList />} />
+        <Route path="/category/:category" element={<CategoryReportList />} />
         <Route path="/press-release" element={<PressRelease />} />
         <Route path="/offering" element={<Offering />} />
         <Route path="/about" element={<About />} />
