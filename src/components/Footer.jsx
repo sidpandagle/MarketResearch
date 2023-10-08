@@ -61,7 +61,7 @@ const Footer = () => {
                 <div className="flex items-center mb-6">
                   <a
                     href="/#"
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-blue-400 hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width={8}
@@ -74,7 +74,7 @@ const Footer = () => {
                   </a>
                   <a
                     href="/#"
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-blue-400 hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width={16}
@@ -87,7 +87,7 @@ const Footer = () => {
                   </a>
                   <a
                     href="/#"
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-blue-400 hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width={16}
@@ -100,7 +100,7 @@ const Footer = () => {
                   </a>
                   <a
                     href="/#"
-                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-primary hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
+                    className="mr-3 flex h-8 w-8 items-center justify-center rounded-full border border-[#E5E5E5] text-dark hover:border-primary hover:bg-blue-400 hover:text-white sm:mr-4 lg:mr-3 xl:mr-4"
                   >
                     <svg
                       width={14}
