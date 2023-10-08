@@ -6,11 +6,11 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='flex items-center justify-center w-full bg-white'>
+      <header className='flex items-center w-full bg-white'>
         <div className="container">
-          <div className="relative flex items-center justify-between -mx-4">
+          <div className="relative flex items-center justify-between mx-4">
             <div className="max-w-full px-4 w-60">
-              <div className="block w-full py-5 text-2xl">
+              <div className=" w-full py-5 text-2xl">
                 Congruence
               </div>
             </div>
@@ -36,6 +36,9 @@ const Navbar = () => {
                 >
                   <ul className="block lg:flex">
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' to="/">Home</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' to="/category">Category</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' to="/press-release">Press Release</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' to="/offering">Offering</Link>
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' to="/contact">Contact</Link>
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' to="/about">About</Link>
                     {/* <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' to="/">Home</Link> */}
