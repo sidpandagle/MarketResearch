@@ -7,8 +7,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className='flex items-center w-full bg-white border-b border-slate-200'>
-        <div className="container">
+      <header className='w-full bg-white border-b border-slate-200'>
           <div className="relative flex items-center justify-between mx-4">
             <div className="max-w-full px-4 w-60">
               <div className="w-full py-5 text-2xl ">
@@ -43,21 +42,21 @@ const Navbar = () => {
                       <Link className='flex items-center gap-2 py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setCategoryOpen(!isCategoryOpen)}>
                         <div>Category</div>
                         {isCategoryOpen ?
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-up" width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-up" width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M6 15l6 -6l6 6" />
                           </svg>
                           :
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#000000" fill="none" strokeLinecap="round" strokeLinejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M6 9l6 6l6 -6" />
                           </svg>
                         }
                       </Link>
-                      <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-full right-0 text-sm w-[550px] ${!isCategoryOpen && "hidden"
+                      <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-full right-0 text-sm w-[300px] md:w-[550px] ${!isCategoryOpen && "hidden"
                         }`}>
-                        <div className="flex gap-6">
-                          <div className="w-1/2">
+                        <div className="gap-6 md:flex">
+                          <div className="md:w-1/2">
                             <Link onClick={() => setCategoryOpen(!isCategoryOpen)} to="/category/automotive">
                               <div className="mb-3 cursor-pointer hover:font-bold">
                                 Automotive
@@ -94,7 +93,7 @@ const Navbar = () => {
                               </div>
                             </Link>
                           </div>
-                          <div className="w-1/2">
+                          <div className="md:w-1/2">
                             <Link onClick={() => setCategoryOpen(!isCategoryOpen)} to="/category/food-and-beverages">
                               <div className="mb-3 cursor-pointer hover:font-bold">
                                 Food and Beverages
@@ -146,7 +145,8 @@ const Navbar = () => {
               </div >
             </div >
           </div >
-        </div >
+        {/* <div>
+        </div > */}
       </header >
     </>
   );

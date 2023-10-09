@@ -5,12 +5,12 @@ const Footer = () => {
   return (
     <>
       <footer className="relative flex z-10 bg-white pt-20 pb-10 lg:pt-[120px] lg:pb-20">
-        <div className="container">
+        <div className="w-full">
           <div className="flex flex-wrap mx-4">
             <div className="w-full px-4 sm:w-2/3 lg:w-3/12">
               <div className="w-full mb-10">
                 <div className="mb-6 text-2xl inline-block max-w-[160px]">
-                Congruence
+                  Congruence
                 </div>
                 <p className="text-base mb-7 text-body-color">
                   Sed ut perspiciatis undmnis is iste natus error sit amet
