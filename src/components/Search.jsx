@@ -4,12 +4,11 @@ export default class Search extends Component {
     render() {
         return (
             // <div className={`mx-auto h-[90vh] bg-cover bg-bottom flex justify-center items-center`} style={{ backgroundImage: `url(/world-background.jpg)` }}>
-            <div className={`mx-auto h-[400px] bg-cover bg-bottom flex justify-center items-center bg-gradient-to-bl from-blue-900 to-blue-500 text-white`}>
-                <div className='flex flex-col gap-8 text-center md:gap-6 md:w-3/4'>
+            <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-to-bl from-blue-900 to-blue-500 text-white`}>
+                <div className='flex flex-col gap-8 text-center md:gap-8 md:w-3/4'>
                     <div className="text-3xl font-semibold md:text-4xl">Navigating Markets, Uncovering Insights</div>
                     <div className='flex justify-center'>
-                        <div className="text-sm font-semibold text-center md:w-1/2 md:text-md">In markets' complexity, we're your compass, unveiling vital insights to empower your business in an ever-changing world</div>
-
+                        <div className="text-sm text-center md:w-3/5 md:text-lg">In markets' complexity, we're your compass, unveiling vital insights to empower your business in an ever-changing world</div>
                     </div>
                     <div className='flex items-center justify-center'>
                         <div className="flex items-center h-12 overflow-hidden bg-white border rounded-lg md:w-1/2 focus-within:shadow-lg">
@@ -25,8 +24,39 @@ export default class Search extends Component {
                                 placeholder="Search something.." />
                         </div>
                     </div>
+                    <div className='flex items-center justify-center gap-2 py-4'>
+                        <div className='text-xl text-center'>
+                            Browse By Industry
+                        </div>
+                        <div className='hidden md:block w-1/2 h-[2px] bg-white'>
+                        </div>
+                    </div>
+                    <div className='flex flex-wrap items-start justify-center w-full gap-2 min-h-20'>
+                        {categories.map((item, index) => (
+                            <div key={index} className='flex flex-col items-center w-20 gap-1 mb-2'>
+                                <img src={'/aerospace-blk.png'} className="flex justify-center w-6 hover:w-7"></img>
+                                <div className="text-center mx-1 text-[10px] w-20">{item}</div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         )
     }
 }
+
+const categories = [
+    'Automotive',
+    'Chemicals and Materials',
+    'Consumer Goods',
+    'Defense',
+    'Electronics and Semiconductors',
+    'Energy and Natural Resources',
+    'Factory Automation',
+    'Food and Beverages',
+    'Healthcare',
+    'Heavy Engineering Equipment',
+    'IT and Telecom',
+    // 'Packaging',
+    // 'Pharmaceutical',
+]

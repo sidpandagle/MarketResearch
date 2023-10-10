@@ -26,10 +26,10 @@ export default class Home extends Component {
       </div> */}
 
         <div className="max-w-6xl px-4 mx-auto sm:px-6">
-          <div className="py-12 md:py-20">
-
+          <div className="py-12 md:pt-10">
             {/* Section header */}
             <div className="max-w-3xl pb-12 mx-auto text-center md:pb-16">
+              <h2 className="mb-4 text-3xl font-extrabold text-slate-600">Our Clients</h2>
               <h2 className="mb-4 h2">Trusted by over 20,000 companies all over the world</h2>
               <p className="text-xl text-gray-600" data-aos="zoom-y-out">Arcu cursus vitae congue mauris rhoncus viverra nibh cras pulvinar mattis
                 blandit libero cursus mattis.</p>
