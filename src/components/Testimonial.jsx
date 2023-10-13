@@ -30,7 +30,7 @@ export default function Testimonial() {
             <div className="items-center justify-center md:flex">
                 <div className="mx-4 my-8 md:m-4 md:w-1/3">
                     {testimonials.map((testimonial, index) =>
-                        <div key={index} onClick={() => { changeSlider(index) }} className={`flex items-center gap-4 mb-4 duration-500 border border-b-4 rounded-md shadow-sm hover:shadow-xl ${testimonial.selected && 'border-b-primary'}`}>
+                        <div key={index} onClick={() => { changeSlider(index) }} className={`flex items-center gap-4 mb-4 duration-500 border border-b-4 rounded-md shadow-sm hover:shadow-xl cursor-pointer ${testimonial.selected && 'border-b-primary'}`}>
                             <div className="m-2 rounded-full h-14 w-14 bg-slate-300"></div>
                             <div>
                                 <div>{testimonial.name}</div>

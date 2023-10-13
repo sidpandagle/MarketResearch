@@ -53,7 +53,7 @@ export default function LatestReports() {
                                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus id minima rem magni doloremque, accusamus repudiandae in eum dolores sit quia ea doloribus unde eveniet ullam veritatis. Eveniet, facilis dolore.
                                 </div>
                                 <div className='flex justify-center md:justify-end'>
-                                    <div className='px-2 py-1 mt-6 text-white rounded-sm bg-primary'>
+                                    <div className='px-2 py-1 mt-6 text-white bg-blue-500 rounded-sm cursor-pointer hover:bg-blue-700'>
                                         Read More
                                     </div>
                                 </div>
