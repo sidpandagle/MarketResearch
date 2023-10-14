@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 export default class Clients extends Component {
   render() {
     return (
-
       <div className="max-w-6xl px-4 mx-auto sm:px-6">
         <div className="py-12 md:pt-10">
           {/* Section header */}

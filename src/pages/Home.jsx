@@ -4,6 +4,9 @@ import Testimonial from '../components/Testimonial'
 import Clients from '../components/Clients'
 import AboutHome from '../components/AboutHome'
 import LatestReports from '../components/LatestReports'
+import Insights from '../components/Insights'
+import LatestPressRelease from '../components/LatestPressRelease'
+import Services from '../components/Services'
 
 export default class Home extends Component {
   render() {
@@ -11,9 +14,13 @@ export default class Home extends Component {
 
       <section className="relative">
         <Search />
+        <Insights />
         {/* <AboutHome /> */}
         <LatestReports />
+        <LatestPressRelease />
+        <Services />
         <Testimonial />
+        <AboutHome />
         <Clients />
       </section>
     )

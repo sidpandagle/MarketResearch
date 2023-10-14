@@ -1,6 +1,22 @@
 .header-section {
     @apply py-6 px-4 sm:px-10 md:px-20 lg:px-48
 }
+
 .section {
     @apply py-12 px-4 sm:px-10 md:px-20 lg:px-48
 }
+
+/* .bg-gradient-135 {
+    background: linear-gradient(45deg, hsla(176, 78%, 45%, 1) 0%, hsla(196, 89%, 45%, 1) 14%, hsla(210, 100%, 46%, 1) 45%, hsla(264, 94%, 60%, 1) 100%);
+} */
+/* .bg-gradient-135 {
+    background: linear-gradient(45deg, rgb(0, 94, 235) 0%, hsla(264, 94%, 60%, 1) 100%);
+} */
+/* .bg-gradient-135 {
+    background-image: linear-gradient(200deg, hsla(280, 84%, 41%, 1) 0%, hsla(218, 97%, 56%, 1) 75%);
+} */
+.bg-gradient {
+    background: linear-gradient(45deg, hsla(210, 91%, 39%, 1) 0%, hsla(321, 55%, 50%, 1) 100%);
+    /* background: #272834; */
+}
+
