@@ -25,7 +25,7 @@ export default function Testimonial() {
     }
 
     return (
-        <div className='max-w-6xl pt-12 mx-auto md:pt-10 sm:px-6'>
+        <div className='max-w-6xl py-12 mx-auto md:pt-10 sm:px-6'>
             <div className='mb-4 text-3xl font-extrabold text-center text-slate-600'>Testimonials</div>
             <div className="items-center justify-center md:flex">
                 <div className="mx-4 my-8 md:m-4 md:w-1/3">

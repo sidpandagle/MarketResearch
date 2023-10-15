@@ -15,14 +15,11 @@ function App() {
     <>
       <Header />
       <Routes>
-        {/* <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} /> */}
-
         <Route path="/" element={<Home />} />
         <Route path="/category/:category" element={<CategoryReportList />} />
         <Route path="/press-release" element={<PressRelease />} />
         <Route path="/offering" element={<Offering />} />
+        <Route path="/report" element={<Report />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

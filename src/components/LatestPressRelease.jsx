@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 export default class LatestPressRelease extends Component {
     render() {
         return (
-            <div className="max-w-6xl px-4 mx-auto sm:px-6">
-                <div className="py-12 md:pt-10">
-                    <div className="max-w-4xl pb-12 mx-auto text-center md:pb-10">
-                        <h2 className="mb-6 text-3xl font-extrabold text-slate-600">Press Release</h2>
+            <div className="py-12">
+                <div className="max-w-6xl px-4 mx-auto sm:px-6">
+                    <div className="max-w-4xl mx-auto text-center ">
+                        <h2 className="mb-6 text-3xl font-extrabold text-slate-600">Latest Press Release</h2>
 
                         <div className='flex flex-col flex-wrap justify-between md:gap-0 md:flex-row'>
                             {[...(new Array(6))].map((res, i) => {

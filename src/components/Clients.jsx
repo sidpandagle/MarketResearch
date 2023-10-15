@@ -12,8 +12,8 @@ export default function Clients() {
   const [my_swiper, set_my_swiper] = useState({});
   const swiper = useSwiper();
   return (
-    <div className="max-w-6xl px-4 mx-auto sm:px-6">
-      <div className="py-12 md:pt-10">
+    <div className="max-w-6xl px-4 py-12 mx-auto md:pt-10 sm:px-6">
+      <div className="">
         {/* Section header */}
         <div className="max-w-3xl pb-12 mx-auto text-center md:pb-10">
           <h2 className="mb-8 text-3xl font-extrabold text-slate-600">Our Clients</h2>
@@ -28,7 +28,7 @@ export default function Clients() {
           }}
           breakpoints={{
             0: {
-              slidesPerView: 1,
+              slidesPerView: 2,
             },
             400: {
               slidesPerView: 2,
