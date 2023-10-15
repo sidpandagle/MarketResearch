@@ -48,7 +48,7 @@ export default class Search extends Component {
     }
 }
 
-const categories = [
+export const categories = [
     'Automotive',
     'Chemicals and Materials',
     'Consumer Goods',
