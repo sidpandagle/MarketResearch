@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import { categories } from "./Search";
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ const Navbar = () => {
           <div className="flex items-center justify-end w-full px-4">
             <div>
               <button
-                onClick={() => setMenuOpen(!isMenuOpen)}
+                onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }}
                 id="navbarToggler"
                 className={` ${isMenuOpen && "navbarTogglerActive"
                   } absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden`}
@@ -41,7 +42,7 @@ const Navbar = () => {
               >
                 <div className="block lg:flex">
                   <div className="relative">
-                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setMenuOpen(!isMenuOpen)} to="/">Home</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/">Home</Link>
                   </div>
                   <div className="relative">
                     <Link className='flex items-center gap-2 py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setCategoryOpen(!isCategoryOpen)}>
@@ -60,77 +61,16 @@ const Navbar = () => {
                     </Link>
                     <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-full right-0 text-sm w-[300px] md:w-[550px] ${!isCategoryOpen && "hidden"
                       }`}>
-                      <div className="gap-6 md:flex">
-                        <div className="md:w-1/2">
-                          <Link onClick={() => redirectToCategory()} to="/category/automotive">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Automotive
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/chemicals-and-materials">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Chemicals And Materials
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/consumer-goods">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Consumer Goods
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/defense">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Defense
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/electronics-and-semiconductors">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Electronics and Semiconductors
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/energy-and-natural-resources">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Energy and Natural Resources
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/factory-automation">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Factory Automation
-                            </div>
-                          </Link>
-                        </div>
-                        <div className="md:w-1/2">
-                          <Link onClick={() => redirectToCategory()} to="/category/food-and-beverages">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Food and Beverages
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/healthcare">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Healthcare
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/heavy-engineering-equipment">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Heavy Engineering Equipment
-                            </div>
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/it-and-telecom">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              IT and Telecom
-                            </div >
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/packaging">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Packaging
-                            </div >
-                          </Link>
-                          <Link onClick={() => redirectToCategory()} to="/category/pharmaceutical">
-                            <div className="mb-3 cursor-pointer hover:font-bold">
-                              Pharmaceutical
-                            </div >
-                          </Link>
-                        </div >
-                      </div >
+                      <div className="grid grid-cols-1 gap-x-2 gap-y-0 md:grid-cols-2">
+                        {categories.map((res, index) => {
+                          return (
+                            <Link key={index} onClick={() => redirectToCategory()} to={`/category/${res}`}>
+                              <div className="mb-3 cursor-pointer hover:font-bold">
+                                {res}
+                              </div>
+                            </Link>)
+                        })}
+                      </div>
                     </div >
                   </div >
                   {/* <div className="relative">
@@ -140,10 +80,10 @@ const Navbar = () => {
                       <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setOpen(!open)} to="/offering">Offering</Link>
                     </div> */}
                   < div className="relative" >
-                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setMenuOpen(!isMenuOpen)} to="/contact">Contact</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/contact">Contact</Link>
                   </ div>
                   <div className="relative">
-                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setMenuOpen(!isMenuOpen)} to="/about">About</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/about">About</Link>
                   </div>
                 </div >
               </nav >

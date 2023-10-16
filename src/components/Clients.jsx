@@ -44,11 +44,10 @@ export default function Clients() {
           onSwiper={(swiper) => console.log('swiper')}
           modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           autoplay={{ delay: 0, disableOnInteraction: false }}
-          // loop={true}
-          speed={3000}
+          speed={30000}
           loop={true}
           slidesPerView={5}
-          slidesPerGroup={1}
+          slidesPerGroup={10}
         >
           {/* Items */}
           <div className="grid max-w-sm grid-cols-4 gap-2 mx-auto md:max-w-4xl md:grid-cols-5">
