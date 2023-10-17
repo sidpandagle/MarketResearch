@@ -50,16 +50,16 @@ export default class Search extends Component {
 
 export const categories = [
     'Automotive',
-    'Chemicals and Materials',
+    'Chemicals & Materials',
     'Consumer Goods',
     'Defense',
-    'Electronics and Semiconductors',
-    'Energy and Natural Resources',
+    'Electronics & Semiconductors',
+    'Energy & Natural Resources',
     'Factory Automation',
-    'Food and Beverages',
+    'Food & Beverages',
     'Healthcare',
     'Heavy Engineering Equipment',
-    'IT and Telecom',
+    'IT & Telecom',
     // 'Packaging',
     // 'Pharmaceutical',
 ]

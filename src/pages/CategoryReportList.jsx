@@ -11,13 +11,13 @@ const CategoryReportList = () => {
         <div className="py-2 text-center md:pt-10 md:text-left">
           <div className="pb-12 mx-auto max-w-8xl md:pb-10">
             <div className='md:flex'>
-              <div className="md:w-1/4">
-                <div className='sticky top-[20px]'>
-                  <div className="mb-4 text-xl font-semibold">Reports by Industry</div>
+              <div className=" md:w-1/4">
+                <div className='border rounded-md p-4 sticky top-[20px]'>
+                  <div className="mb-2 text-xl font-semibold">Reports by Industry</div>
                   <div className='flex flex-col gap-2'>
                     {categories.map((res, key) => {
                       return (
-                        <div className='py-2 text-sm border-b-2 cursor-pointer md:mr-8 hover:text-primary' key={key}>{res} (6)</div>
+                        <div className={`py-2 text-sm cursor-pointer hover:text-primary ${key<categories.length-1 && 'border-b-2'}`} key={key}>{res} (6)</div>
                       )
                     })}
                   </div>

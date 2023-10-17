@@ -1,55 +1,88 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import ReportTabs from '../components/ReportTabs'
+import Inquiry from '../components/Inquiry'
 
-export default class Report extends Component {
-  render() {
-    return (
-      <div className='max-w-6xl px-4 py-12 mx-auto md:pt-10 sm:px-6'>
-        <div className="head">
-          <div> Congruence / Report / Information & Communication Technology / Workforce Analytics Market</div>
-          {/* <div className='py-4 text-3xl '>Workforce Analytics Market</div> */}
-          <div className='items-center justify-between md:flex'>
-            {/* <div className="w-20 h-24 bg-slate-400"></div> */}
-            <div className="w-full md:w-3/4">
-              <div className='mt-4 mb-2 text-lg font-semibold'>Workforce Analytics Market Size, Share & Segmentation By Component (Solution, Service), By Organization Size (Large Enterprises, SMEs), By Deployment (On-Premise, Cloud), By Industry Vertical (BFSI, Manufacturing, Healthcare, Government, Retail, IT and Telecom, Education, Others), By Region and Global Forecast 2023-2030</div>
-              <div className='gap-4 py-4 text-center md:py-0 md:text-left md:flex'>
-                <div>Date: September 2023</div>
-                <div>Report Code: SNS/ICT/3982</div>
-                <div>Pages: 138</div>
+export default function Report() {
+
+  const [selectedTitle, setSelectedTitle] = useState('Description');
+  return (
+    <div className='px-4 py-2 mx-auto md:py-12 max-w-7xl md:pt-0 sm:px-6'>
+
+      <div className="py-8 md:flex">
+        <div className="p-4 mb-4 border rounded-md md:mb-0 md:w-3/4">
+          <div className="head">
+            <div> Congruence / Report / Information & Communication Technology / Workforce Analytics Market</div>
+            <div className='items-center justify-between md:flex'>
+              <div className="w-full">
+                <div className='mt-4 mb-2 text-lg font-semibold'>Workforce Analytics Market Size, Share & Segmentation By Component (Solution, Service), By Organization Size (Large Enterprises, SMEs), By Deployment (On-Premise, Cloud), By Industry Vertical (BFSI, Manufacturing, Healthcare, Government, Retail, IT and Telecom, Education, Others), By Region and Global Forecast 2023-2030</div>
+                <div className='gap-4 py-4 text-sm text-center md:py-0 md:text-left md:flex'>
+                  <div>Date: September 2023</div>
+                  <div>Report Code: SNS/ICT/3982</div>
+                  <div>Pages: 138</div>
+                </div>
+                <div className="justify-between gap-1 my-4 md:flex">
+                  <div onClick={() => setSelectedTitle('Description')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-slate-500 text-white' : ''}`}>Description</div>
+                  <div onClick={() => setSelectedTitle('Table')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-slate-500 text-white' : ''}`}>Table Of Content</div>
+                  <div onClick={() => setSelectedTitle('Methodology')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-slate-500 text-white' : ''}`}>Methodology</div>
+                  <div onClick={() => setSelectedTitle('Request')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-center border rounded-sm cursor-pointer  ${selectedTitle === 'Request' ? 'font-bold bg-slate-500 text-white' : ''}`}>Request Sample</div>
+                </div>
+                <div className={`py-4 flex justify-center h-[500vh] ${selectedTitle !== 'Description' && 'hidden'}`}>Description</div>
+                <div className={`py-4 flex justify-center h-[500vh] ${selectedTitle !== 'Table' && 'hidden'}`}>Table</div>
+                <div className={`py-4 flex justify-center h-[500vh] ${selectedTitle !== 'Methodology' && 'hidden'}`}>Methodology</div>
+                <div className={`py-4 ${selectedTitle !== 'Request' && 'hidden'}`}>
+                  <Inquiry />
+                </div>
               </div>
-            </div>
-            <div className='flex flex-col gap-2'>
-              <button className='px-6 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full'>Buy Now</button>
-              <button className='px-6 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full'>Inquiry Before Buying</button>
             </div>
           </div>
         </div>
-        <div className="py-8 md:flex">
-          <div className="md:w-2/3">
-            <ReportTabs />
-          </div>
-          <div className="md:pl-4 md:w-1/3">
-            <div className='flex flex-col gap-2 p-4 rounded-md bg-slate-200'>
+        <div className="relative md:pl-4 md:w-1/4">
+          <div className='sticky top-[20px] flex flex-col gap-4 '>
+            <div className='flex flex-col gap-2 p-4 border rounded-md'>
               <div className='flex justify-between'>
-                <div className='flex gap-2'><input type="radio" name="price" id="" />Single User License</div>
+                <div className='flex gap-2'>
+                  Single User License</div>
                 <div>$4650</div>
               </div>
               <div className='flex justify-between'>
-                <div className='flex gap-2'><input type="radio" name="price" id="" />Enterprise User License</div>
+                <div className='flex gap-2'>
+                  Enterprise User License</div>
                 <div>$6450</div>
               </div>
               <div className='flex justify-between'>
-                <div className='flex gap-2'><input type="radio" name="price" id="" />Excel Datasheet</div>
+                <div className='flex gap-2'>
+                  Excel Datasheet</div>
                 <div>$2325</div>
               </div>
-              <div className='flex justify-between mt-2'>
-                <button className='px-6 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full'>Buy Now</button>
-                <button className='px-6 py-2 text-sm font-semibold text-white bg-blue-500 rounded-full'>Inquiry Before Buying</button>
+              <div className='flex flex-col gap-2 mt-2'>
+                {/* <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Buy Now</button>
+                <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Inquiry Before Buying</button> */}
+                <button type="button" className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                  Buy Now
+                </button>
+                <button type="button" className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                Inquiry Before Buying
+                </button>
+              </div>
+            </div>
+            <div className='flex flex-col gap-2 border rounded-md'>
+              <div>
+                <div className='px-4 py-2'>Related Reports</div>
+                <div className=''>
+                  <div className='flex flex-col px-4 py-2 border-b-2 cursor-pointer group hover:bg-slate-100'>
+                    <div className="font-bold group-hover:text-primary">Workforce Analytics Market</div>
+                    <div className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse  ipsum dolor sit amet consectetur adipisicing elit. Esse</div>
+                  </div>
+                  <div className='flex flex-col px-4 py-2 border-b-2 cursor-pointer group hover:bg-slate-100'>
+                    <div className="font-bold group-hover:text-primary">Workforce Analytics Market</div>
+                    <div className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse  ipsum dolor sit amet consectetur adipisicing elit. Esse</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
