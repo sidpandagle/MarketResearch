@@ -7,7 +7,7 @@ export default class Offering extends Component {
     }
     return (
       <div>
-        <div className='md:flex justify-between gap-8 max-w-screen-xl px-4 py-4 mx-auto lg:py-12 lg:px-6'>
+        <div className='flex flex-col md:flex-row justify-between gap-8 max-w-screen-xl px-4 py-4 mx-auto lg:py-12 lg:px-6'>
           <div className='md:w-1/3 cursor-pointer hover:scale-95 duration-200'>
             <div onClick={() => scrollTo('section-1')} className='p-8 text-3xl font-bold  bg-[url("https://picsum.photos/1800/1202?grayscale")] rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Consulting</div>
           </div>

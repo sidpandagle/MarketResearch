@@ -35,7 +35,7 @@ const CategoryReportList = () => {
                     <Link to='/report' key={key}>
                       <div className='group' >
                         <div className='flex flex-col gap-2 p-4 border-b-2 cursor-pointer group-hover:bg-slate-50'>
-                          <div className="font-semibold group-hover:text-primary">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </div>
+                          <div className="font-semibold group-hover:text-primary group-hover:underline">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </div>
                           <div className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus doloremque illum sunt nulla rerum fugiat explicabo rem placeat eius veniam, perspiciatis ducimus eaque commodi ut dolor ipsa animi ex impedit.</div>
                           <div className='text-sm flex gap-4'>
                             <div className='border-r-2 border-gray pr-4'>October 2023</div>

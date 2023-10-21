@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Search extends Component {
     render() {
@@ -34,12 +35,14 @@ export default class Search extends Component {
                         <div className='hidden md:block w-1/2 h-[2px] bg-white'>
                         </div>
                     </div>
-                    <div className='flex flex-wrap items-start justify-center w-full gap-2 min-h-20'>
+                    <div className='grid grid-cols-2 md:grid-cols-6 lg:grid-cols-12 items-start justify-center w-full gap-4 min-h-20'>
                         {categories.map((item, index) => (
-                            <div key={index} className='flex flex-col items-center w-20 gap-1 mb-2'>
-                                <img src={'/aerospace-blk.png'} className="flex justify-center w-6 hover:w-7"></img>
-                                <div className="text-center mx-1 text-[10px] w-20">{item}</div>
-                            </div>
+                            <Link key={index} to={`/category/${item}`}>
+                                <div className='flex flex-col items-center  gap-1 mb-2'>
+                                    <img src={'/aerospace-blk.png'} className="flex justify-center w-6 hover:scale-125 duration-100"></img>
+                                    <div className="text-center mx-1 text-[10px] w-20">{item}</div>
+                                </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
@@ -58,8 +61,8 @@ export const categories = [
     'Factory Automation',
     'Food & Beverages',
     'Healthcare',
-    'Heavy Engineering Equipment',
+    // 'Heavy Engineering Equipment',
     'IT & Telecom',
-    // 'Packaging',
-    // 'Pharmaceutical',
+    'Packaging',
+    'Pharmaceutical',
 ]

@@ -57,7 +57,7 @@ export default function Report() {
                   <div>Report Code: SNS/ICT/3982</div>
                   <div>Pages: 138</div>
                 </div>
-                <div className={`${selectedTitle !== 'Request' && 'sticky top-0'} justify-between gap-2 py-4 bg-white md:flex`}>
+                <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} relative justify-between gap-2 py-4 bg-white md:flex`}>
                   <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-slate-500 text-white' : ''}`}>Description</div>
                   <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-slate-500 text-white' : ''}`}>Table Of Content</div>
                   <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-slate-500 text-white' : ''}`}>Highlights</div>

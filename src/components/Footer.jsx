@@ -8,8 +8,11 @@ const Footer = () => {
         <div className="md:flex">
           <div className="md:w-1/2">
             <div className="flex flex-col items-center gap-4 p-8 md:items-start md:px-12 md:py-20 md:flex-row border-slate-700">
-              <div className="flex text-4xl font-bold md:w-1/2">Congruence</div>
-              <div className="w-1/2 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quisquam error ab harum. Sint quisquam error ab harum.  Sint quisquam error ab harum. Sint quisquam error ab harum.</div>
+              <div className="flex text-4xl font-bold md:w-1/3">
+
+                <img src={'/logo.jpeg'} className="flex justify-center w-60 rounded-md"></img>
+              </div>
+              <div className="w-2/3 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quisquam error ab harum. Sint quisquam error ab harum.  Sint quisquam error ab harum. Sint quisquam error ab harum.</div>
             </div>
             <div className="flex flex-col justify-around gap-8 p-8 text-sm border-t md:gap-0 md:flex-row md:px-12 md:py-20 border-slate-600">
               <div>

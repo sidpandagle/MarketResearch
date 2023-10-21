@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <>
       <header className='w-full bg-white border-b border-slate-200'>
-        <div className="relative flex items-center justify-between mx-4">
+        <div className="relative flex items-center justify-between md:mx-4">
           <div className="max-w-full px-4 w-60">
             <div className="w-full text-2xl ">
               <img src={'/logo.jpeg'} className="flex justify-center w-40"></img>
@@ -76,7 +76,7 @@ const Navbar = () => {
                     </div >
                   </div >
                   <div className="relative">
-                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/press-release">Press Release</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/press-release/all">Press Release</Link>
                   </div>
                   <div className="relative">
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/offering">Offerings</Link>
