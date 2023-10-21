@@ -16,8 +16,10 @@ const Navbar = () => {
       <header className='w-full bg-white border-b border-slate-200'>
         <div className="relative flex items-center justify-between mx-4">
           <div className="max-w-full px-4 w-60">
-            <div className="w-full py-5 text-2xl ">
-              Congruence
+            <div className="w-full text-2xl ">
+              <img src={'/logo.jpeg'} className="flex justify-center w-40"></img>
+              {/* <img src={'/2.jpeg'} className="flex justify-center"></img> */}
+              {/* <img src={'/3.jpeg'} className="flex justify-center"></img> */}
             </div>
           </div>
           <div className="flex items-center justify-end w-full px-4">
@@ -73,12 +75,12 @@ const Navbar = () => {
                       </div>
                     </div >
                   </div >
-                  {/* <div className="relative">
-                      <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setOpen(!open)} to="/press-release">Press Release</Link>
-                    </div>
-                    <div className="relative">
-                      <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => setOpen(!open)} to="/offering">Offering</Link>
-                    </div> */}
+                  <div className="relative">
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/press-release">Press Release</Link>
+                  </div>
+                  <div className="relative">
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/offering">Offerings</Link>
+                  </div>
                   < div className="relative" >
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/contact">Contact</Link>
                   </ div>

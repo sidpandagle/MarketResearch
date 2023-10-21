@@ -43,7 +43,7 @@ export default class Inquiry extends Component {
                             </div>
                         </div>
                         <div className='flex justify-center'>
-                            <button type="button" className="inline-flex items-center justify-center gap-2 px-8 py-2 my-6 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                            <button type="button" className="inline-flex items-center justify-center gap-2 px-8 py-2 mt-6 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                 Submit
                             </button>
                         </div>
