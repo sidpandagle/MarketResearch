@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSwiper } from 'swiper/react';
-
+import { Link } from 'react-router-dom';
 
 export default function LatestReports() {
 
@@ -55,9 +55,11 @@ export default function LatestReports() {
                                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus id minima rem magni doloremque, accusamus repudiandae in eum dolores sit quia ea doloribus unde eveniet ullam veritatis. Eveniet, facilis dolore.
                                         </div>
                                         <div className='flex justify-center md:justify-end'>
+                                            <Link to='/report'>
                                             <button type="button" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                 Read Me
                                             </button>
+                                            </Link>
 
                                         </div>
                                     </div>

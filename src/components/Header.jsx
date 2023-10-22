@@ -61,7 +61,7 @@ const Navbar = () => {
                         </svg>
                       }
                     </Link>
-                    <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-full right-0 text-sm w-[300px] md:w-[550px] ${!isCategoryOpen && "hidden"
+                    <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-[170%] left-[-120%] text-sm w-[300px] md:w-[550px] ${!isCategoryOpen && "hidden"
                       }`}>
                       <div className="grid grid-cols-1 gap-x-2 gap-y-0 md:grid-cols-2">
                         {categories.map((res, index) => {
