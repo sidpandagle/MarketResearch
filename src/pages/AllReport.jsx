@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { categories } from '../components/Search'
 
-const CategoryReportList = () => {
+const AllReport = () => {
   const { category } = useParams();
   const scrollToTop = () => {
     window.scroll(0, 0)
@@ -56,4 +56,4 @@ const CategoryReportList = () => {
   );
 };
 
-export default CategoryReportList;
+export default AllReport;

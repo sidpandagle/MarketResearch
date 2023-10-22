@@ -130,5 +130,4 @@ export const buyNowEmailTemplate = `
                 </div>
             </div>
         </div>
-</div >
-    `
+</div >`
