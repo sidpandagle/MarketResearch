@@ -17,7 +17,7 @@ const Navbar = () => {
         <div className="relative flex items-center justify-between md:mx-4">
           <div className="max-w-full px-4 w-60">
             <div className="w-full text-2xl ">
-              <img src={'/logo.jpeg'} className="flex justify-center w-40"></img>
+              <img src={'/cmidarklogo.png'} className="flex justify-center w-40"></img>
               {/* <img src={'/2.jpeg'} className="flex justify-center"></img> */}
               {/* <img src={'/3.jpeg'} className="flex justify-center"></img> */}
             </div>

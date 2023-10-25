@@ -37,19 +37,19 @@ export default class Search extends Component {
                         <div className='hidden md:block w-1/2 h-[2px] bg-white'>
                         </div>
                     </div>
-                    <div className='grid grid-cols-2 md:grid-cols-6 lg:grid-cols-12 items-start justify-center w-full gap-4 min-h-20'>
-                        {categoriesWithIcon.map(({name, icon}, index) => (
+                    <div className='grid items-start justify-center w-full grid-cols-2 gap-4 md:grid-cols-6 lg:grid-cols-12 min-h-20'>
+                        {categoriesWithIcon.map(({ name, icon }, index) => (
                             <Link key={index} to={`/category/${name}`}>
-                                <div className='flex flex-col items-center  gap-1 mb-2'>
-                                    <img src={`/${icon}.png`} className="flex justify-center w-6 hover:scale-125 duration-100"></img>
+                                <div className='flex flex-col items-center gap-1 mb-2'>
+                                    <img src={icon} className="flex justify-center w-6 duration-100 hover:scale-125"></img>
                                     <div className="text-center mx-1 text-[10px] w-20">{name}</div>
                                 </div>
                             </Link>
                         ))}
                         {/* {categories.map((item, index) => (
-                            <Link key={index} to={`/category/${item}`}>
-                                <div className='flex flex-col items-center  gap-1 mb-2'>
-                                    <img src={'/aerospace-blk.png'} className="flex justify-center w-6 hover:scale-125 duration-100"></img>
+                            <Link key={index} to={`/ category / ${item}`}>
+                                <div className='flex flex-col items-center gap-1 mb-2'>
+                                    <img src={'/aerospace-blk.png'} className="flex justify-center w-6 duration-100 hover:scale-125"></img>
                                     <div className="text-center mx-1 text-[10px] w-20">{item}</div>
                                 </div>
                             </Link>
