@@ -75,8 +75,7 @@ export default function Report() {
                 </div>
                 <div className={`py-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
                   <div className='html-content' dangerouslySetInnerHTML={{__html: rdData}}></div>
-                  {/* <div innerHTML={rdData}></div> */}
-                  {/* <Faq /> */}
+                  <Faq />
                 </div>
                 <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Table' && 'hidden'}`}>Table</div>
                 <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Highlights' && 'hidden'}`}>Highlights</div>

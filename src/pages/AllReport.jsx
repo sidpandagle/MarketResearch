@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { categories } from '../components/Search'
+import { categories } from '../constants'
 
 const AllReport = () => {
   const { category } = useParams();

@@ -131,3 +131,37 @@ export const buyNowEmailTemplate = `
             </div>
         </div>
 </div >`
+
+
+
+export const categories = [
+    'Automotive',
+    'Chemicals & Materials',
+    'Consumer Goods',
+    'Defense',
+    'Electronics & Semiconductors',
+    'Energy & Natural Resources',
+    'Factory Automation',
+    'Food & Beverages',
+    'Healthcare',
+    // 'Heavy Engineering Equipment',
+    'IT & Telecom',
+    'Packaging',
+    'Pharmaceutical',
+]
+
+export const categoriesWithIcon = [
+    { name: 'Automotive', icon: 'automotive' },
+    { name: 'Chemicals & Materials', icon: 'experiment' },
+    { name: 'Consumer Goods', icon: 'box' },
+    { name: 'Defense', icon: 'defense' },
+    { name: 'Electronics & Semiconductors', icon: 'electronics' },
+    { name: 'Energy & Natural Resources', icon: 'tools' },
+    { name: 'Factory Automation', icon: 'automation' },
+    { name: 'Food & Beverages', icon: 'carrot' },
+    { name: 'Healthcare', icon: 'cross' },
+    // { name: 'Heavy Engineering Equipment', icon: 'tools' },
+    { name: 'IT & Telecom', icon: 'telecom' },
+    { name: 'Packaging', icon: 'packaging' },
+    { name: 'Pharmaceutical', icon: 'patient' },
+]

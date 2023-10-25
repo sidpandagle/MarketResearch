@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-import { categories } from "./Search";
+import { categories } from '../constants'
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);

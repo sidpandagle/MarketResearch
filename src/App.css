@@ -10,6 +10,13 @@
     background: linear-gradient(45deg, hsla(210, 91%, 39%, 1) 0%, hsla(321, 55%, 50%, 1) 100%);
 }
 
+.html-content {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .html-content p {
     margin: 10px 0 !important;
 }
@@ -34,10 +41,6 @@
     background-color: #f2f2f2;
 }
 
-.html-content tr:hover {
-    background-color: #ddd;
-}
-
 .html-content th {
     padding-top: 12px;
     padding-bottom: 12px;
@@ -55,4 +58,3 @@
 .html-content p img {
     margin: 24px 0 24px 100px;
 }
-
