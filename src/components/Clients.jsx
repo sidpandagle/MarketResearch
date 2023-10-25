@@ -1,6 +1,6 @@
-import React, { Component, useState } from 'react'
+import React from 'react'
 import { Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -9,8 +9,8 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 export default function Clients() {
 
-  const [my_swiper, set_my_swiper] = useState({});
-  const swiper = useSwiper();
+  // const [my_swiper, set_my_swiper] = useState({});
+  // const swiper = useSwiper();
   return (
     <div className="max-w-6xl px-4 py-12 mx-auto md:pt-10 sm:px-6">
       <div className="">
@@ -23,9 +23,6 @@ export default function Clients() {
         </div>
 
         <Swiper
-          onInit={(ev) => {
-            set_my_swiper(ev)
-          }}
           breakpoints={{
             0: {
               slidesPerView: 2,

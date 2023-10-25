@@ -9,3 +9,50 @@
 .bg-gradient {
     background: linear-gradient(45deg, hsla(210, 91%, 39%, 1) 0%, hsla(321, 55%, 50%, 1) 100%);
 }
+
+.html-content p {
+    margin: 10px 0 !important;
+}
+
+.html-content td {
+    min-width: 240px !important;
+}
+
+
+.html-content {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.html-content td,
+.html-content th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.html-content tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.html-content tr:hover {
+    background-color: #ddd;
+}
+
+.html-content th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
+
+.html-content ul {
+    list-style-type: circle;
+    padding: 0 24px 24px 24px;
+}
+
+
+.html-content p img {
+    margin: 24px 0 24px 100px;
+}
+
