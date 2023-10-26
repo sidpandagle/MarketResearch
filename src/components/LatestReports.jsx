@@ -1,13 +1,11 @@
-import React, { Component, useState } from 'react';
+import React, {  useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useSwiper } from 'swiper/react';
 import { Link } from 'react-router-dom';
 
 export default function LatestReports() {
 
 
     const [my_swiper, set_my_swiper] = useState({});
-    const swiper = useSwiper();
 
     return (
         <div className='bg-gradient'>
@@ -44,7 +42,7 @@ export default function LatestReports() {
                         onSwiper={(swiper) => console.log('swiper')}
                     >
 
-                        {['', '', '', '', '', '', '', '', '', '', '', ''].map((val, index) =>
+                        {[...new Array(10)].map((val, index) =>
                             <SwiperSlide key={index}>
                                 <div className="mx-2 border rounded-md md:flex overflow-clip">
                                     <div className="p-20 bg-white md:w-2/5 md:p-0 text-slate-400">

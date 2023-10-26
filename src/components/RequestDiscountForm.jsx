@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
+import ReCAPTCHA from "react-google-recaptcha";
+import {reCaptchaKey} from '../constants';
 
-export default function RequestDiscountForm({onSubmit}) {
+export default function RequestDiscountForm({ onSubmit }) {
+    function onChange(){
+
+    }
     return (
         <section className="">
             <div className="">
-                <div className='text-center text-xl font-semibold pb-8'>Request Discount Form</div>
+                <div className='pb-8 text-xl font-semibold text-center'>Request Discount Form</div>
                 <form action="#">
                     <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div className="w-full">
@@ -40,6 +45,12 @@ export default function RequestDiscountForm({onSubmit}) {
                         <div className="sm:col-span-2">
                             {/* <label htmlFor="description" className="block mb-2 text-sm font-medium">Description</label> */}
                             <textarea id="description" rows={8} className="block p-2.5 w-full text-sm bg-gray-50 rounded-lg outline-0 border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Your description here" defaultValue={""} />
+                        </div>
+                        <div className="flex items-center justify-center sm:col-span-2">
+                            <ReCAPTCHA
+                                sitekey={reCaptchaKey}
+                                onChange={onChange}
+                            />
                         </div>
                     </div>
                     <div className='flex justify-center'>

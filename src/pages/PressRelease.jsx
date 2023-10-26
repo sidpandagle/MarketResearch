@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import React from 'react'
+import { useParams } from 'react-router-dom';
 
 
 export default function PressRelease() {
     const { pressRelease } = useParams();
-    const heading = 'Global Cassava Starch Market To Grow At A CAGR Of 5.5% By 2030'
-    const scrollToTop = () => {
-        window.scroll(0, 0)
+    function test(){
+        console.log(pressRelease);
     }
+    const heading = 'Global Cassava Starch Market To Grow At A CAGR Of 5.5% By 2030'
     return (
         <>
-            <div className="max-w-6xl px-4 mx-auto sm:px-6">
+            <div onClick={test} className="max-w-6xl px-4 mx-auto sm:px-6">
             <div className='py-4'> Congruence / Report / Information & Communication Technology / Workforce Analytics Market</div>
                 <div className="py-2 text-center md:pt-2 md:text-left">
                     <div className="pb-12 mx-auto max-w-8xl md:pb-10">
                         <div className='md:flex'>
                             <div className="w-full">
-                                <div className='border rounded-md p-4 relative'>
+                                <div className='relative p-4 border rounded-md'>
                                     <div className='absolute top-[-10px] right-[20px] py-1 px-4 bg-primary text-white rounded-sm'>
                                         13 Oct 2023
                                     </div>

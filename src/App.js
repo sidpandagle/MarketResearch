@@ -11,6 +11,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import ScrollToTop from './utils/ScrollToTop'
 import AllPressRelease from './pages/AllPressRelease';
 import PressRelease from './pages/PressRelease';
+import BuyNow from './pages/BuyNow';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/all-press-release/:category" element={<AllPressRelease />} />
         <Route path="/press-release/:pressRelease" element={<PressRelease />} />
         <Route path="/offering" element={<Offering />} />
+        <Route path="/buy-now" element={<BuyNow />} />
         <Route path="/report" element={<Report />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
