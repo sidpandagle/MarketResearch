@@ -41,19 +41,11 @@ export default class Search extends Component {
                         {categoriesWithIcon.map(({ name, icon }, index) => (
                             <Link key={index} to={`/category/${name}`}>
                                 <div className='flex flex-col items-center gap-1 mb-2'>
-                                    <img src={icon} className="flex justify-center w-6 duration-100 hover:scale-125"></img>
+                                    <img src={icon} alt='category-icon' className="flex justify-center w-6 duration-100 hover:scale-125"></img>
                                     <div className="text-center mx-1 text-[10px] w-20">{name}</div>
                                 </div>
                             </Link>
                         ))}
-                        {/* {categories.map((item, index) => (
-                            <Link key={index} to={`/ category / ${item}`}>
-                                <div className='flex flex-col items-center gap-1 mb-2'>
-                                    <img src={'/aerospace-blk.png'} className="flex justify-center w-6 duration-100 hover:scale-125"></img>
-                                    <div className="text-center mx-1 text-[10px] w-20">{item}</div>
-                                </div>
-                            </Link>
-                        ))} */}
                     </div>
                 </div>
             </div>

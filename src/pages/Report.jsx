@@ -20,9 +20,6 @@ export default function Report() {
   const handleDiscountFormOpen = () => setDiscountFormOpen(true);
   const handleDiscountFormClose = () => setDiscountFormOpen(false);
 
-  const [buyNowFormOpen, setBuyNowFormOpen] = React.useState(false);
-  const handleBuyNowFormClose = () => setBuyNowFormOpen(false);
-
   const [license, setLicense] = React.useState('Single User License');
 
   const licenses = [
@@ -93,7 +90,7 @@ export default function Report() {
               {
                 licenses.map((res, i) => {
                   return (
-                    <div key={i} onClick={() => setLicense(res.license)} className={`flex justify-between cursor -default hover: text-primary ${res.selected && 'text-primary'} p-1 rounded-sm`}>
+                    <div key={i} onClick={() => setLicense(res.license)} className={`flex justify-between cursor-default hover:text-primary ${res.selected && 'text-primary'} p-1 rounded-sm`}>
                       <div className='flex gap-2'>
                         {res.license}</div>
                       <div className='font-bold'>{res.price}</div>

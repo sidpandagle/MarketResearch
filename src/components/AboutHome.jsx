@@ -17,7 +17,7 @@ export default class AboutHome extends Component {
               </div>
             </div>
             <div className="p-10 pb-0 md:p-0 md:w-1/2">
-              <img className='rounded-lg' src={"https://picsum.photos/1800/1000"} alt="" srcSet="" />
+              <img className='rounded-lg' src={"https://picsum.photos/1800/1000"} alt="about-img" srcSet="" />
             </div>
           </div>
         </div>

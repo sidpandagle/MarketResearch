@@ -13,14 +13,14 @@ export default class About extends Component {
                                         <div className="py-3 sm:py-4">
                                             <img
                                                 src="https://i.ibb.co/gFb3ns6/image-1.jpg"
-                                                alt=""
+                                                alt="about-img1"
                                                 className="w-full rounded-2xl"
                                             />
                                         </div>
                                         <div className="py-3 sm:py-4">
                                             <img
                                                 src="https://i.ibb.co/rfHFq15/image-2.jpg"
-                                                alt=""
+                                                alt="about-img2"
                                                 className="w-full rounded-2xl"
                                             />
                                         </div>
@@ -29,7 +29,7 @@ export default class About extends Component {
                                         <div className="relative z-10 my-4">
                                             <img
                                                 src="https://i.ibb.co/9y7nYCD/image-3.jpg"
-                                                alt=""
+                                                alt="about-img3"
                                                 className="w-full rounded-2xl"
                                             />
                                             <span className="absolute -right-7 -bottom-7 z-[-1]">
