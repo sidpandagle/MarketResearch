@@ -1,5 +1,4 @@
 import React from "react";
-import TwitterIcon from '@mui/icons-material/Twitter';
 
 const Footer = () => {
   return (
@@ -7,13 +6,13 @@ const Footer = () => {
       <div className="text-center text-white bg-slate-800 md:text-left">
         <div className="md:flex">
           <div className="md:w-1/2">
-            <div className="flex flex-col items-center gap-4 p-8 md:items-start md:px-12 md:py-20 md:flex-row border-slate-700">
-              <div className="flex font-bold md:w-1/3">
-                <img src={'/cmilightlogo.png'} alt="logo" className="flex justify-center p-4"></img>
+            <div className="flex flex-col items-center gap-4 p-8 md:items-start md:px-12 md:py-16 md:flex-row border-slate-700">
+              <div className="flex font-bold md:w-2/3">
+                <img src={'/cmilightlogo.png'} alt="logo" className="flex justify-center "></img>
               </div>
               <div className="w-2/3 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quisquam error ab harum. Sint quisquam error ab harum.  Sint quisquam error ab harum. Sint quisquam error ab harum.</div>
             </div>
-            <div className="flex flex-col justify-around gap-8 p-8 text-sm border-t md:gap-0 md:flex-row md:px-12 md:py-20 border-slate-600">
+            <div className="flex flex-col justify-around gap-4 p-8 text-sm border-t md:gap-0 md:flex-row md:px-12 md:py-16 border-slate-600">
               <div>
                 <div className="mb-4 text-xl font-bold">Resources</div>
                 <div className="mb-2">Why Congruence?</div>
@@ -42,7 +41,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-4 p-8 border-t md:border-t-0 md:border-l md:w-1/2 md:px-12 md:py-20 border-slate-600">
+          <div className="flex flex-col gap-4 p-8 border-t md:border-t-0 md:border-l md:w-1/2 md:px-12 md:py-16 border-slate-600">
             <div className="text-sm font-semibold text-white">DEMO</div>
             <div className="flex flex-col gap-3 text-3xl text-white md:text-5xl ">
               <div>

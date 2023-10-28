@@ -14,14 +14,14 @@ const AllReport = () => {
         <div className="py-2 text-center md:pt-10 md:text-left">
           <div className="pb-12 mx-auto max-w-8xl md:pb-10">
             <div className='md:flex'>
-              <div className=" md:w-1/4">
+              <div className="md:w-[28%]">
                 <div className='border rounded-md p-4 sticky top-[20px]'>
                   <div className="mb-2 text-xl font-semibold">Reports by Industry</div>
                   <div className='flex flex-col gap-2'>
                     {categories.map((res, key) => {
                       return (
-                        <Link key={key} to={`/category/${res}`} onClick={scrollToTop}>
-                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${key < categories.length - 1 && 'border-b-2'}`} key={key}>{res} (6)</div>
+                        <Link key={key} to={`/category/${res.name}`} onClick={scrollToTop}>
+                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${key < categories.length - 1 && 'border-b-2'}`} key={key}>{res.name} (6)</div>
                         </Link>
                       )
                     })}
@@ -37,9 +37,9 @@ const AllReport = () => {
                         <div className='flex flex-col gap-2 p-4 border-b-2 cursor-pointer group-hover:bg-slate-50'>
                           <div className="font-semibold group-hover:text-primary group-hover:underline">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </div>
                           <div className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus doloremque illum sunt nulla rerum fugiat explicabo rem placeat eius veniam, perspiciatis ducimus eaque commodi ut dolor ipsa animi ex impedit.</div>
-                          <div className='text-sm flex gap-4'>
-                            <div className='border-r-2 border-gray pr-4'>October 2023</div>
-                            <div className='border-r-2 border-gray pr-4'>October 2023</div>
+                          <div className='flex gap-4 text-sm'>
+                            <div className='pr-4 border-r-2 border-gray'>October 2023</div>
+                            <div className='pr-4 border-r-2 border-gray'>October 2023</div>
                             <div className='pr-4'>October 2023</div>
                           </div>
                         </div>

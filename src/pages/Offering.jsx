@@ -9,13 +9,13 @@ export default class Offering extends Component {
       <div>
         <div className='flex flex-col justify-between max-w-screen-xl gap-8 px-4 py-4 mx-auto md:flex-row lg:py-12 lg:px-6'>
           <div className='duration-200 cursor-pointer md:w-1/3 hover:scale-95'>
-            <div onClick={() => scrollTo('section-1')} className='p-8 text-3xl font-bold  bg-[url("https://picsum.photos/1800/1202?grayscale")] rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Consulting</div>
+            <div onClick={() => scrollTo('section-1')} className='p-8 text-3xl font-bold  rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Consulting</div>
           </div>
           <div className='duration-200 cursor-pointer md:w-1/3 hover:scale-95'>
-            <div onClick={() => scrollTo('section-2')} className='p-8 text-3xl font-bold  bg-[url("https://picsum.photos/1800/1201?grayscale")] rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Custom</div>
+            <div onClick={() => scrollTo('section-2')} className='p-8 text-3xl font-bold  rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Custom</div>
           </div>
           <div className='duration-200 cursor-pointer md:w-1/3 hover:scale-95'>
-            <div onClick={() => scrollTo('section-3')} className='p-8 text-3xl font-bold  bg-[url("https://picsum.photos/1800/1200?grayscale")] rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Syndicate</div>
+            <div onClick={() => scrollTo('section-3')} className='p-8 text-3xl font-bold  rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Syndicate</div>
           </div>
         </div>
         <section id='section-1' className="bg-gray-50 -800">
@@ -40,7 +40,7 @@ export default class Offering extends Component {
                 </ul>
                 <p className="mb-8 font-light lg:text-xl">Deliver great service experiences fast - without the complexity of traditional ITSM solutions.</p>
               </div>
-              <img className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={"https://picsum.photos/1800/1200"} alt="dashboard feature image" />
+              <img className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
             </div>
           </div>
         </section>
@@ -48,7 +48,7 @@ export default class Offering extends Component {
           <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
 
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-              <img className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={"https://picsum.photos/1800/1208"} alt="feature image 2" />
+              <img className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="feature image 2" />
               <div className="text-gray-500 sm:text-lg -400">
                 <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">We invest in the world’s potential</h2>
                 <p className="mb-8 font-light lg:text-xl">Deliver great service experiences fast - without the complexity of traditional ITSM solutions. Accelerate critical development work, eliminate toil, and deploy changes with ease.</p>

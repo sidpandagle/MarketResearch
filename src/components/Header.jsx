@@ -15,11 +15,11 @@ const Navbar = () => {
     <>
       <header className='w-full bg-white border-b border-slate-200'>
         <div className="relative flex items-center justify-between md:mx-4">
-          <div className="max-w-full px-4 w-60">
+          <div className="px-4">
             <div className="w-full m-4 text-2xl md:m-0">
-              <img src={'/cmidarklogo.png'} alt="logo" className="flex justify-center w-40"></img>
-              {/* <img src={'/2.jpeg'} className="flex justify-center"></img> */}
-              {/* <img src={'/3.jpeg'} className="flex justify-center"></img> */}
+              <Link to='/'>
+                <img src={'/cmidarklogo.png'} alt="logo" className="flex justify-center w-56"></img>
+              </Link>
             </div>
           </div>
           <div className="flex items-center justify-end w-full px-4">
@@ -61,14 +61,14 @@ const Navbar = () => {
                         </svg>
                       }
                     </Link>
-                    <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-[170%] left-[-120%] text-sm w-[300px] md:w-[550px] ${!isCategoryOpen && "hidden"
+                    <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-[100%] md:top-[170%] left-[-35%] md:left-[-120%] text-sm w-[300px] md:w-[550px] ${!isCategoryOpen && "hidden"
                       }`}>
                       <div className="grid grid-cols-1 gap-x-2 gap-y-0 md:grid-cols-2">
                         {categories.map((res, index) => {
                           return (
-                            <Link key={index} onClick={() => redirectToCategory()} to={`/category/${res}`}>
+                            <Link key={index} onClick={() => redirectToCategory()} to={`/category/${res.name}`}>
                               <div className="mb-3 cursor-pointer hover:font-bold">
-                                {res}
+                                {res.name}
                               </div>
                             </Link>)
                         })}

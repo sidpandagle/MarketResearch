@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 import RequestSample from '../components/RequestSample'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import RequestDiscountForm from '../components/RequestDiscountForm';
-import BuyNowForm from '../components/BuyNowForm';
 import Faq from '../components/Faq';
 import { rdData } from '../constants';
 
@@ -78,7 +76,7 @@ export default function Report() {
                 <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Highlights' && 'hidden'} `}>Highlights</div>
                 <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Methodology' && 'hidden'} `}>Methodology</div>
                 <div className={`py-4 ${selectedTitle !== 'Request' && 'hidden'} `}>
-                  <RequestSample />
+                  <RequestSample enquiryType='Request Sample' closeModal={null} />
                 </div>
               </div>
             </div >
@@ -136,7 +134,8 @@ export default function Report() {
         <Box>
           <div className='flex items-center justify-center'>
             <div className=' m-2 py-6 px-10 w-[700px] rounded-md bg-white'>
-              <RequestDiscountForm onSubmit={handleDiscountFormClose} />
+              <div className="pb-2 mb-2 text-xl font-semibold text-center">Request Discount</div>
+              <RequestSample enquiryType='Request Discount' closeModal={handleDiscountFormClose} />
             </div>
           </div>
         </Box>

@@ -10,6 +10,9 @@ module.exports = {
         secondary: '#8639F9',
         tertiary: '#1ACEC2',
       },
+      gridTemplateColumns: {
+        '14': 'repeat(14, minmax(0, 1fr))',
+      }
     },
   },
   plugins: [

@@ -1,12 +1,12 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
 import { reCaptchaKey } from '../constants';
 import { useForm } from 'react-hook-form';
-import { notify } from '../App';
-import EmailService from '../utils/EmailService'
+import { notifySuccess, notifyError } from '../App';
+import CreateEmail from '../utils/CreateEmail'
 
 
-export default function RequestSample() {
+export default function RequestSample({ enquiryType, closeModal }) {
 
 
     const {
@@ -30,15 +30,14 @@ export default function RequestSample() {
         setCaptcha(false)
     }
     function onSubmit(formData) {
-        console.log(formData)
-        console.log(EmailService('Request Sample', formData))
+        console.log(CreateEmail(enquiryType, formData))
         if (captchaChecked) {
             window.grecaptcha.reset();
 
             const url = 'https://congapi.178765.xyz/email';
             const data = {
-                subject: 'Request Sample',
-                content: EmailService('Request Sample', formData),
+                subject: enquiryType,
+                content: CreateEmail(enquiryType, formData),
             };
 
             fetch(url, {
@@ -51,20 +50,22 @@ export default function RequestSample() {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    notify('We\'ll contact you soon!!!')
+                    closeModal();
+                    notifySuccess('We\'ll contact you soon!!!')
                 })
                 .catch(error => {
                     console.error('Error:', error);
+                    notifyError('Email us at congruencemarketresearch@gmail.com')
                 });
         } else {
-            alert('Check the reCaptcha checkbox')
+            notifyError('Check the reCaptcha checkbox')
         }
     }
     return (
         <section className="">
             <div className="">
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    <div className="grid gap-4 sm:grid-cols-2 sm:gap-4">
                         <div className="w-full">
                             <input {...register('name')} type="text" name="name" id="name" defaultValue={""} className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Full Name" required />
                         </div>
@@ -91,7 +92,7 @@ export default function RequestSample() {
                         </div>
 
                         <div className="sm:col-span-2">
-                            <textarea {...register('message')} id="message" defaultValue={""} rows={8} className="block p-2.5 w-full text-sm bg-gray-50 rounded-lg outline-0 border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Kindly specify your research needs."  />
+                            <textarea {...register('message')} id="message" defaultValue={""} rows={8} className="block p-2.5 w-full text-sm bg-gray-50 rounded-lg outline-0 border border-gray-300 focus:ring-primary-500 focus:border-primary-500 " placeholder="Kindly specify your research needs." />
                         </div>
                         <div className="flex items-center sm:col-span-2">
                             <ReCAPTCHA
@@ -103,7 +104,7 @@ export default function RequestSample() {
                         </div>
                     </div>
                     <div className='flex justify-center'>
-                        <button type="submit" className="inline-flex items-center justify-center gap-2 px-8 py-4 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                        <button type="submit" className="inline-flex items-center justify-center gap-2 px-4 py-3 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                             Submit Request <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-send" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M10 14l11 -11" />

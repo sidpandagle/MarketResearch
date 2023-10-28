@@ -22,7 +22,7 @@
 }
 
 .html-content td {
-    min-width: 240px !important;
+    min-width: 240px;
 }
 
 
@@ -57,4 +57,13 @@
 
 .html-content p img {
     margin: 24px 0 24px 100px;
+}
+
+@media screen and (max-width:1300px) {
+    .html-content p img {
+        margin: 24px 0;
+    }
+    .html-content td {
+        min-width: 50%;
+    }
 }

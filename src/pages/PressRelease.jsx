@@ -17,8 +17,8 @@ export default function PressRelease() {
                         <div className='md:flex'>
                             <div className="w-full">
                                 <div className='relative p-4 border rounded-md'>
-                                    <div className='absolute top-[-10px] right-[20px] py-1 px-4 bg-primary text-white rounded-sm'>
-                                        13 Oct 2023
+                                    <div className='absolute top-[-10px] right-[20px] text-xs md:text-sm lg:text-md py-1 px-4 bg-primary text-white rounded-sm'>
+                                        13th Oct 2023
                                     </div>
 
                                     <div className="mb-2 text-xl font-semibold">{heading}</div>

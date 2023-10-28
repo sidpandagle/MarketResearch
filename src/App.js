@@ -7,14 +7,18 @@ import Report from './pages/Report';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import ScrollToTop from './utils/ScrollToTop'
 import AllPressRelease from './pages/AllPressRelease';
 import PressRelease from './pages/PressRelease';
 import BuyNow from './pages/BuyNow';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export const notify = (value) => toast.success(value);
+
+export const notifySuccess = (value) => toast.success(value);
+export const notifyWarning = (value) => toast.warning(value);
+export const notifyError = (value) => toast.error(value);
+export const notifyInfo = (value) => toast.info(value);
 
 function App() {
   return (

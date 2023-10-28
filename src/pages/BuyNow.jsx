@@ -66,7 +66,7 @@ export default function BuyNow() {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <img src={"https://www.transparencymarketresearch.com/themes/web/images/payment-methods.webp"} alt="payments" />
+                                                    <img src={"/payment-methods.webp"} alt="payments" />
                                                 </div>
                                             </div>
                                             <div className='flex items-center justify-center p-4 text-sm'>

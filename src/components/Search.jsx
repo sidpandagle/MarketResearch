@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { categories } from '../constants'
-import { categoriesWithIcon } from '../constants'
 
 export default class Search extends Component {
     render() {
@@ -11,7 +10,7 @@ export default class Search extends Component {
             // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-0 text-white`}>
             // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-45 text-white`}>
             <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient text-white`}>
-                <div className='flex flex-col gap-8 text-center md:gap-8 md:w-3/4'>
+                <div className='flex flex-col gap-8 px-4 text-center md:px-16 md:gap-8'>
                     <div className="text-3xl font-semibold md:text-4xl">Navigating Markets, Uncovering Insights</div>
                     <div className='flex justify-center'>
                         <div className="text-sm text-center md:w-3/5 md:text-lg">In markets' complexity, we're your compass, unveiling vital insights to empower your business in an ever-changing world</div>
@@ -37,12 +36,12 @@ export default class Search extends Component {
                         <div className='hidden md:block w-1/2 h-[2px] bg-white'>
                         </div>
                     </div>
-                    <div className='grid items-start justify-center w-full grid-cols-2 gap-4 md:grid-cols-6 lg:grid-cols-12 min-h-20'>
-                        {categoriesWithIcon.map(({ name, icon }, index) => (
-                            <Link key={index} to={`/category/${name}`}>
+                    <div className='grid items-start justify-center w-full grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-14 min-h-20'>
+                        {categories.map((res, index) => (
+                            <Link key={index} to={`/category/${res.name}`}>
                                 <div className='flex flex-col items-center gap-1 mb-2'>
-                                    <img src={icon} alt='category-icon' className="flex justify-center w-6 duration-100 hover:scale-125"></img>
-                                    <div className="text-center mx-1 text-[10px] w-20">{name}</div>
+                                    <img src={res.icon} alt='category-icon' className="flex justify-center w-6 duration-100 hover:scale-125"></img>
+                                    <div className="text-center mx-1 text-[8px] md:text-[10px] w-20">{res.name}</div>
                                 </div>
                             </Link>
                         ))}
