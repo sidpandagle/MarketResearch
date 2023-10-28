@@ -12,6 +12,9 @@ import ScrollToTop from './utils/ScrollToTop'
 import AllPressRelease from './pages/AllPressRelease';
 import PressRelease from './pages/PressRelease';
 import BuyNow from './pages/BuyNow';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+export const notify = (value) => toast.success(value);
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <ScrollToTop />
+      <ToastContainer
+        theme='light'
+        hideProgressBar />
       <Footer />
     </ >
   );

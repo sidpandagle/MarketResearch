@@ -16,7 +16,7 @@ const Navbar = () => {
       <header className='w-full bg-white border-b border-slate-200'>
         <div className="relative flex items-center justify-between md:mx-4">
           <div className="max-w-full px-4 w-60">
-            <div className="w-full text-2xl ">
+            <div className="w-full m-4 text-2xl md:m-0">
               <img src={'/cmidarklogo.png'} alt="logo" className="flex justify-center w-40"></img>
               {/* <img src={'/2.jpeg'} className="flex justify-center"></img> */}
               {/* <img src={'/3.jpeg'} className="flex justify-center"></img> */}
