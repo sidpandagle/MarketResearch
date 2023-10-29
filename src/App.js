@@ -26,8 +26,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/category/:category" element={<AllReport />} />
-        <Route path="/all-press-release/:category" element={<AllPressRelease />} />
+        <Route path="/category/:categoryId" element={<AllReport />} />
+        <Route path="/all-press-release/:categoryId" element={<AllPressRelease />} />
         <Route path="/press-release/:pressRelease" element={<PressRelease />} />
         <Route path="/offering" element={<Offering />} />
         <Route path="/buy-now" element={<BuyNow />} />

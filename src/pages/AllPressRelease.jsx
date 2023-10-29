@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
+import React, {  useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { categories } from '../constants'
 
 
 export default function AllPressRelease() {
-  const { category } = useParams();
+  
+  const { categoryId } = useParams();
+  const [category, setCategory] = useState('');
   const scrollToTop = () => {
     window.scroll(0, 0)
   }
+
+  useEffect(() => {
+    setCategory(categories.find(res => res.id === Number(categoryId)).name)
+  }, [categoryId])
+
   return (
     <div>
       <div className="mb-6 md:text-3xl text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">{'Press Release - ' + category.toUpperCase()}</div>
@@ -21,7 +28,7 @@ export default function AllPressRelease() {
                   <div className='flex flex-col gap-2'>
                     {categories.map((res, key) => {
                       return (
-                        <Link key={key} to={`/all-press-release/${res.name}`} onClick={scrollToTop}>
+                        <Link key={key} to={`/all-press-release/${res.id}`} onClick={scrollToTop}>
                           <div className={`py-2 text-sm cursor-pointer hover:text-primary ${key < categories.length - 1 && 'border-b-2'}`} key={key}>{res.name} (6)</div>
                         </Link>
                       )
@@ -36,10 +43,10 @@ export default function AllPressRelease() {
                     // <Link to='/report' key={key}>
                     //   </Link>
 
-                    <Link key={key} to={`/press-release/all`} onClick={scrollToTop}>
+                    <Link key={key} to={`/press-release/1`} onClick={scrollToTop}>
                       <div className='relative group' key={key} >
                         <div className='absolute top-[-10px] right-[20px] py-1 px-4 text-xs bg-primary text-white rounded-sm'>
-                          13 Oct 2023
+                          13th Oct 2023
                         </div>
                         <div className='flex flex-col gap-2 p-4 mb-6 border-2 rounded-md cursor-pointer group-hover:bg-slate-50'>
                           <div className="font-semibold group-hover:text-primary group-hover:underline">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </div>

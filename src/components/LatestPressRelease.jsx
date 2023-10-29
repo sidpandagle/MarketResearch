@@ -26,7 +26,7 @@ export default class LatestPressRelease extends Component {
                                                     Lorem ipsum dolor, sit amet amet amet consectetur adipisicing elit. Natus id minima rem magni doloremque
                                                 </div>
                                                 <div className='absolute bottom-[-10px] right-[20px] flex justify-center md:justify-end'>
-                                                    <Link to='/press-release/all'>
+                                                    <Link to='/press-release/1'>
                                                         <button type="button" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                             Read Me
                                                         </button>

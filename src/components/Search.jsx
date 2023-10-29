@@ -38,7 +38,7 @@ export default class Search extends Component {
                     </div>
                     <div className='grid items-start justify-center w-full grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-14 min-h-20'>
                         {categories.map((res, index) => (
-                            <Link key={index} to={`/category/${res.name}`}>
+                            <Link key={index} to={`/category/${res.id}`}>
                                 <div className='flex flex-col items-center gap-1 mb-2'>
                                     <img src={res.icon} alt='category-icon' className="flex justify-center w-6 duration-100 hover:scale-125"></img>
                                     <div className="text-center mx-1 text-[8px] md:text-[10px] w-20">{res.name}</div>

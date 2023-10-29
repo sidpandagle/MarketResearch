@@ -1,12 +1,20 @@
-import React from 'react';
+import {
+  useEffect, useState
+} from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { categories } from '../constants'
 
 const AllReport = () => {
-  const { category } = useParams();
+  const { categoryId } = useParams();
+  const [category, setCategory] = useState('');
   const scrollToTop = () => {
     window.scroll(0, 0)
   }
+
+  useEffect(() => {
+    setCategory(categories.find(res => res.id === Number(categoryId)).name)
+  }, [categoryId])
+
   return (
     <div>
       <div className="mb-6 md:text-3xl text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">{category.toUpperCase()}</div>
@@ -20,7 +28,7 @@ const AllReport = () => {
                   <div className='flex flex-col gap-2'>
                     {categories.map((res, key) => {
                       return (
-                        <Link key={key} to={`/category/${res.name}`} onClick={scrollToTop}>
+                        <Link key={key} to={`/category/${res.id}`} onClick={scrollToTop}>
                           <div className={`py-2 text-sm cursor-pointer hover:text-primary ${key < categories.length - 1 && 'border-b-2'}`} key={key}>{res.name} (6)</div>
                         </Link>
                       )

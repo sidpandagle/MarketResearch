@@ -66,7 +66,7 @@ const Navbar = () => {
                       <div className="grid grid-cols-1 gap-x-2 gap-y-0 md:grid-cols-2">
                         {categories.map((res, index) => {
                           return (
-                            <Link key={index} onClick={() => redirectToCategory()} to={`/category/${res.name}`}>
+                            <Link key={index} onClick={() => redirectToCategory()} to={`/category/${res.id}`}>
                               <div className="mb-3 cursor-pointer hover:font-bold">
                                 {res.name}
                               </div>
@@ -76,7 +76,7 @@ const Navbar = () => {
                     </div >
                   </div >
                   <div className="relative">
-                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/all-press-release/all">Press Release</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/all-press-release/1">Press Release</Link>
                   </div>
                   <div className="relative">
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/offering">Offerings</Link>
