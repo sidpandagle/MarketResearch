@@ -3,6 +3,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { reCaptchaKey } from '../constants';
 import { useForm } from 'react-hook-form';
 import { notifySuccess, notifyError } from '../App';
+import axios from 'axios';
 import CreateEmail from '../utils/CreateEmail'
 
 
@@ -12,6 +13,7 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
     const {
         register,
         handleSubmit,
+        reset,
         // formState: { errors },
     } = useForm();
 
@@ -41,24 +43,19 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
                 content: CreateEmail(enquiryType, formData),
             };
 
-            fetch(url, {
-                method: 'POST',
+            axios.post(url, data, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
             })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    if(enquiryType==='Request Discount'){
-                        closeModal();
-                    }
-                    notifySuccess('We\'ll contact you soon!!!')
+                .then(response => {
+                    console.log(response.data);
+                    reset();
+                    notifySuccess("We'll contact you soon!!!");
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    notifyError('Email us at congruencemarketresearch@gmail.com')
+                    notifyError('Email us at congruencemarketresearch@gmail.com');
                 });
         } else {
             notifyError('Check the reCaptcha checkbox')

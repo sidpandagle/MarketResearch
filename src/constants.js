@@ -41,6 +41,7 @@ export const licenses = [
 export const report = {
     id: 1,
     title: 'Duvet Market Size, Trends, Share, Growth, and Opportunity Forecast, 2023 - 2030 Global Industry Analysis By Material Type (Natural, and Synthetic), By Bed Type (Single Bed, Double Bed, Queen Size, and King Size), By End-use (Residential, and Commercial (Hotels, Hospitals, Others)), By Sales Channel (Independent Small Stores, Specialty Stores, Online Retailing, and Others) and By Geography (North America, Europe, Asia Pacific, South America, and Middle East & Africa)',
+    category: 'Consumer Goods',
     date: 'September 2023',
     pages: '250',
     description: rdData,
