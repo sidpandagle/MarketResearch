@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import BuyNowForm from '../components/BuyNowForm'
+import { useParams } from 'react-router-dom'
+import { licenses } from '../constants';
 
 export default function BuyNow() {
+    const { reportId, buyId } = useParams();
+    const [license, setLicense] = useState({});
+    useEffect(() => {
+        setLicense(licenses.find(res => res.id === Number(buyId)))
+    })
 
     return (
-
         <>
             <div className="p-4 mx-auto max-w-7xl sm:px-6">
                 <div className="py-2 text-center md:pt-2 md:text-left">
@@ -42,18 +48,18 @@ export default function BuyNow() {
                                                 </div>
                                                 <div className='flex justify-between px-4 py-3 border-b-2'>
                                                     <div>
-                                                        Corporate License
+                                                        {license.license}
                                                     </div>
                                                     <div className='font-bold'>
-                                                        $11170
+                                                        {license.price}
                                                     </div>
                                                 </div>
                                                 <div className='flex justify-between px-4 py-3'>
                                                     <div>
                                                         Total <span className='text-xs'>(Inclusive of all taxes)</span>
                                                     </div>
-                                                    <div  className='font-bold text-primary'>
-                                                        $11170
+                                                    <div className='font-bold text-primary'>
+                                                    {license.price}
                                                     </div>
                                                 </div>
                                             </div>

@@ -6,7 +6,7 @@ import { notifySuccess, notifyError } from '../App';
 import CreateEmail from '../utils/CreateEmail'
 
 
-export default function RequestSample({ enquiryType, closeModal }) {
+export default function RequestSample({ reportTitle, enquiryType, closeModal }) {
 
 
     const {
@@ -30,13 +30,14 @@ export default function RequestSample({ enquiryType, closeModal }) {
         setCaptcha(false)
     }
     function onSubmit(formData) {
+        formData = { report: reportTitle, ...formData }
         console.log(CreateEmail(enquiryType, formData))
         if (captchaChecked) {
             window.grecaptcha.reset();
 
             const url = 'https://congapi.178765.xyz/email';
             const data = {
-                subject: enquiryType,
+                subject: enquiryType + ' - ' + 'Report Name',
                 content: CreateEmail(enquiryType, formData),
             };
 
@@ -50,7 +51,9 @@ export default function RequestSample({ enquiryType, closeModal }) {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data)
-                    closeModal();
+                    if(enquiryType==='Request Discount'){
+                        closeModal();
+                    }
                     notifySuccess('We\'ll contact you soon!!!')
                 })
                 .catch(error => {

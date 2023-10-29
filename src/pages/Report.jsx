@@ -1,42 +1,26 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import RequestSample from '../components/RequestSample'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Faq from '../components/Faq';
-import { rdData } from '../constants';
+import { licenses, report } from '../constants';
 
 export default function Report() {
 
   const [selectedTitle, setSelectedTitle] = useState('Description');
+
   const scrollToTop = (value) => {
     setSelectedTitle(value)
     window.scrollTo(0, 0);
   }
 
-  const [discountFormOpen, setDiscountFormOpen] = React.useState(false);
+  const [discountFormOpen, setDiscountFormOpen] = useState(false);
   const handleDiscountFormOpen = () => setDiscountFormOpen(true);
   const handleDiscountFormClose = () => setDiscountFormOpen(false);
 
-  const [license, setLicense] = React.useState('Single User License');
+  const [license, setLicense] = useState('Single User License');
 
-  const licenses = [
-    {
-      selected: license === 'Single User License',
-      license: 'Single User License',
-      price: '$4650'
-    },
-    {
-      selected: license === 'Enterprise User License',
-      license: 'Enterprise User License',
-      price: '$6450'
-    },
-    {
-      selected: license === 'Excel Datasheet',
-      license: 'Excel Datasheet',
-      price: '$2325'
-    },
-  ]
 
   return (
 
@@ -48,11 +32,11 @@ export default function Report() {
           <div className="head">
             <div className='items-center justify-between md:flex'>
               <div className="w-full">
-                <div className='mb-2 text-lg font-semibold'>Workforce Analytics Market Size, Share & Segmentation By Component (Solution, Service), By Organization Size (Large Enterprises, SMEs), By Deployment (On-Premise, Cloud), By Industry Vertical (BFSI, Manufacturing, Healthcare, Government, Retail, IT and Telecom, Education, Others), By Region and Global Forecast 2023-2030</div>
+                <div className='mb-2 text-lg font-semibold'>{report.title}</div>
                 <div className='gap-4 py-4 text-sm text-center bg-white md:py-2 md:text-left md:flex'>
-                  <div>Date: September 2023</div>
-                  <div>Report Code: SNS/ICT/3982</div>
-                  <div>Pages: 138</div>
+                  <div>Date: {report.date}</div>
+                  <div>Report Code: CGN/ICT/{report.id}</div>
+                  <div>Pages: {report.pages}</div>
                 </div>
                 <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} relative justify-between gap-2 py-4 bg-white md:flex`}>
                   <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-slate-500 text-white' : ''}`}>Description</div>
@@ -69,14 +53,14 @@ export default function Report() {
                   </div>
                 </div>
                 <div className={`py-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
-                  <div className='html-content' dangerouslySetInnerHTML={{ __html: rdData }}></div>
+                  <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
                   <Faq />
                 </div>
-                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Table' && 'hidden'} `}>Table</div>
-                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Highlights' && 'hidden'} `}>Highlights</div>
-                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Methodology' && 'hidden'} `}>Methodology</div>
+                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Table' && 'hidden'} `}>{report.toc}</div>
+                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Highlights' && 'hidden'} `}>{report.hightlights}</div>
+                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Methodology' && 'hidden'} `}>{report.methodology}</div>
                 <div className={`py-4 ${selectedTitle !== 'Request' && 'hidden'} `}>
-                  <RequestSample enquiryType='Request Sample' closeModal={null} />
+                  <RequestSample reportTitle={report.title} enquiryType='Request Sample' closeModal={null} />
                 </div>
               </div>
             </div >
@@ -88,7 +72,7 @@ export default function Report() {
               {
                 licenses.map((res, i) => {
                   return (
-                    <div key={i} onClick={() => setLicense(res.license)} className={`flex justify-between cursor-default hover:text-primary ${res.selected && 'text-primary'} p-1 rounded-sm`}>
+                    <div key={i} onClick={() => setLicense(res.license)} className={`flex justify-between cursor-default hover:text-primary ${license == res.license && 'text-primary'} p-1 rounded-sm`}>
                       <div className='flex gap-2'>
                         {res.license}</div>
                       <div className='font-bold'>{res.price}</div>
@@ -99,7 +83,7 @@ export default function Report() {
               <div className='flex flex-col gap-2 mt-2'>
                 {/* <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Buy Now</button>
                 <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Inquiry Before Buying</button> */}
-                <Link to='/buy-now' className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                <Link to={`/buy-now/1/${licenses.find(res => res.license === license).id}`} className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                   Buy Now
                 </Link>
                 <button type="button" onClick={handleDiscountFormOpen} className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
@@ -135,7 +119,7 @@ export default function Report() {
           <div className='flex items-center justify-center'>
             <div className=' m-2 py-6 px-10 w-[700px] rounded-md bg-white'>
               <div className="pb-2 mb-2 text-xl font-semibold text-center">Request Discount</div>
-              <RequestSample enquiryType='Request Discount' closeModal={handleDiscountFormClose} />
+              <RequestSample reportTitle={report.title} enquiryType='Request Discount' closeModal={handleDiscountFormClose} />
             </div>
           </div>
         </Box>
