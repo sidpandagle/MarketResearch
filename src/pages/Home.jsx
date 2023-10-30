@@ -8,21 +8,18 @@ import Insights from '../components/Insights'
 import LatestPressRelease from '../components/LatestPressRelease'
 import Services from '../components/Services'
 
-export default class Home extends Component {
-  render() {
-    return (
+export default function Home() {
+  return (
 
-      <section className="relative">
-        <Search />
-        <Insights />
-        {/* <AboutHome /> */}
-        <LatestReports />
-        <LatestPressRelease />
-        <Services />
-        <Testimonial />
-        <AboutHome />
-        <Clients />
-      </section>
-    )
-  }
+    <section className="relative" >
+      <Search />
+      <Insights />
+      <LatestReports />
+      < LatestPressRelease />
+      <Services />
+      <Testimonial />
+      <AboutHome />
+      <Clients />
+    </section >
+  )
 }
