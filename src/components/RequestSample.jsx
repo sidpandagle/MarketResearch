@@ -54,6 +54,7 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
             })
                 .then(response => {
                     console.log(response.data);
+                    closeModal()
                     setCaptchaChecked(false)
                     reset();
                     notifySuccess("We'll contact you soon!!!");

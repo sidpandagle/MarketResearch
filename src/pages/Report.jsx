@@ -60,7 +60,7 @@ export default function Report() {
                 <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Highlights' && 'hidden'} `}>{report.hightlights}</div>
                 <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Methodology' && 'hidden'} `}>{report.methodology}</div>
                 <div className={`py-4 ${selectedTitle !== 'Request' && 'hidden'} `}>
-                  <RequestSample reportTitle={report.title} enquiryType='Request Sample' closeModal={null} />
+                  <RequestSample reportTitle={report.title} enquiryType='Request Sample' closeModal={()=>{}} />
                 </div>
               </div>
             </div >
