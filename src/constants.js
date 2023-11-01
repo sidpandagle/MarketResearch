@@ -17,8 +17,7 @@ export const categories = [
     { id: 14, name: 'Pharmaceutical', icon: `/category_icons/patient.png` },
 ]
 
-export const reCaptchaKey = '6LfLnNAoAAAAAHYG_QtmRh1GA0QIwuK9SfbzS3Xc'
-
+export const reCaptchaKey = '6Ldr4ucoAAAAAKwW2FX-bCJIo6YHztxzf97Y_Tl8'
 
 export const licenses = [
     {

@@ -1,9 +1,10 @@
 import React from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
-import {reCaptchaKey} from '../constants';
+import { reCaptchaKey } from '../constants';
+import { motion } from 'framer-motion';
 
 export default function RequestDiscountForm({ onSubmit }) {
-    function onChange(){
+    function onChange() {
 
     }
     return (
@@ -54,9 +55,10 @@ export default function RequestDiscountForm({ onSubmit }) {
                         </div>
                     </div>
                     <div className='flex justify-center'>
-                        <button onClick={onSubmit} type="button" className="inline-flex items-center justify-center gap-2 px-8 py-2 mt-6 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                            Submit
-                        </button>
+                        <motion.button type="submit" className="inline-flex items-center justify-center gap-2 px-4 py-3 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                        ></motion.button>
                     </div>
                 </form>
             </div>

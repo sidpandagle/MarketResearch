@@ -18,19 +18,21 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
         // formState: { errors },
     } = useForm();
 
-    const [captchaChecked, setCaptcha] = useState(false)
+    const [captchaChecked, setCaptchaChecked] = useState(false)
+    const [captchaToken, setCaptchaToken] = useState('')
 
     function onChange(value) {
         console.log("Captcha value:", value);
         if (value) {
-            setCaptcha(true)
+            setCaptchaChecked(true)
+            setCaptchaToken(value)
         }
     }
     function onErrored(value) {
-        setCaptcha(false)
+        setCaptchaChecked(false)
     }
     function onExpired(value) {
-        setCaptcha(false)
+        setCaptchaChecked(false)
     }
     function onSubmit(formData) {
         formData = { report: reportTitle, ...formData }
@@ -42,6 +44,7 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
             const data = {
                 subject: enquiryType + ' - ' + 'Report Name',
                 content: CreateEmail(enquiryType, formData),
+                response_token: captchaToken,
             };
 
             axios.post(url, data, {
@@ -51,6 +54,7 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
             })
                 .then(response => {
                     console.log(response.data);
+                    setCaptchaChecked(false)
                     reset();
                     notifySuccess("We'll contact you soon!!!");
                 })
@@ -105,18 +109,18 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
                         </div>
                     </div>
                     <div className='flex justify-center'>
-                        <motion.button
+                        <motion.button type="submit" className="inline-flex items-center justify-center gap-2 px-4 py-3 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2"
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
                         >
-                            <button type="submit" className="inline-flex items-center justify-center gap-2 px-4 py-3 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                                Submit Request <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-send" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M10 14l11 -11" />
-                                    <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
-                                </svg>
+                            {/* <button > */}
+                            Submit Request <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-send" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M10 14l11 -11" />
+                                <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
+                            </svg>
 
-                            </button>
+                            {/* </button> */}
                         </motion.button>
                     </div>
                 </form>

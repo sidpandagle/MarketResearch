@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
 import { reCaptchaKey } from '../constants';
 import { useForm } from 'react-hook-form';
+import { motion } from 'framer-motion';
 import { notifySuccess, notifyError } from '../App';
 import CreateEmail from '../utils/CreateEmail';
 import axios from 'axios';
@@ -18,11 +19,14 @@ export default function BuyNowForm({ reportTitle, license }) {
 
 
     const [captchaChecked, setCaptcha] = useState(false)
+    const [captchaToken, setCaptchaToken] = useState('')
+
 
     function onChange(value) {
         console.log("Captcha value:", value);
         if (value) {
             setCaptcha(true)
+            setCaptchaToken(value)
         }
     }
     function onErrored(value) {
@@ -42,6 +46,7 @@ export default function BuyNowForm({ reportTitle, license }) {
             const data = {
                 subject: 'Buy Now' + ' - ' + 'Report Name',
                 content: CreateEmail('Buy Now', formData),
+                response_token: captchaToken,
             };
 
             axios.post(url, data, {
@@ -109,14 +114,16 @@ export default function BuyNowForm({ reportTitle, license }) {
                         </div>
                     </div>
                     <div className='flex justify-center'>
-                        <button type="submit" className="inline-flex items-center justify-center gap-2 px-8 py-3 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                        <motion.button type="submit" className="inline-flex items-center justify-center gap-2 px-4 py-3 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2"
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}>
+
                             Submit Request <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-send" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M10 14l11 -11" />
                                 <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
                             </svg>
-
-                        </button>
+                        </motion.button>
                     </div>
                 </form>
             </div>
