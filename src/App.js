@@ -12,6 +12,7 @@ import ScrollToTop from './utils/ScrollToTop'
 import AllPressRelease from './pages/AllPressRelease';
 import PressRelease from './pages/PressRelease';
 import BuyNow from './pages/BuyNow';
+import ReportForm from './components/admin/ReportForm';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <Header />
+      {/* <ReportForm /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryId" element={<AllReport />} />
