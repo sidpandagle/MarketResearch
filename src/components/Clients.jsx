@@ -17,9 +17,8 @@ export default function Clients() {
         {/* Section header */}
         <div className="max-w-3xl pb-12 mx-auto text-center md:pb-10">
           <h2 className="mb-8 text-3xl font-extrabold text-slate-600">Our Clients</h2>
-          <h2 className="mb-4 h2">Trusted by over 20,000 companies all over the world</h2>
-          <p className="text-xl text-gray-600" data-aos="zoom-y-out">Arcu cursus vitae congue mauris rhoncus viverra nibh cras pulvinar mattis
-            blandit libero cursus mattis.</p>
+          <h2 className="mb-4 h2">Trusted by over 500 companies all over the world</h2>
+          <p className="text-xl text-gray-600" data-aos="zoom-y-out">Trusted by industry leaders, our insights drive success, empowering businesses to thrive in dynamic market landscapes with precision.</p>
         </div>
 
         <Swiper

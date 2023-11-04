@@ -14,9 +14,9 @@ export default function Testimonial() {
     const [selectedTestimonial, setSelectedTestimonial] = useState(0);
 
     const testimonials = [
-        { name: 'Mark Zuckerberg', selected: selectedTestimonial === 0 },
-        { name: 'Peter Theil', selected: selectedTestimonial === 1 },
-        { name: 'Elon Musk', selected: selectedTestimonial === 2 },
+        { designation: 'Marketing Manager', company: 'Nestle SA', testimonial: 'Congruence Market Insights provided invaluable market data that influenced our product strategies. Their accurate research helped increase our repeat customer rate by 15%, resulting in a notable revenue growth.', name: 'Name', selected: selectedTestimonial === 0 },
+        { designation: 'Operations Director', company: 'VMware Inc.', testimonial: 'Congruence Market Insights\' precise data on client demographics enhanced our targeting strategy, leading to a significant increase in new users per week. Their insights directly impacted our market penetration.', name: 'Name', selected: selectedTestimonial === 1 },
+        { designation: 'Business Development Lead', company: 'Cielo Talent', testimonial: 'Congruence Market Insights provided us with essential market analytics. Their insights into emerging markets guided our expansion strategy, resulting in a successful penetration and a vast increase in our client base.', name: 'Name', selected: selectedTestimonial === 2 },
     ]
 
     const changeSlider = (index) => {
@@ -31,10 +31,10 @@ export default function Testimonial() {
                 <div className="mx-4 my-8 md:m-4 md:w-1/3">
                     {testimonials.map((testimonial, index) =>
                         <div key={index} onClick={() => { changeSlider(index) }} className={`flex items-center gap-4 mb-4 duration-500 border border-b-4 rounded-md shadow-sm hover:shadow-xl cursor-pointer ${testimonial.selected && 'border-b-primary'}`}>
-                            <div className="m-2 rounded-full h-14 w-14 bg-slate-300"></div>
-                            <div>
-                                <div>{testimonial.name}</div>
-                                <div>CEO</div>
+                            {/* <div className="rounded-full h-14 w-14 bg-slate-300"></div> */}
+                            <div className='mx-4 my-2'>
+                                <div>{testimonial.company}</div>
+                                <div>{testimonial.designation}</div>
                             </div>
                         </div>
                     )}
@@ -52,9 +52,11 @@ export default function Testimonial() {
                         {testimonials.map((testimonial, index) =>
                             <SwiperSlide key={index}> <div className="flex flex-col gap-1 m-4 text-center md:text-left">
                                 <div className="text-xl font-bold">This is really good.</div>
-                                <div className="italic">-{testimonial.name}</div>
-                                <div className='py-2'>Rating</div>
-                                <div>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt dicta ratione est inventore veritatis voluptatibus quidem similique eos itaque corrupti maxime praesentium ipsa, officia autem nobis nemo debitis illo vero.</div>
+                                <div className="pb-4 italic">-{testimonial.company}, {testimonial.designation}</div>
+                                <div className='-translate-x-2 -translate-y-2 w-36'>
+                                    
+                                </div>
+                                <div className='-translate-y-2'>{testimonial.testimonial}</div>
                             </div></SwiperSlide>
                         )}
                     </Swiper>

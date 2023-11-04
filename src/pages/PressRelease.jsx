@@ -9,7 +9,7 @@ export default function PressRelease() {
     }
     const heading = 'Global Cassava Starch Market To Grow At A CAGR Of 5.5% By 2030'
     return (
-        <>
+        <div>
             <div onClick={test} className="max-w-6xl px-4 mx-auto sm:px-6">
             <div className='py-4'> Congruence / Report / Information & Communication Technology / Workforce Analytics Market</div>
                 <div className="py-2 text-center md:pt-2 md:text-left">
@@ -47,6 +47,6 @@ export default function PressRelease() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

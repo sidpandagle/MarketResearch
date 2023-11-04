@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <>
+    <div>
       <div className="text-center text-white bg-slate-800 md:text-left">
         <div className="md:flex">
           <div className="md:w-1/2">
@@ -10,7 +10,7 @@ const Footer = () => {
               <div className="flex font-bold md:w-2/5">
                 <img src={'/cmilightlogo.png'} alt="logo" className="flex justify-center "></img>
               </div>
-              <div className="w-3/5 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint quisquam error ab harum. Sint quisquam error ab harum.  Sint quisquam error ab harum. Sint quisquam error ab harum.</div>
+              <div className="w-3/5 text-sm">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div>
             </div>
             <div className="flex flex-col justify-around gap-4 p-8 text-sm border-t md:gap-0 md:flex-row md:px-12 md:py-16 border-slate-600">
               <div>
@@ -42,13 +42,9 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex flex-col gap-4 p-8 border-t md:border-t-0 md:border-l md:w-1/2 md:px-12 md:py-16 border-slate-600">
-            <div className="text-sm font-semibold text-white">DEMO</div>
-            <div className="flex flex-col gap-3 text-3xl text-white md:text-4xl ">
+            <div className="flex flex-col gap-3 text-3xl text-white md:text-3xl ">
               <div>
-                Request a
-              </div>
-              <div>
-                Demo
+                Have any custom research requirements?
               </div>
             </div>
             <div className="flex items-center justify-between mt-4 text-black bg-white rounded-full md:mt-8 md:w-3/4">
@@ -77,7 +73,7 @@ const Footer = () => {
         </div>
       </div>
 
-    </>
+    </div>
   );
 };
 

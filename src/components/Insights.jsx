@@ -7,7 +7,7 @@ export default class Insights extends Component {
             <div className="max-w-6xl px-4 py-12 mx-auto md:pt-10 sm:px-6">
                 <div className="max-w-4xl mx-auto text-center md:pb-10">
                     <h2 className="mb-6 text-3xl font-extrabold text-slate-600">Insights</h2>
-                    <h2 className="text-xl font-semibold mb-14">Unlocking Market Wisdom: Your Key to Informed Decisions</h2>
+                    <h2 className="text-xl font-semibold mb-14">Numbers tell the story; our data fuels your business growth.</h2>
                     <div className='flex flex-col justify-between gap-10 md:gap-0 md:flex-row'>
                         <div className='flex flex-col gap-1'>
                             <div className='text-5xl font-bold'>63<span className='text-4xl text-blue-500'>%</span></div>

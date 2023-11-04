@@ -3,22 +3,18 @@ import React, { Component } from 'react'
 export default class Contact extends Component {
   render() {
     return (
-      <>
+      <div>
         <section className="relative z-10 overflow-hidden bg-white">
           <div className="container">
             <div className="flex flex-wrap py-20 mx-10 lg:justify-between">
               <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
                 <div className="mb-12 max-w-[570px] lg:mb-0">
-                  <span className="block mb-4 text-base font-semibold text-primary">
-                    Contact Us
-                  </span>
-                  <h2 className="mb-6 text-[32px] font-bold uppercase text-dark sm:text-[40px] lg:text-[36px] xl:text-[40px]">
-                    GET IN TOUCH WITH US
+                  <span className="block mb-4 text-base font-semibold text-primary">Contact Us</span>
+                  <h2 className="mb-6 text-[32px] font-bold uppercase text-dark sm:text-[40px] lg:text-[28px] xl:text-[32px]">
+                    Get in Touch with <br /> Congruence Market Insights
                   </h2>
                   <p className="text-base leading-relaxed mb-9 text-body-color">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eius tempor incididunt ut labore e dolore magna aliqua. Ut
-                    enim adiqua minim veniam quis nostrud exercitation ullamco
+                    At Congruence Market Insights, we value your inquiries, feedback, and the opportunity to connect with you. Whether you have questions, require information, or wish to explore potential collaborations, we are here to assist you.
                   </p>
                   <div className="mb-8 flex w-full max-w-[370px]">
                     <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
@@ -81,6 +77,8 @@ export default class Contact extends Component {
                         info@yourdomain.com
                       </p>
                     </div>
+                  </div>
+                  <div>At Congruence Market Insights, we look forward to connecting with you and addressing your needs. Your feedback and questions are essential to us as we strive to provide you with the highest quality of service.
                   </div>
                 </div>
               </div>
@@ -930,7 +928,7 @@ export default class Contact extends Component {
             </div>
           </div>
         </section>
-      </>
+      </div>
     );
   };
 
@@ -941,7 +939,7 @@ export default class Contact extends Component {
 
 const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
   return (
-    <>
+    <div>
       <div className="mb-6">
         <textarea
           rows={row}
@@ -951,13 +949,13 @@ const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
           defaultValue={defaultValue}
         />
       </div>
-    </>
+    </div>
   );
 };
 
 const ContactInputBox = ({ type, placeholder, name }) => {
   return (
-    <>
+    <div>
       <div className="mb-6">
         <input
           type={type}
@@ -966,6 +964,6 @@ const ContactInputBox = ({ type, placeholder, name }) => {
           className="border-[f0f0f0] w-full rounded border py-3 px-[14px] text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none"
         />
       </div>
-    </>
+    </div>
   );
 };

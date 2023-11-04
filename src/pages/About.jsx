@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class About extends Component {
     render() {
         return (
-            <>
+            <div>
                 <section className="overflow-hidden">
                     <div className="container">
                         <div className="flex flex-wrap items-center justify-between mx-4">
@@ -630,7 +630,7 @@ export default class About extends Component {
                         </div>
                     </div>
                 </section>
-            </>
+            </div>
         );
     }
 };    

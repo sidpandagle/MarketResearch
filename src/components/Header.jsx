@@ -12,7 +12,7 @@ const Navbar = () => {
   }
 
   return (
-    <>
+    <div>
       <header className='w-full bg-white border-b border-slate-200'>
         <div className="relative flex items-center justify-between md:mx-4">
           <div className="px-4">
@@ -92,10 +92,8 @@ const Navbar = () => {
             </div >
           </div >
         </div >
-        {/* <div>
-        </div > */}
       </header >
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ReCAPTCHA from "react-google-recaptcha";
-import { reCaptchaKey } from '../constants';
+import { apiUrl, reCaptchaKey } from '../constants';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { notifySuccess, notifyError } from '../App';
@@ -42,7 +42,7 @@ export default function BuyNowForm({ reportTitle, license }) {
         if (captchaChecked) {
             window.grecaptcha.reset();
 
-            const url = 'https://congapi.178765.xyz/email';
+            const url = `${apiUrl}/email`;
             const data = {
                 subject: 'Buy Now' + ' - ' + 'Report Name',
                 content: CreateEmail('Buy Now', formData),
