@@ -22,7 +22,7 @@ export default function ReportList() {
 
     useEffect(() => {
         const getAllReportOnce = () => {
-            axios.get(`${apiUrl}/reports`)
+            axios.get(`${apiUrl}/reports/`)
                 .then(response => {
                     console.log(response);
                     let repList = response.data.data.map(res => {
@@ -40,7 +40,7 @@ export default function ReportList() {
     }, []);
 
     const getAllReport = () => {
-        axios.get(`${apiUrl}/reports`)
+        axios.get(`${apiUrl}/reports/`)
             .then(response => {
                 console.log(response);
                 let repList = response.data.data.map(res => {

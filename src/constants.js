@@ -1,5 +1,6 @@
 import { rdData } from "./rdData"
 
+// export const apiUrl = 'http://localhost:8000'
 export const apiUrl = 'https://congapi.178765.xyz'
 
 export const categories = [

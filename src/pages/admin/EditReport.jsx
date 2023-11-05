@@ -191,7 +191,7 @@ export default function EditReport() {
                             </div>
                             <div className="w-full">
                                 <label htmlFor="pages" className='text-sm'>Pages</label>
-                                <input {...register('pages')} type="number" name="pages" id="pages" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Pages" required />
+                                <input {...register('pages')} type="text" name="pages" id="pages" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Pages" required />
                             </div>
                         </div>
                     </div>
