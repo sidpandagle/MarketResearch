@@ -26,7 +26,7 @@ export default function ReportList() {
                 .then(response => {
                     console.log(response);
                     let repList = response.data.data.map(res => {
-                        res.abr = getAbrByCategory(res.name);
+                        res.abr = getAbrByCategory(res.category);
                         return res;
                     })
                     setReportList(repList.reverse())
@@ -80,10 +80,10 @@ export default function ReportList() {
             });
     }
 
-    const getAbrByCategory = (category) => {
-        if (!categories.find(res => res.name == category)) return 'XXX'
-        console.log(category)
-        return categories.find(res => res.name === category).abr || '';
+    const getAbrByCategory = (category_name) => {
+        // if (!categories.find(res => res.name === category_name)) return 'XXX'
+        console.log(category_name)
+        return categories.find(res => res.name === category_name)?.abr || '';
     }
 
     return (
