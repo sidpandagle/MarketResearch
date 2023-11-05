@@ -3,7 +3,7 @@ import { notifySuccess, notifyError } from '../../App';
 import axios from 'axios';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { categories, apiUrl } from '../../constants';
+import { categories, getAbrByCategory, apiUrl } from '../../constants';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -78,12 +78,6 @@ export default function ReportList() {
                 console.error('Error:', error);
                 notifyError('Something went wrong, please try again!');
             });
-    }
-
-    const getAbrByCategory = (category_name) => {
-        // if (!categories.find(res => res.name === category_name)) return 'XXX'
-        console.log(category_name)
-        return categories.find(res => res.name === category_name)?.abr || '';
     }
 
     return (

@@ -16,7 +16,7 @@ export default class Contact extends Component {
                   <p className="text-base leading-relaxed mb-9 text-body-color">
                     At Congruence Market Insights, we value your inquiries, feedback, and the opportunity to connect with you. Whether you have questions, require information, or wish to explore potential collaborations, we are here to assist you.
                   </p>
-                  <div className="mb-8 flex w-full max-w-[370px]">
+                  <div className="mb-8 flex w-full max-w-[500px]">
                     <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
                       <svg
                         width={24}
@@ -31,8 +31,18 @@ export default class Contact extends Component {
                       <h4 className="mb-1 text-xl font-bold text-dark">
                         Our Location
                       </h4>
+
+                      <p className="pb-1 text-base text-body-color">
+                        <span className='mr-1 font-semibold'>
+                          US Sales Office:
+                        </span>
+                        4781 Canoga St, Montclair, California 91763, USA
+                      </p>
                       <p className="text-base text-body-color">
-                        99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                        <span className='mr-1 font-semibold'>
+                          Pune Delivery Center:
+                        </span>
+                        203, Madhukund Terraces, Ramnagar, Bavdhan, Pune, India, 411021
                       </p>
                     </div>
                   </div>
@@ -58,7 +68,7 @@ export default class Contact extends Component {
                       </p>
                     </div>
                   </div>
-                  <div className="mb-8 flex w-full max-w-[370px]">
+                  <div className="mb-8 flex w-full max-w-[500px]">
                     <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
                       <svg
                         width={28}
@@ -74,11 +84,11 @@ export default class Contact extends Component {
                         Email Address
                       </h4>
                       <p className="text-base text-body-color">
-                        info@yourdomain.com
+                        sales@congruencemarketinsights.com
                       </p>
                     </div>
                   </div>
-                  <div>At Congruence Market Insights, we look forward to connecting with you and addressing your needs. Your feedback and questions are essential to us as we strive to provide you with the highest quality of service.
+                  <div>We look forward to connecting with you and addressing your needs. Your feedback and questions are essential to us as we strive to provide you with the highest quality of service.
                   </div>
                 </div>
               </div>

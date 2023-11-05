@@ -9,8 +9,6 @@ import CreateEmail from '../utils/CreateEmail'
 
 
 export default function RequestSample({ reportTitle, enquiryType, closeModal }) {
-
-
     const {
         register,
         handleSubmit,
@@ -42,7 +40,7 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
 
             const url = `${apiUrl}/email`;
             const data = {
-                subject: enquiryType + ' - ' + 'Report Name',
+                subject: enquiryType + ' - ' + reportTitle,
                 content: CreateEmail(enquiryType, formData),
                 response_token: captchaToken,
             };

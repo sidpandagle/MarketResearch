@@ -1,15 +1,13 @@
-import { rdData } from "./rdData"
-
-// export const apiUrl = 'http://localhost:8000'
-export const apiUrl = 'https://congapi.178765.xyz'
+export const apiUrl = 'http://localhost:8000'
+// export const apiUrl = 'https://congapi.178765.xyz'
 
 export const categories = [
     { id: 1, abr: 'AGR', name: 'Agriculture', icon: `/category_icons/agriculture.png` },
     { id: 2, abr: 'AAT', name: 'Automotive and Transportation', icon: `/category_icons/automotive.png` },
     { id: 3, abr: 'BAC', name: 'Building and Construction', icon: `/category_icons/construction.png` },
-    { id: 4, abr: 'CAM', name: 'Chemicals And Materials', icon: `/category_icons/experiment.png` },
+    { id: 4, abr: 'CAM', name: 'Chemicals and Materials', icon: `/category_icons/experiment.png` },
     { id: 5, abr: 'CGS', name: 'Consumer Goods', icon: `/category_icons/box.png` },
-    { id: 6, abr: 'AAD', name: 'Aerospace & Defense', icon: `/category_icons/defense.png` },
+    { id: 6, abr: 'AAD', name: 'Aerospace and Defense', icon: `/category_icons/defense.png` },
     { id: 7, abr: 'EAS', name: 'Electronics and Semiconductors', icon: `/category_icons/electronics.png` },
     { id: 8, abr: 'ENR', name: 'Energy and Natural Resources', icon: `/category_icons/tools.png` },
     { id: 9, abr: 'FAB', name: 'Food and Beverages', icon: `/category_icons/carrot.png` },
@@ -19,6 +17,11 @@ export const categories = [
     { id: 13, abr: 'PAC', name: 'Packaging', icon: `/category_icons/packaging.png` },
     { id: 14, abr: 'PHR', name: 'Pharmaceutical', icon: `/category_icons/patient.png` },
 ]
+
+
+export const getAbrByCategory = (category_name) => {
+    return categories.find(res => res.name === category_name)?.abr || '';
+}
 
 export const reCaptchaKey = '6Ldr4ucoAAAAAKwW2FX-bCJIo6YHztxzf97Y_Tl8'
 
@@ -40,23 +43,11 @@ export const licenses = [
     },
 ]
 
-export const report = {
-    id: 1,
-    title: 'Duvet Market Size, Trends, Share, Growth, and Opportunity Forecast, 2023 - 2030 Global Industry Analysis By Material Type (Natural, and Synthetic), By Bed Type (Single Bed, Double Bed, Queen Size, and King Size), By End-use (Residential, and Commercial (Hotels, Hospitals, Others)), By Sales Channel (Independent Small Stores, Specialty Stores, Online Retailing, and Others) and By Geography (North America, Europe, Asia Pacific, South America, and Middle East & Africa)',
-    category: 'Consumer Goods',
-    date: 'September 2023',
-    pages: '250',
-    description: rdData,
-    toc: 'Table of Content',
-    hightlights: 'Hightlights',
-    methodology: 'Methodology',
-}
-
 export const constConfig =
 {
     zIndex: 0,
     readonly: false,
-	processPasteFromWord: true,
+    processPasteFromWord: true,
     activeButtonsInReadOnly: ['source', 'fullsize', 'print', 'about', 'dots'],
     toolbarButtonSize: 'middle',
     theme: 'default',

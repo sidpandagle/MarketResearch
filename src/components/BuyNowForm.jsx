@@ -44,7 +44,7 @@ export default function BuyNowForm({ reportTitle, license }) {
 
             const url = `${apiUrl}/email`;
             const data = {
-                subject: 'Buy Now' + ' - ' + 'Report Name',
+                subject: 'Buy Now' + ' - ' + reportTitle,
                 content: CreateEmail('Buy Now', formData),
                 response_token: captchaToken,
             };
@@ -104,7 +104,7 @@ export default function BuyNowForm({ reportTitle, license }) {
                         <div>
                             <input {...register('zip')} type="text" name="zip" id="zip" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Zip Code" required />
                         </div>
-                        <div className="flex items-center  sm:col-span-2">
+                        <div className="flex items-center sm:col-span-2">
                             <ReCAPTCHA
                                 sitekey={reCaptchaKey}
                                 onChange={onChange}

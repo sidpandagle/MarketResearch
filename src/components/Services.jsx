@@ -36,7 +36,7 @@ export default class Services extends Component {
                                                 Market Research Reports
                                             </div>
                                             <div className='mb-2 text-sm text-slate-300'>
-                                                Explore our extensive library of meticulously researched market reports. Covering a wide array of industries, our reports provide in-depth analysis, trends, and forecasts, equipping you with the knowledge to make informed decisions and capitalize on emerging opportunities.
+                                            Discover our comprehensive collection of thoroughly investigated market analyses, encompassing diverse industries, offering deep insights to facilitate informed decision-making.
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@ export default class Services extends Component {
                                                 Customized Research Services
                                             </div>
                                             <div className='mb-2 text-sm text-slate-300'>
-                                                Tailored to your specific requirements, our custom research services delve deep into niche markets, consumer behavior, and industry dynamics. We design research methodologies that align with your business goals, delivering actionable insights crafted exclusively for your organization.
+                                            Our personalized research services focus on your unique needs, exploring specialized markets, consumer trends, and industry dynamics for tailored insights.
                                             </div>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@ export default class Services extends Component {
                                                 Industry Analysis and Trends
                                             </div>
                                             <div className='mb-2 text-sm text-slate-300'>
-                                                Stay ahead of the curve with our industry analysis and trend reports. Gain a comprehensive understanding of market shifts, technological advancements, and consumer preferences. Anticipate market changes and position your business for success in a rapidly evolving landscape.
+                                            Remain at the forefront with our industry trend reports for an in-depth grasp of market shifts, tech advancements, and consumer preferences.
                                             </div>
                                         </div>
                                     </div>
@@ -111,7 +111,7 @@ export default class Services extends Component {
                                                 Competitive Intelligence
                                             </div>
                                             <div className='mb-2 text-sm text-slate-300'>
-                                                Navigate the competitive landscape with confidence. Our competitive intelligence services provide detailed assessments of key players, market strategies, and product offerings. Uncover your competitors' strengths and weaknesses, enabling you to refine your own strategies and stay ahead in the market.
+                                            Confidently maneuver competition using our competitive intelligence. Assess key players, strategies, and products to understand strengths and weaknesses, gaining an edge.
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@ export default class Services extends Component {
                                                 Consumer Insights & Behavior Analysis
                                             </div>
                                             <div className='mb-2 text-sm text-slate-300'>
-                                                Understand your target audience on a profound level. Our consumer insights services employ advanced methodologies to decode consumer behavior, preferences, and purchasing patterns. Harness this knowledge to refine your marketing strategies and enhance customer engagement.
+                                            Grasp your audience deeply. Our consumer insights use advanced methods to unravel behavior, preferences, and purchasing, refining strategies for engagement.
                                             </div>
                                         </div>
                                     </div>
@@ -158,10 +158,10 @@ export default class Services extends Component {
                                         </div>
                                         <div className="relative flex flex-col justify-between flex-grow gap-1 p-4 text-center md:w-3/5 md:text-left">
                                             <div className='font-semibold '>
-                                                Strategic Consulting:
+                                                Strategic Consulting
                                             </div>
                                             <div className='mb-2 text-sm text-slate-300'>
-                                                Benefit from expert guidance tailored to your business objectives. Our strategic consulting services offer actionable recommendations and implementation strategies. Whether you're expanding into new markets or launching innovative products, our consultants provide the insights you need to succeed.
+                                            Gain tailored expert guidance aligned with your goals. Our strategic consulting delivers actionable advice and implementation strategies for market expansion and innovation.
                                             </div>
                                         </div>
                                     </div>

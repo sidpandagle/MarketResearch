@@ -14,9 +14,9 @@ export default function Testimonial() {
     const [selectedTestimonial, setSelectedTestimonial] = useState(0);
 
     const testimonials = [
-        { designation: 'Marketing Manager', company: 'Nestle SA', testimonial: 'Congruence Market Insights provided invaluable market data that influenced our product strategies. Their accurate research helped increase our repeat customer rate by 15%, resulting in a notable revenue growth.', name: 'Name', selected: selectedTestimonial === 0 },
-        { designation: 'Operations Director', company: 'VMware Inc.', testimonial: 'Congruence Market Insights\' precise data on client demographics enhanced our targeting strategy, leading to a significant increase in new users per week. Their insights directly impacted our market penetration.', name: 'Name', selected: selectedTestimonial === 1 },
-        { designation: 'Business Development Lead', company: 'Cielo Talent', testimonial: 'Congruence Market Insights provided us with essential market analytics. Their insights into emerging markets guided our expansion strategy, resulting in a successful penetration and a vast increase in our client base.', name: 'Name', selected: selectedTestimonial === 2 },
+        { designation: 'Marketing Manager', company: 'Nestle SA', testimonialHeading: 'Critical Insights that had a transformative impact', testimonial: 'Congruence Market Insights provided invaluable market data that influenced our product strategies. Their accurate research helped increase our repeat customer rate by 15%, resulting in a notable revenue growth.', name: 'Name', selected: selectedTestimonial === 0 },
+        { designation: 'Operations Director', company: 'VMware Inc.', testimonialHeading: 'Helped us Reach New Customers', testimonial: 'Congruence Market Insights\' precise data on client demographics enhanced our targeting strategy, leading to a significant increase in new users per week. Their insights directly impacted our market penetration.', name: 'Name', selected: selectedTestimonial === 1 },
+        { designation: 'Business Development Lead', company: 'Randstad NV', testimonialHeading: 'Significant aid in formulating our expansion strategy', testimonial: 'Congruence Market Insights provided us with essential market analytics. Their insights into emerging markets guided our expansion strategy, resulting in a successful penetration and a vast increase in our client base.', name: 'Name', selected: selectedTestimonial === 2 },
     ]
 
     const changeSlider = (index) => {
@@ -51,10 +51,10 @@ export default function Testimonial() {
 
                         {testimonials.map((testimonial, index) =>
                             <SwiperSlide key={index}> <div className="flex flex-col gap-1 m-4 text-center md:text-left">
-                                <div className="text-xl font-bold">This is really good.</div>
-                                <div className="pb-4 italic">-{testimonial.company}, {testimonial.designation}</div>
+                                <div className="text-xl font-bold">{testimonial.testimonialHeading}.</div>
+                                <div className="pb-4 italic">-{testimonial.designation}, {testimonial.company}</div>
                                 <div className='-translate-x-2 -translate-y-2 w-36'>
-                                    
+
                                 </div>
                                 <div className='-translate-y-2'>{testimonial.testimonial}</div>
                             </div></SwiperSlide>

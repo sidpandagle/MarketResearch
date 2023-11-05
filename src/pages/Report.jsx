@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import * as React from 'react';
 import { Link } from 'react-router-dom'
 import RequestSample from '../components/RequestSample'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Faq from '../components/Faq';
-import { licenses, report } from '../constants';
+import { apiUrl, getAbrByCategory, licenses } from '../constants';
+import axios from 'axios';
+import moment from 'moment';
 
 export default function Report() {
 
   const [selectedTitle, setSelectedTitle] = useState('Description');
+  const [report, setReport] = useState({});
 
   const scrollToTop = (value) => {
     setSelectedTitle(value)
@@ -21,12 +26,18 @@ export default function Report() {
 
   const [license, setLicense] = useState('Single User License');
 
+  const { reportId } = useParams();
+  useEffect(() => {
+    axios.get(`${apiUrl}/reports/${reportId}`).then((res) => {
+      setReport(res.data.data);
+    })
+  }, [])
+
 
   return (
 
     <div className='px-4 py-2 mx-auto md:py-12 max-w-7xl md:pt-0 sm:px-6'>
-
-      <div className='pt-8 pb-4'> Congruence / Report / Information & Communication Technology / Workforce Analytics Market</div>
+      <div className='pt-8 pb-4'> Congruence / {report.category} / {report.url}</div>
       <div className="pb-8 md:flex">
         <div className="p-4 mb-4 border rounded-md md:mb-0 md:w-3/4">
           <div className="head">
@@ -34,8 +45,8 @@ export default function Report() {
               <div className="w-full">
                 <div className='mb-2 text-lg font-semibold'>{report.title}</div>
                 <div className='gap-4 py-4 text-sm text-center bg-white md:py-2 md:text-left md:flex'>
-                  <div>Date: {report.date}</div>
-                  <div>Report Code: CGN/ICT/{report.id}</div>
+                  <div>Date: {moment(report.created_date).format('MMMM YYYY')}</div>
+                  <div>Report Code: CGN{getAbrByCategory(report.category)}{report.id}</div>
                   <div>Pages: {report.pages}</div>
                 </div>
                 <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} relative justify-between gap-2 py-4 bg-white md:flex`}>
@@ -54,13 +65,20 @@ export default function Report() {
                 </div>
                 <div className={`py-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
                   <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
+                  {/* <div dangerouslySetInnerHTML={{ __html: report.description }}></div> */}
                   <Faq />
                 </div>
-                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Table' && 'hidden'} `}>{report.toc}</div>
-                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Highlights' && 'hidden'} `}>{report.hightlights}</div>
-                <div className={`py-4 flex justify-center overflow-clip h-[200vh] ${selectedTitle !== 'Methodology' && 'hidden'} `}>{report.methodology}</div>
+                <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Table' && 'hidden'} `}>
+                  <div dangerouslySetInnerHTML={{ __html: report.toc }}></div>
+                </div>
+                <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Highlights' && 'hidden'} `}>
+                  <div dangerouslySetInnerHTML={{ __html: report.highlights }}></div>
+                </div>
+                <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Methodology' && 'hidden'} `}>
+                  <div dangerouslySetInnerHTML={{ __html: report.methodology }}></div>
+                </div>
                 <div className={`py-4 ${selectedTitle !== 'Request' && 'hidden'} `}>
-                  <RequestSample reportTitle={report.title} enquiryType='Request Sample' closeModal={()=>{}} />
+                  <RequestSample reportTitle={report.url} enquiryType='Request Sample' closeModal={() => { }} />
                 </div>
               </div>
             </div >
@@ -83,7 +101,7 @@ export default function Report() {
               <div className='flex flex-col gap-2 mt-2'>
                 {/* <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Buy Now</button>
                 <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Inquiry Before Buying</button> */}
-                <Link to={`/buy-now/1/${licenses.find(res => res.license === license).id}`} className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                <Link to={`/buy-now/${reportId}/${licenses.find(res => res.license === license)?.id}`} className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                   Buy Now
                 </Link>
                 <button type="button" onClick={handleDiscountFormOpen} className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
@@ -119,7 +137,7 @@ export default function Report() {
           <div className='flex items-center justify-center'>
             <div className=' m-2 py-6 px-10 w-[700px] rounded-md bg-white'>
               <div className="pb-2 mb-2 text-xl font-semibold text-center">Request Discount</div>
-              <RequestSample reportTitle={report.title} enquiryType='Request Discount' closeModal={handleDiscountFormClose} />
+              <RequestSample reportTitle={report.url} enquiryType='Request Discount' closeModal={handleDiscountFormClose} />
             </div>
           </div>
         </Box>

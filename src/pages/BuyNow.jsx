@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import BuyNowForm from '../components/BuyNowForm'
 import { useParams } from 'react-router-dom'
-import { licenses, report } from '../constants';
+import { apiUrl, getAbrByCategory, licenses } from '../constants';
+import axios from 'axios';
 
 export default function BuyNow() {
     const { reportId, buyId } = useParams();
+    const [report, setReport] = useState({});
     const [license, setLicense] = useState({});
     useEffect(() => {
         setLicense(licenses.find(res => res.id === Number(buyId)))
+        axios.get(`${apiUrl}/reports/${reportId}`).then(res=>{
+            console.log(res.data.data);
+            setReport(res.data.data);
+        })
     })
 
     return (
@@ -26,13 +32,13 @@ export default function BuyNow() {
                                             </div>
                                             <div>
                                                 <div className='font-semibold'>
-                                                    {report.title.split('2030')[0] + '2030'}
-                                                    {/* {report.title} */}
+                                                    {/* {report.title.split('2030')[0] + '2030'} */}
+                                                    {report.url}
                                                 </div>
                                                 <div className='flex justify-center pt-2 text-sm md:justify-normal'>
                                                     <div className='pr-4 border-r-2 border-slate-300'>
                                                         <div>Report ID</div>
-                                                        <div>CNGIT{report.id}</div>
+                                                        <div>CNG{getAbrByCategory(report.category)}{report.id}</div>
                                                     </div>
                                                     <div className='pl-4'>
                                                         <div>Category</div>
@@ -87,7 +93,7 @@ export default function BuyNow() {
                         <div className="border rounded-md md:w-3/5">
                             <div className='relative p-4'>
                                 <div className='flex flex-col gap-2 '>
-                                    <BuyNowForm license={license} reportTitle={report.title} />
+                                    <BuyNowForm license={license} reportTitle={report.url} />
                                 </div>
                             </div>
                         </div>
