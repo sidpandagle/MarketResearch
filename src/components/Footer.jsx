@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RequestSample from '../components/RequestSample'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { Link } from 'react-router-dom';
 
 
 
@@ -33,7 +34,9 @@ const Footer = () => {
               </div><div>
                 <div className="mb-4 text-xl font-bold">Company</div>
                 <div className="mb-2">About Us</div>
-                <div className="mb-2">Careers</div>
+                <Link to='/careers'>
+                  <div className="mb-2">Careers</div>
+                </Link>
                 <div className="mb-2">Contact Us</div>
                 <div className="mb-2">Partnerships</div>
                 <div className="mb-2">Press</div>

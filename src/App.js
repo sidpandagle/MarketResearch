@@ -17,6 +17,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReportList from './pages/admin/ReportList';
 import EditReport from './pages/admin/EditReport';
+import Careers from './pages/Careers';
 
 export const notifySuccess = (value) => toast.success(value);
 export const notifyWarning = (value) => toast.warning(value);
@@ -37,6 +38,7 @@ function App() {
         <Route path="/report/:reportId" element={<Report />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/careers" element={<Careers />} />
         <Route path="/report/add" element={<AddReport />} />
         <Route path="/report/list" element={<ReportList />} />
         <Route path="/report/edit/:reportId" element={<EditReport />} />

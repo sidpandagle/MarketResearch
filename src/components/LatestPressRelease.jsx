@@ -14,7 +14,7 @@ export default class LatestPressRelease extends Component {
                             {[...(new Array(6))].map((res, i) => {
                                 return (
                                     <div key={i} className="p-4 md:w-1/2">
-                                        <motion.div initial={{ scale: 0.8 }} whileInView={{ scale: 1 }} transition={{ delay: 0.2 }}>
+                                        {/* <motion.div initial={{ scale: 0.8 }} whileInView={{ scale: 1 }} transition={{ delay: 0.2 }}> */}
                                             <div className="text-left border rounded-md md:flex">
                                                 <div className='flex items-center justify-center w-2/5'>
                                                     <div className="bg-slate-400 md:w-[140px] md:h-[140px] rounded-lg md:p-0 text-slate-400">
@@ -37,7 +37,7 @@ export default class LatestPressRelease extends Component {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </motion.div>
+                                        {/* </motion.div> */}
                                     </div>
                                 )
                             })}
