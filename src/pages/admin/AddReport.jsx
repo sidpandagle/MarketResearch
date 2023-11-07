@@ -12,6 +12,12 @@ import moment from 'moment/moment';
 
 export default function AddReport() {
 
+    const htmlToText = (html) => {
+        let temp = document.createElement('div');
+        temp.innerHTML = html;
+        return temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50).join(' ') + '...';
+    }
+
 
     useEffect(() => {
         setValue('pages', '250');
@@ -43,18 +49,13 @@ export default function AddReport() {
     const [methodology, setMethodology] = useState('');
     const [toc, setToc] = useState('');
     const [highlights, setHighlights] = useState('');
+    const [summary, setSummary] = useState('');
 
     function onSubmit(formData) {
         const url = `${apiUrl}/reports/`;
-        console.log({
-            ...formData,
-            description: description,
-            methodology: methodology,
-            toc: toc,
-            highlights: highlights,
-        })
         axios.post(url, {
             ...formData,
+            summary: summary,
             description: description,
             methodology: methodology,
             toc: toc,
@@ -110,7 +111,7 @@ export default function AddReport() {
                                 config={config}
                                 tabIndex={1} // tabIndex of textarea
                                 onBlur={newContent => setDescription(newContent)} // preferred to use only this option to update the content for performance reasons
-                                onChange={(newContent) => { console.log(newContent) }}
+                                onChange={(newContent) => { setSummary((htmlToText(newContent)).trim()) }}
                             />
 
 

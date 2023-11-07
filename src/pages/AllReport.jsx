@@ -68,8 +68,8 @@ const AllReport = () => {
                     <Link to={`/report/${res.id}`} key={key}>
                       <div className='group' >
                         <div className='flex flex-col gap-2 p-4 border-b-2 cursor-pointer group-hover:bg-slate-50'>
-                          <div className="font-semibold group-hover:text-primary group-hover:underline">{res.url} </div>
-                          <div className="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus doloremque illum sunt nulla rerum fugiat explicabo rem placeat eius veniam, perspiciatis ducimus eaque commodi ut dolor ipsa animi ex impedit.</div>
+                          <div className="font-semibold group-hover:text-primary group-hover:underline">{res.title.split('').filter((res, i) => i < 160).join('')}... </div>
+                          <div className="">{res.summary}</div>
                           <div className='flex gap-4 text-sm'>
                             <div className='pr-4 border-r-2 border-gray'>{moment(res.created_date).format('MMMM YYYY')}</div>
                             <div className='pr-4 border-gray'>{res.pages} Pages</div>

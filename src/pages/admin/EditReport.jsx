@@ -11,6 +11,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditReport() {
 
+
+    const htmlToText = (html) => {
+        let temp = document.createElement('div');
+        temp.innerHTML = html;
+        // console.log(temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50));
+        // console.log(temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res, i) => i < 50 && res !== '').join(' ') + '...');
+        return temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50).join(' ') + '...';
+    }
     const { reportId } = useParams();
 
     const navigate = useNavigate();
@@ -26,6 +34,7 @@ export default function EditReport() {
     const [methodology, setMethodology] = useState('');
     const [toc, setToc] = useState('');
     const [highlights, setHighlights] = useState('');
+    const [summary, setSummary] = useState('');
 
     const config = useMemo(
         () => ({
@@ -64,13 +73,6 @@ export default function EditReport() {
     }, [reportId])
 
     const onSubmit = (formData) => {
-        console.log({
-            ...formData,
-            description: description,
-            methodology: methodology,
-            toc: toc,
-            highlights: highlights,
-        })
         axios.put(`${apiUrl}/reports/${reportId}`, {
             ...formData,
             id: reportId,
@@ -78,6 +80,7 @@ export default function EditReport() {
             methodology: methodology,
             toc: toc,
             highlights: highlights,
+            summary: summary,
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -129,7 +132,7 @@ export default function EditReport() {
                                 config={config}
                                 tabIndex={1} // tabIndex of textarea
                                 onBlur={newContent => setDescription(newContent)} // preferred to use only this option to update the content for performance reasons
-                                onChange={(newContent) => { console.log(newContent) }}
+                                onChange={(newContent) => { setSummary((htmlToText(newContent)).trim()) }}
                             />
 
 
