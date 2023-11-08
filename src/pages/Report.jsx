@@ -31,7 +31,7 @@ export default function Report() {
   useEffect(() => {
     axios.get(`${apiUrl}/reports/${reportId}`)
       .then((res) => {
-        setReport(res.data.data);
+        setBlankImage(res.data.data);
         return res
       }).then((res) => {
         getReportImages(res.data.data);
@@ -39,26 +39,41 @@ export default function Report() {
   }, [])
 
 
+
+  const setBlankImage = (reportData) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(reportData.description, "text/html");
+    const imgToModify1 = doc.querySelectorAll("img")[0];
+    const imgToModify2 = doc.querySelectorAll("img")[1];
+
+    imgToModify1.setAttribute("src", '');
+    imgToModify2.setAttribute("src", '');
+    reportData.description = doc.documentElement.outerHTML;
+    setReport(reportData)
+
+  }
+
+
   const getReportImages = (reportData) => {
     axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
       let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
       let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
-      updateImageSrc(1, img1, reportData)
-      updateImageSrc(2, img2, reportData)
+      reportData.description = updateImageSrc(1, img1, reportData.description)
+      reportData.description = updateImageSrc(2, img2, reportData.description)
+      setReport(reportData)
     })
   }
 
-  const updateImageSrc = (type, base64, reportData) => {
+  const updateImageSrc = (type, base64, description) => {
     const parser = new DOMParser();
-    const doc = parser.parseFromString(reportData.description, "text/html");
+    const doc = parser.parseFromString(description, "text/html");
     const imgToModify = doc.querySelectorAll("img")[type === 1 ? 0 : 1];
 
     if (imgToModify) {
       imgToModify.setAttribute("src", base64);
-      reportData.description = doc.documentElement.outerHTML;
-      setReport(reportData)
+      description = doc.documentElement.outerHTML;
+      return description
     }
-
   }
 
 
