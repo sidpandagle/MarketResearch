@@ -8,6 +8,7 @@ import "jodit/build/jodit.min.css";
 import { constConfig, categories, apiUrl } from '../../constants';
 import { useNavigate } from "react-router-dom";
 import moment from 'moment/moment';
+import Compressor from 'compressorjs';
 
 
 export default function AddReport() {
@@ -18,21 +19,26 @@ export default function AddReport() {
     const handleFileChange = (event, type) => {
         const file = event.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                const base64 = reader.result;
-                if (type === 1) {
-                    console.log(base64)
-                    setImg1(base64);
-                } else {
-                    console.log(base64)
-                    setImg2(base64);
-                }
-            };
-            reader.readAsDataURL(file);
+            new Compressor(file, {
+                quality: 0.8, // 0.6 can also be used, but its not recommended to go below.
+                success: (compressedResult) => {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const base64 = reader.result;
+                        if (type === 1) {
+                            console.log(base64)
+                            setImg1(base64);
+                        } else {
+                            console.log(base64)
+                            setImg2(base64);
+                        }
+                    };
+                    reader.readAsDataURL(compressedResult);
+                },
+            });
         }
     };
-    
+
     const htmlToText = (html) => {
         let temp = document.createElement('div');
         temp.innerHTML = html;

@@ -27,11 +27,41 @@ export default function Report() {
   const [license, setLicense] = useState('Single User License');
 
   const { reportId } = useParams();
+
   useEffect(() => {
-    axios.get(`${apiUrl}/reports/${reportId}`).then((res) => {
-      setReport(res.data.data);
-    })
+    axios.get(`${apiUrl}/reports/${reportId}`)
+      .then((res) => {
+        setReport(res.data.data);
+        return res
+      }).then((res) => {
+        getReportImages(res.data.data);
+      })
   }, [])
+
+
+  const getReportImages = (reportData) => {
+    axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
+      let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
+      let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
+      updateImageSrc(1, img1, reportData)
+      updateImageSrc(2, img2, reportData)
+    })
+  }
+
+  const updateImageSrc = (type, base64, reportData) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(reportData.description, "text/html");
+    const imgToModify = doc.querySelectorAll("img")[type === 1 ? 0 : 1];
+
+    if (imgToModify) {
+      imgToModify.setAttribute("src", base64);
+      reportData.description = doc.documentElement.outerHTML;
+      setReport(reportData)
+    }
+
+  }
+
+
 
 
   return (
@@ -64,6 +94,9 @@ export default function Report() {
                   </div>
                 </div>
                 <div className={`py-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
+
+                  {/* {img1 && <img src={img1} alt="" />}
+                  {img2 && <img src={img2} alt="" />} */}
                   <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
                   {/* <div dangerouslySetInnerHTML={{ __html: report.description }}></div> */}
                   <Faq />

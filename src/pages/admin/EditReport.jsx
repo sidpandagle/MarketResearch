@@ -7,6 +7,7 @@ import "jodit";
 import "jodit/build/jodit.min.css";
 import { constConfig, categories, apiUrl } from '../../constants';
 import { useNavigate, useParams } from "react-router-dom";
+import Compressor from 'compressorjs';
 
 
 export default function EditReport() {
@@ -14,12 +15,17 @@ export default function EditReport() {
     const handleFileChange = (event, type) => {
         const file = event.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
-                const base64 = reader.result;
-                updateImage(base64, type);
-            };
-            reader.readAsDataURL(file);
+            new Compressor(file, {
+                quality: 0.8, // 0.6 can also be used, but its not recommended to go below.
+                success: (compressedResult) => {
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const base64 = reader.result;
+                        updateImage(base64, type);
+                    };
+                    reader.readAsDataURL(compressedResult);
+                },
+            });
         }
     };
 
@@ -109,8 +115,8 @@ export default function EditReport() {
 
     const getReportImages = () => {
         axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
-            setImg1(response.data.data.find(res => res.img_name.includes('_1')).img_file || '')
-            setImg2(response.data.data.find(res => res.img_name.includes('_2')).img_file || '')
+            setImg1(response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '')
+            setImg2(response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '')
         })
     }
 
@@ -187,7 +193,7 @@ export default function EditReport() {
                         </div>
 
                         <div className='flex justify-between gap-2'>
-                            <div className="w-full relative">
+                            <div className="relative w-full">
                                 {
                                     img1View &&
                                     <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%]`}>
@@ -197,7 +203,7 @@ export default function EditReport() {
                                 <div htmlFor="img1" className='text-sm'>Image 1 <span className={`text-primary underline cursor-pointer ${!img1 && 'hidden'}`} onMouseEnter={() => setImg1View(true)} onMouseLeave={() => setImg1View(false)}>Preview</span> </div>
                                 <input type="file" onChange={(e) => handleFileChange(e, 1)} name="img1" id="img1" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
                             </div>
-                            <div className="w-full relative">
+                            <div className="relative w-full">
                                 {
                                     img2View &&
                                     <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%] `}>
