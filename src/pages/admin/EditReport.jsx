@@ -11,6 +11,36 @@ import { useNavigate, useParams } from "react-router-dom";
 
 export default function EditReport() {
 
+    const handleFileChange = (event, type) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64 = reader.result;
+                updateImage(base64, type);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const updateImage = (updatedImage, type) => {
+        axios.post(`${apiUrl}/report_images/`, {
+            img_file: updatedImage,
+            img_name: type === 1 ? `RP${reportId}_1` : `RP${reportId}_2`,
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                notifySuccess("Image updated successfully!");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                notifyError('Something went wrong, please try again!');
+            });
+    }
+
 
     const htmlToText = (html) => {
         let temp = document.createElement('div');
@@ -35,6 +65,10 @@ export default function EditReport() {
     const [toc, setToc] = useState('');
     const [highlights, setHighlights] = useState('');
     const [summary, setSummary] = useState('');
+    const [img1, setImg1] = useState('');
+    const [img2, setImg2] = useState('');
+    const [img1View, setImg1View] = useState(false);
+    const [img2View, setImg2View] = useState(false);
 
     const config = useMemo(
         () => ({
@@ -45,42 +79,52 @@ export default function EditReport() {
 
 
     useEffect(() => {
-        if (reportId) {
-            axios.get(`${apiUrl}/reports/${reportId}`)
-                .then(response => {
-                    const reportData = response.data.data;
-                    // Assuming that reportData contains fields like description, methodology, toc, and highlights
-                    setDescription(reportData.description);
-                    setMethodology(reportData.methodology);
-                    setToc(reportData.toc);
-                    setHighlights(reportData.highlights);
+        axios.get(`${apiUrl}/reports/${reportId}`)
+            .then(response => {
+                const reportData = response.data.data;
+                // Assuming that reportData contains fields like description, methodology, toc, and highlights
+                setDescription(reportData.description);
+                setMethodology(reportData.methodology);
+                setToc(reportData.toc);
+                setHighlights(reportData.highlights);
 
-                    const { title, category, url, meta_title, meta_desc, meta_keyword, pages, created_date } = reportData;
-                    setValue('title', title);
-                    setValue('category', category);
-                    setValue('url', url);
-                    setValue('meta_title', meta_title);
-                    setValue('meta_desc', meta_desc);
-                    setValue('meta_keyword', meta_keyword);
-                    setValue('pages', pages);
-                    setValue('created_date', created_date);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    notifyError('Failed to fetch report data.');
-                });
-        }
-    }, [reportId])
+                const { title, category, url, meta_title, meta_desc, meta_keyword, pages, created_date } = reportData;
+                setValue('title', title);
+                setValue('category', category);
+                setValue('url', url);
+                setValue('meta_title', meta_title);
+                setValue('meta_desc', meta_desc);
+                setValue('meta_keyword', meta_keyword);
+                setValue('pages', pages);
+                setValue('created_date', created_date);
+                getReportImages();
+            })
+            .then(() => {
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                notifyError('Failed to fetch report data.');
+            });
+    }, [])
+
+    const getReportImages = () => {
+        axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
+            setImg1(response.data.data.find(res => res.img_name.includes('_1')).img_file || '')
+            setImg2(response.data.data.find(res => res.img_name.includes('_2')).img_file || '')
+        })
+    }
+
 
     const onSubmit = (formData) => {
         axios.put(`${apiUrl}/reports/${reportId}`, {
-            ...formData,
-            id: reportId,
-            description: description,
-            methodology: methodology,
-            toc: toc,
-            highlights: highlights,
-            summary: summary,
+            report: {
+                ...formData,
+                summary: summary,
+                description: description,
+                methodology: methodology,
+                toc: toc,
+                highlights: highlights,
+            }
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -88,6 +132,7 @@ export default function EditReport() {
         })
             .then(response => {
                 navigate('/report/list')
+                getReportImages();
                 notifySuccess("Report updated successfully!");
             })
             .catch(error => {
@@ -99,6 +144,8 @@ export default function EditReport() {
     return (
         <div>
             <div className="max-w-6xl px-4 py-2 m-6 mx-auto border rounded-md md:py-12 md:pt-8 sm:px-6">
+                {/* <img src={img1} alt="" />
+                <img src={img2} alt="" /> */}
                 <div className='pb-4 text-xl font-semibold'>Edit Report</div>
                 <form action="#" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-2">
@@ -137,6 +184,29 @@ export default function EditReport() {
 
 
 
+                        </div>
+
+                        <div className='flex justify-between gap-2'>
+                            <div className="w-full relative">
+                                {
+                                    img1View &&
+                                    <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%]`}>
+                                        <img src={img1} alt="img1" className='object-contain' />
+                                    </div>
+                                }
+                                <div htmlFor="img1" className='text-sm'>Image 1 <span className={`text-primary underline cursor-pointer ${!img1 && 'hidden'}`} onMouseEnter={() => setImg1View(true)} onMouseLeave={() => setImg1View(false)}>Preview</span> </div>
+                                <input type="file" onChange={(e) => handleFileChange(e, 1)} name="img1" id="img1" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                            </div>
+                            <div className="w-full relative">
+                                {
+                                    img2View &&
+                                    <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%] `}>
+                                        <img src={img2} alt="img2" className='object-contain' />
+                                    </div>
+                                }
+                                <div htmlFor="img2" className='text-sm'>Image 2 <span className={`text-primary underline cursor-pointer ${!img2 && 'hidden'}`} onMouseEnter={() => setImg2View(true)} onMouseLeave={() => setImg2View(false)}>Preview</span></div>
+                                <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                            </div>
                         </div>
                         <div className="w-full">
                             <label htmlFor="toc" className='text-sm'>Table Of Content</label>
@@ -209,9 +279,9 @@ export default function EditReport() {
 
                         </button>
                     </div>
-                </form>
-            </div>
+                </form >
+            </div >
 
-        </div>
+        </div >
     )
 }

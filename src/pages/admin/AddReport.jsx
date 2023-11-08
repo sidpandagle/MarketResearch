@@ -12,11 +12,33 @@ import moment from 'moment/moment';
 
 export default function AddReport() {
 
+    const [img1, setImg1] = useState('');
+    const [img2, setImg2] = useState('');
+
+    const handleFileChange = (event, type) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64 = reader.result;
+                if (type === 1) {
+                    console.log(base64)
+                    setImg1(base64);
+                } else {
+                    console.log(base64)
+                    setImg2(base64);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+    
     const htmlToText = (html) => {
         let temp = document.createElement('div');
         temp.innerHTML = html;
         return temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50).join(' ') + '...';
     }
+
 
 
     useEffect(() => {
@@ -40,7 +62,6 @@ export default function AddReport() {
     const {
         register,
         handleSubmit,
-        reset,
         setValue,
         // formState: { errors },
     } = useForm();
@@ -53,18 +74,23 @@ export default function AddReport() {
 
     function onSubmit(formData) {
         const url = `${apiUrl}/reports/`;
-        axios.post(url, {
-            ...formData,
-            summary: summary,
-            description: description,
-            methodology: methodology,
-            toc: toc,
-            highlights: highlights,
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
+        axios.post(url,
+            {
+                images: [{ 'img_file': img1, 'img_name': 'RPXXX_1' }, { 'img_file': img2, 'img_name': 'RPXXX_2' }],
+                report: {
+                    ...formData,
+                    summary: summary,
+                    description: description,
+                    methodology: methodology,
+                    toc: toc,
+                    highlights: highlights,
+                }
+            }
+            , {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
             .then(response => {
                 navigate('/report/list')
                 notifySuccess("Report added successfully!");
@@ -113,9 +139,16 @@ export default function AddReport() {
                                 onBlur={newContent => setDescription(newContent)} // preferred to use only this option to update the content for performance reasons
                                 onChange={(newContent) => { setSummary((htmlToText(newContent)).trim()) }}
                             />
-
-
-
+                        </div>
+                        <div className='flex justify-between gap-2'>
+                            <div className="w-full">
+                                <label htmlFor="img1" className='text-sm'>Image 1</label>
+                                <input type="file" onChange={(e) => handleFileChange(e, 1)} name="img1" id="img1" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                            </div>
+                            <div className="w-full">
+                                <label htmlFor="img2" className='text-sm'>Image 2</label>
+                                <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                            </div>
                         </div>
                         <div className="w-full">
                             <label htmlFor="toc" className='text-sm'>Table Of Content</label>
