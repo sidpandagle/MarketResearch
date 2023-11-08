@@ -66,12 +66,16 @@ export default function Report() {
   const updateImageSrc = (base64_1, base64_2, reportData) => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(reportData.description, "text/html");
-    
+
     const imgToModify1 = doc.querySelectorAll("img")[0];
-    imgToModify1.setAttribute("src", base64_1);
-    
+    if (imgToModify1) {
+      imgToModify1.setAttribute("src", base64_1);
+    }
+
     const imgToModify2 = doc.querySelectorAll("img")[1];
-    imgToModify2.setAttribute("src", base64_2);
+    if (imgToModify2) {
+      imgToModify2.setAttribute("src", base64_2);
+    }
 
     reportData.description = doc.documentElement.outerHTML;
 
