@@ -30,10 +30,11 @@ export default function Report() {
 
   useEffect(() => {
     axios.get(`${apiUrl}/reports/${reportId}`)
+      // .then((res) => {
+      //   setBlankImage(res.data.data);
+      //   return res
+      // })
       .then((res) => {
-        setBlankImage(res.data.data);
-        return res
-      }).then((res) => {
         getReportImages(res.data.data);
       })
   }, [])
@@ -58,22 +59,23 @@ export default function Report() {
     axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
       let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
       let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
-      reportData.description = updateImageSrc(1, img1, reportData.description)
-      reportData.description = updateImageSrc(2, img2, reportData.description)
-      setReport(reportData)
+      updateImageSrc(img2, img1, reportData)
     })
   }
 
-  const updateImageSrc = (type, base64, description) => {
+  const updateImageSrc = (base64_1, base64_2, reportData) => {
     const parser = new DOMParser();
-    const doc = parser.parseFromString(description, "text/html");
-    const imgToModify = doc.querySelectorAll("img")[type === 1 ? 0 : 1];
+    const doc = parser.parseFromString(reportData.description, "text/html");
+    
+    const imgToModify1 = doc.querySelectorAll("img")[0];
+    imgToModify1.setAttribute("src", base64_1);
+    
+    const imgToModify2 = doc.querySelectorAll("img")[1];
+    imgToModify2.setAttribute("src", base64_2);
 
-    if (imgToModify) {
-      imgToModify.setAttribute("src", base64);
-      description = doc.documentElement.outerHTML;
-      return description
-    }
+    reportData.description = doc.documentElement.outerHTML;
+
+    setReport(reportData)
   }
 
 
