@@ -18,6 +18,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReportList from './pages/admin/ReportList';
 import EditReport from './pages/admin/EditReport';
 import Careers from './pages/Careers';
+import AddPressRelease from './pages/admin/AddPressRelease';
+import PressReleaseList from './pages/admin/PressReleaseList';
+import EditPressRelease from './pages/admin/EditPressRelease';
 
 export const notifySuccess = (value) => toast.success(value);
 export const notifyWarning = (value) => toast.warning(value);
@@ -32,7 +35,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryId" element={<AllReport />} />
         <Route path="/all-press-release/:categoryId" element={<AllPressRelease />} />
-        <Route path="/press-release/:pressRelease" element={<PressRelease />} />
+        <Route path="/press-release/:pressReleaseId" element={<PressRelease />} />
         <Route path="/offering" element={<Offering />} />
         <Route path="/buy-now/:reportId/:buyId" element={<BuyNow />} />
         <Route path="/report/:reportId" element={<Report />} />
@@ -42,6 +45,9 @@ function App() {
         <Route path="/report/add" element={<AddReport />} />
         <Route path="/report/list" element={<ReportList />} />
         <Route path="/report/edit/:reportId" element={<EditReport />} />
+        <Route path="/press-release/add" element={<AddPressRelease />} />
+        <Route path="/press-release/list" element={<PressReleaseList />} />
+        <Route path="/press-release/edit/:pressReleaseId" element={<EditPressRelease />} />
       </Routes>
       <ScrollToTop />
       <ToastContainer

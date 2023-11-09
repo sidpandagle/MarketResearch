@@ -12,6 +12,12 @@ export default function Search() {
             navigate('/report/list')
         }
     }
+    const redirectToPressReleaseList = () => {
+        setTriple(triple + 1)
+        if (triple === 2) {
+            navigate('/press-release/list')
+        }
+    }
     return (
         // <div className={`mx-auto h-[90vh] bg-cover bg-bottom flex justify-center items-center`} style={{ backgroundImage: `url(/world-background.jpg)` }}>
         // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-to-bl from-blue-900 to-blue-500 text-white`}>
@@ -23,7 +29,7 @@ export default function Search() {
                     Navigating Trends, Illuminating Insights
                 </div>
                 <div className='flex justify-center'>
-                    <div className="text-sm text-center md:w-5/6 md:text-lg">Empower your business with data-driven strategies. Discover trends, analyze markets, and seize opportunities for sustainable success. Explore limitless possibilities today!</div>
+                    <div className="text-sm text-center md:w-5/6 md:text-lg" onClick={redirectToPressReleaseList}>Empower your business with data-driven strategies. Discover trends, analyze markets, and seize opportunities for sustainable success. Explore limitless possibilities today!</div>
                 </div>
                 <div className='flex items-center justify-center'>
                     <div className="flex items-center h-12 overflow-hidden bg-white border rounded-lg md:w-1/2 focus-within:shadow-lg">

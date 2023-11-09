@@ -123,14 +123,13 @@ export default function EditReport() {
 
     const onSubmit = (formData) => {
         axios.put(`${apiUrl}/reports/${reportId}`, {
-            report: {
-                ...formData,
-                summary: summary,
-                description: description,
-                methodology: methodology,
-                toc: toc,
-                highlights: highlights,
-            }
+            ...formData,
+            id: reportId,
+            summary: summary,
+            description: description,
+            methodology: methodology,
+            toc: toc,
+            highlights: highlights,
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -201,7 +200,7 @@ export default function EditReport() {
                                     </div>
                                 }
                                 <div htmlFor="img1" className='text-sm'>Image 1 <span className={`text-primary underline cursor-pointer ${!img1 && 'hidden'}`} onMouseEnter={() => setImg1View(true)} onMouseLeave={() => setImg1View(false)}>Preview</span> </div>
-                                <input type="file" onChange={(e) => handleFileChange(e, 1)} name="img1" id="img1" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                                <input type="file" onChange={(e) => handleFileChange(e, 1)} name="img1" id="img1" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
                             </div>
                             <div className="relative w-full">
                                 {
@@ -211,7 +210,7 @@ export default function EditReport() {
                                     </div>
                                 }
                                 <div htmlFor="img2" className='text-sm'>Image 2 <span className={`text-primary underline cursor-pointer ${!img2 && 'hidden'}`} onMouseEnter={() => setImg2View(true)} onMouseLeave={() => setImg2View(false)}>Preview</span></div>
-                                <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                                <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
                             </div>
                         </div>
                         <div className="w-full">

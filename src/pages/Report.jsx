@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import * as React from 'react';
 import { Link } from 'react-router-dom'
 import RequestSample from '../components/RequestSample'
+import ContentLoading from '../components/ContentLoading'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Faq from '../components/Faq';
@@ -30,10 +31,10 @@ export default function Report() {
 
   useEffect(() => {
     axios.get(`${apiUrl}/reports/${reportId}`)
-      // .then((res) => {
-      //   setBlankImage(res.data.data);
-      //   return res
-      // })
+      .then((res) => {
+        setBlankImage(res.data.data);
+        return res
+      })
       .then((res) => {
         getReportImages(res.data.data);
       })
@@ -49,41 +50,47 @@ export default function Report() {
 
     imgToModify1.setAttribute("src", '');
     imgToModify2.setAttribute("src", '');
+    imgToModify1.style.height = '0px';
+    imgToModify2.style.height = '0px';
+
     reportData.description = doc.documentElement.outerHTML;
     setReport(reportData)
-
   }
-
 
   const getReportImages = (reportData) => {
     axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
       let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
       let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
-      updateImageSrc(img2, img1, reportData)
+
+
+      const allImages = document.querySelectorAll('.html-content p span img');
+      allImages[0].src = img1 ? img1 : '';
+      allImages[1].src = img2 ? img2 : '';
+
+      allImages[0].style.height = 'auto';
+      allImages[1].style.height = 'auto';
+      
+      // updateImageSrc(img2, img1, reportData)
     })
   }
 
-  const updateImageSrc = (base64_1, base64_2, reportData) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(reportData.description, "text/html");
+  // const updateImageSrc = (base64_1, base64_2, reportData) => {
+  //   const parser = new DOMParser();
+  //   const doc = parser.parseFromString(reportData.description, "text/html");
 
-    const imgToModify1 = doc.querySelectorAll("img")[0];
-    if (imgToModify1) {
-      imgToModify1.setAttribute("src", base64_1);
-    }
+  //   const imgToModify1 = doc.querySelectorAll("img")[0];
+  //   if (imgToModify1) {
+  //     imgToModify1.setAttribute("src", base64_1);
+  //   }
 
-    const imgToModify2 = doc.querySelectorAll("img")[1];
-    if (imgToModify2) {
-      imgToModify2.setAttribute("src", base64_2);
-    }
+  //   const imgToModify2 = doc.querySelectorAll("img")[1];
+  //   if (imgToModify2) {
+  //     imgToModify2.setAttribute("src", base64_2);
+  //   }
 
-    reportData.description = doc.documentElement.outerHTML;
+  //   reportData.description = doc.documentElement.outerHTML;
 
-    setReport(reportData)
-  }
-
-
-
+  // }
 
   return (
 
@@ -116,11 +123,9 @@ export default function Report() {
                 </div>
                 <div className={`py-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
 
-                  {/* {img1 && <img src={img1} alt="" />}
-                  {img2 && <img src={img2} alt="" />} */}
+                  {!report.description && <ContentLoading />}
                   <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
-                  {/* <div dangerouslySetInnerHTML={{ __html: report.description }}></div> */}
-                  <Faq />
+                  {report.description && <Faq />}
                 </div>
                 <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Table' && 'hidden'} `}>
                   <div dangerouslySetInnerHTML={{ __html: report.toc }}></div>
