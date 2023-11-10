@@ -44,6 +44,7 @@ export default function AddPressRelease() {
 
     const [description, setDescription] = useState('');
     const [summary, setSummary] = useState('');
+    const [publishDate, setPublishDate] = useState(moment().format('YYYY-MM-DD'));
 
     function onSubmit(formData) {
         const url = `${apiUrl}/press_release/`;
@@ -116,7 +117,7 @@ export default function AddPressRelease() {
                         </div>
                         <div className="w-full">
                             <label htmlFor="created_date" className='text-sm'>Publish Date</label>
-                            <input {...register('created_date')} type="date" value={moment().format('YYYY-MM-DD')} name="created_date" id="created_date" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Publish Date" required />
+                            <input {...register('created_date')} type="date" value={publishDate} onChange={(e) => { setPublishDate(e.target.value) }} name="created_date" id="created_date" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Publish Date" required />
                         </div>
                     </div>
                     <div className='flex justify-center'>

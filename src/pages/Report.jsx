@@ -47,11 +47,14 @@ export default function Report() {
     const doc = parser.parseFromString(reportData.description, "text/html");
     const imgToModify1 = doc.querySelectorAll("img")[0];
     const imgToModify2 = doc.querySelectorAll("img")[1];
-
-    imgToModify1.setAttribute("src", '');
-    imgToModify2.setAttribute("src", '');
-    imgToModify1.style.height = '0px';
-    imgToModify2.style.height = '0px';
+    if (imgToModify1) {
+      imgToModify1.setAttribute("src", '');
+      imgToModify1.style.height = '0px';
+    }
+    if (imgToModify2) {
+      imgToModify2.setAttribute("src", '');
+      imgToModify2.style.height = '0px';
+    }
 
     reportData.description = doc.documentElement.outerHTML;
     setReport(reportData)
@@ -64,12 +67,17 @@ export default function Report() {
 
 
       const allImages = document.querySelectorAll('.html-content p span img');
-      allImages[0].src = img1 ? img1 : '';
-      allImages[1].src = img2 ? img2 : '';
 
-      allImages[0].style.height = 'auto';
-      allImages[1].style.height = 'auto';
-      
+      if (allImages.length > 0) {
+        allImages[0].src = img1 ? img1 : '';
+        allImages[0].style.height = 'auto';
+
+        if (allImages.length > 1) {
+          allImages[1].src = img2 ? img2 : '';
+          allImages[1].style.height = 'auto';
+        }
+      }
+
       // updateImageSrc(img2, img1, reportData)
     })
   }
@@ -125,7 +133,7 @@ export default function Report() {
 
                   {!report.description && <ContentLoading />}
                   <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
-                  {report.description && <Faq />}
+                  {report.description && <Faq faqs={JSON.parse(report.faqs)} />}
                 </div>
                 <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Table' && 'hidden'} `}>
                   <div dangerouslySetInnerHTML={{ __html: report.toc }}></div>

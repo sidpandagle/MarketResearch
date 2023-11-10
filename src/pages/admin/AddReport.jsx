@@ -9,18 +9,37 @@ import { constConfig, categories, apiUrl } from '../../constants';
 import { useNavigate } from "react-router-dom";
 import moment from 'moment/moment';
 import Compressor from 'compressorjs';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import IconButton from '@mui/material/IconButton';
 
 
 export default function AddReport() {
 
+
+    const [formOpen, setFormOpen] = useState(false);
+    const handleFormOpen = () => setFormOpen(true);
+    const handleFormClose = () => setFormOpen(false);
+
     const [img1, setImg1] = useState('');
     const [img2, setImg2] = useState('');
+    const [publishDate, setPublishDate] = useState(moment().format('YYYY-MM-DD'));
+    const [faqList, setFaqList] = useState([]);
+    const [question, setQuestion] = useState('');
+    const [answer, setAnswer] = useState('');
+
+    const addFaq = () => {
+        setFaqList([...faqList, { question: question, answer: answer }])
+        setQuestion('')
+        setAnswer('')
+        handleFormClose();
+    }
 
     const handleFileChange = (event, type) => {
         const file = event.target.files[0];
         if (file) {
             new Compressor(file, {
-                quality: 0.8, // 0.6 can also be used, but its not recommended to go below.
+                quality: 0.8,
                 success: (compressedResult) => {
                     const reader = new FileReader();
                     reader.onload = () => {
@@ -85,6 +104,7 @@ export default function AddReport() {
                 images: [{ 'img_file': img1, 'img_name': 'RPXXX_1' }, { 'img_file': img2, 'img_name': 'RPXXX_2' }],
                 report: {
                     ...formData,
+                    faqs: JSON.stringify(faqList),
                     summary: summary,
                     description: description,
                     methodology: methodology,
@@ -149,11 +169,11 @@ export default function AddReport() {
                         <div className='flex justify-between gap-2'>
                             <div className="w-full">
                                 <label htmlFor="img1" className='text-sm'>Image 1</label>
-                                <input type="file" onChange={(e) => handleFileChange(e, 1)} name="img1" id="img1" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                                <input type="file" onChange={(e) => handleFileChange(e, 1)} name="img1" id="img1" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
                             </div>
                             <div className="w-full">
                                 <label htmlFor="img2" className='text-sm'>Image 2</label>
-                                <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " required />
+                                <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
                             </div>
                         </div>
                         <div className="w-full">
@@ -208,12 +228,61 @@ export default function AddReport() {
                         <div className='flex justify-between gap-2'>
                             <div className="w-full">
                                 <label htmlFor="created_date" className='text-sm'>Publish Date</label>
-                                <input {...register('created_date')} type="date" value={moment().format('YYYY-MM-DD')} name="created_date" id="created_date" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Publish Date" required />
+                                <input {...register('created_date')} type="date" value={publishDate} onChange={(e) => { setPublishDate(e.target.value) }} name="created_date" id="created_date" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Publish Date" required />
                             </div>
                             <div className="w-full">
                                 <label htmlFor="pages" className='text-sm'>Pages</label>
                                 <input {...register('pages')} type="text" name="pages" id="pages" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Pages" required />
                             </div>
+                        </div>
+                        <div className="w-full mt-2">
+                            <div className='flex justify-between'>
+                                <label htmlFor="meta_keyword" className='text-sm'>FAQs</label>
+                                <div className='underline cursor-pointer text-primary' onClick={handleFormOpen}>Add</div>
+                            </div>
+                            <table className="w-full text-sm text-left text-gray-500 border dark:text-gray-400">
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr className='border '>
+                                        <th scope="col" className="px-6 py-3">
+                                            Question
+                                        </th>
+                                        <th scope="col" className="px-6 py-3 ">
+                                            Answer
+                                        </th>
+                                        <th scope="col" className="px-6 py-3 w-[20px]">
+                                            {/* Answer */}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {faqList.map((res, key) => {
+                                        return (
+                                            <tr key={key} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                <td className="px-6 py-4">
+                                                    {res.question}
+                                                </td>
+                                                <td className="px-6 py-4">
+                                                    {res.answer}
+                                                </td>
+                                                <td className="px-6 py-4">
+
+                                                    <IconButton onClick={() => setFaqList(faqList.filter((fval, fkey) => fkey !== key))}>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-trash" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#597e8d" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                            <path d="M4 7l16 0" />
+                                                            <path d="M10 11l0 6" />
+                                                            <path d="M14 11l0 6" />
+                                                            <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                            <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                        </svg>
+                                                    </IconButton>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })}
+                                </tbody>
+                            </table>
+                            {faqList.length === 0 && <div className='flex justify-center p-4 border'>No FAQs</div>}
                         </div>
                     </div>
                     <div className='flex justify-center'>
@@ -229,7 +298,41 @@ export default function AddReport() {
                     </div>
                 </form>
             </div>
-
+            <Modal
+                open={formOpen}
+                onClose={handleFormClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box>
+                    <div className='flex items-center justify-center'>
+                        <div className=' m-2 py-6 px-6 w-[700px] rounded-md bg-white'>
+                            <div className="flex justify-between pb-2 mb-2 text-xl font-semibold text-center">
+                                <div></div>
+                                <div>Add FAQ</div>
+                                <svg height={24} width={24} onClick={handleFormClose} className="cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" /><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#1C274C" /> </g></svg>
+                            </div>
+                            <div>
+                                <form>
+                                    <div className="w-full">
+                                        <label htmlFor="question" className='text-sm'>Question</label>
+                                        <input type="text" name="question" id="question" value={question} onChange={(e) => setQuestion(e.target.value)} className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Question" required />
+                                    </div>
+                                    <div className="w-full">
+                                        <label htmlFor="answer" className='text-sm'>Answer</label>
+                                        <input type="text" name="answer" id="answer" value={answer} onChange={(e) => setAnswer(e.target.value)} className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Answer" required />
+                                    </div>
+                                    <div className='flex justify-center'>
+                                        <button type='submit' onClick={addFaq} className="inline-flex items-center justify-center gap-4 px-8 py-2 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                                            Add
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
         </div>
     )
 }

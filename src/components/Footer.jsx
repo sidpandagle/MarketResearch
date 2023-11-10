@@ -21,8 +21,8 @@ const Footer = () => {
               </div>
               <div className="w-3/5 text-sm">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div>
             </div>
-            <div className="flex flex-col justify-around gap-4 p-8 text-sm border-t md:gap-0 md:flex-row md:px-12 md:py-16 border-slate-600">
-              <div>
+            <div className="flex flex-col gap-4 p-8 text-sm border-t md:gap-36 md:flex-row md:px-12 md:py-16 border-slate-600">
+              {/* <div>
                 <div className="mb-4 text-xl font-bold">Resources</div>
                 <div className="mb-2">Why Congruence?</div>
                 <div className="mb-2">Customer Service</div>
@@ -31,7 +31,8 @@ const Footer = () => {
                 <div className="mb-2">Webinars</div>
                 <div className="mb-2">Workplace Mgmt</div>
                 <div className="mb-2">Glossary</div>
-              </div><div>
+              </div> */}
+              <div>
                 <div className="mb-4 text-xl font-bold">Company</div>
                 <div className="mb-2">About Us</div>
                 <Link to='/careers'>
