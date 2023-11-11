@@ -19,7 +19,7 @@ const Footer = () => {
               <div className="flex font-bold md:w-2/5">
                 <img src={'/cmilightlogo.png'} alt="logo" className="flex justify-center "></img>
               </div>
-              <div className="w-3/5 text-sm">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div>
+              <div className="w-3/5 text-sm text-justify">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div>
             </div>
             <div className="flex flex-col gap-4 p-8 text-sm border-t md:gap-36 md:flex-row md:px-12 md:py-16 border-slate-600">
               {/* <div>

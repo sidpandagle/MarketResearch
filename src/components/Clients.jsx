@@ -19,7 +19,8 @@ export default function Clients() {
           <p className="text-xl text-gray-600" data-aos="zoom-y-out">Trusted by industry leaders, our insights drive success, empowering businesses to thrive in dynamic market landscapes with precision.</p>
         </div>
 
-        <Swiper className='grayscale'
+        {/* <Swiper className='grayscale' */}
+        <Swiper 
           breakpoints={{
             0: {
               slidesPerView: 2,

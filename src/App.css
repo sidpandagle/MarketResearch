@@ -6,8 +6,11 @@
     @apply py-12 px-4 sm:px-10 md:px-20 lg:px-48
 }
 
-.bg-gradient {
+/* .bg-gradient {
     background: linear-gradient(45deg, hsla(210, 91%, 39%, 1) 0%, hsla(321, 55%, 50%, 1) 100%);
+} */
+.bg-gradient {
+    background: linear-gradient(45deg, hsla(210, 91%, 25%, 1) 15%, hsla(321, 55%, 40%, 1) 85%);
 }
 
 .html-content {
@@ -63,6 +66,7 @@
     .html-content p img {
         margin: 24px 0;
     }
+
     .html-content td {
         min-width: 50%;
     }

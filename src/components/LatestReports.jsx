@@ -48,7 +48,7 @@ export default function LatestReports() {
                                     <div className="p-20 bg-white md:w-2/5 md:p-0 text-slate-400">
 
                                     </div>
-                                    <div className="p-4 text-sm md:w-3/5">
+                                    <div className="p-4 text-sm text-justify md:w-3/5">
                                         <div>
                                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus id minima rem magni doloremque, accusamus repudiandae in eum dolores sit quia ea doloribus unde eveniet ullam veritatis. Eveniet, facilis dolore.
                                         </div>

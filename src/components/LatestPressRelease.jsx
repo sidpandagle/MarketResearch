@@ -24,7 +24,7 @@ export default class LatestPressRelease extends Component {
                                                     <div className='font-bold'>
                                                         13th October 2023
                                                     </div>
-                                                    <div className='mb-8'>
+                                                    <div className='mb-8 text-justify'>
                                                         Lorem ipsum dolor, sit amet amet amet consectetur adipisicing elit. Natus id minima rem magni doloremque
                                                     </div>
                                                     <div className='absolute bottom-[-10px] right-[20px] flex justify-center md:justify-end'>

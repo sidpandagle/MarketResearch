@@ -19,6 +19,12 @@ export default function Search() {
             navigate('/press-release/list')
         }
     }
+
+    const handleSearch = (e) => {
+        if (e.key === 'Enter') {
+            navigate(`/search/${keyword}`)
+        }
+    }
     return (
         // <div className={`mx-auto h-[90vh] bg-cover bg-bottom flex justify-center items-center`} style={{ backgroundImage: `url(/world-background.jpg)` }}>
         // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-to-bl from-blue-900 to-blue-500 text-white`}>
@@ -45,6 +51,7 @@ export default function Search() {
                                 type="text"
                                 id="search"
                                 value={keyword}
+                                onKeyDown={handleSearch}
                                 onChange={(e) => setKeyword(e.target.value)}
                                 placeholder="Search something.." />
                         </div>
@@ -67,8 +74,8 @@ export default function Search() {
                 <div className='grid items-start justify-center w-full grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-7 lg:grid-cols-14 min-h-20'>
                     {categories.map((res, index) => (
                         <Link key={index} to={`/category/${res.id}`}>
-                            <div className='flex flex-col items-center gap-1 mb-2'>
-                                <img src={res.icon} alt='category-icon' className="flex justify-center w-6 duration-100 hover:scale-125"></img>
+                            <div className='flex flex-col items-center gap-1 mb-2 duration-200 hover:scale-125 hover:font-semibold'>
+                                <img src={res.icon} alt='category-icon' className="flex justify-center w-6 duration-100 "></img>
                                 <div className="text-center mx-1 text-[8px] md:text-[10px] w-20">{res.name}</div>
                             </div>
                         </Link>
