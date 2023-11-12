@@ -1,11 +1,28 @@
-import React, {  useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { apiUrl } from '../constants';
+import { notifyError } from '../App';
 
 export default function LatestReports() {
 
 
     const [my_swiper, set_my_swiper] = useState({});
+    const [reportList, setReportList] = useState([]);
+
+
+    useEffect(() => {
+        axios.get(`${apiUrl}/reports/latest?page=1&per_page=6`).then(res => {
+            let reportList = res.data.data;
+            if (reportList.length) {
+                setReportList(reportList)
+            } else {
+                setReportList([])
+                notifyError('No latest reports')
+            }
+        })
+    }, []);
 
     return (
         <div className='bg-gradient'>
@@ -42,21 +59,26 @@ export default function LatestReports() {
                         onSwiper={(swiper) => console.log('swiper')}
                     >
 
-                        {[...new Array(10)].map((val, index) =>
+                        {reportList.map((val, index) =>
                             <SwiperSlide key={index}>
-                                <div className="mx-2 border rounded-md md:flex overflow-clip">
+                                <div className="mx-2 border rounded-md md:h-60 md:flex overflow-clip">
                                     <div className="p-20 bg-white md:w-2/5 md:p-0 text-slate-400">
 
                                     </div>
-                                    <div className="p-4 text-sm text-justify md:w-3/5">
+                                    <div className="flex flex-col justify-between p-4 text-sm text-justify md:w-3/5">
                                         <div>
-                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus id minima rem magni doloremque, accusamus repudiandae in eum dolores sit quia ea doloribus unde eveniet ullam veritatis. Eveniet, facilis dolore.
+                                            <div className='mb-2 font-bold'>
+                                                {val.url}
+                                            </div>
+                                            <div className='pb-4'>
+                                                {val.summary.split('...')[0].split(' ').filter((r, i) => i < 30).join(' ')}...
+                                            </div>
                                         </div>
                                         <div className='flex justify-center md:justify-end'>
                                             <Link to='/report'>
-                                            <button type="button" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                                                Read Me
-                                            </button>
+                                                <button type="button" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                                                    Read Me
+                                                </button>
                                             </Link>
 
                                         </div>
