@@ -35,7 +35,7 @@ export default class Services extends Component {
                                             <div className='font-semibold '>
                                                 Market Research Reports
                                             </div>
-                                            <div className='mb-2 text-sm text-justify text-slate-300'>
+                                            <div className='mb-2 text-sm md:text-justify text-slate-300'>
                                             Discover our comprehensive collection of thoroughly investigated market analyses, encompassing diverse industries, offering deep insights to facilitate informed decision-making.
                                             </div>
                                         </div>
@@ -60,7 +60,7 @@ export default class Services extends Component {
                                             <div className='font-semibold '>
                                                 Customized Research Services
                                             </div>
-                                            <div className='mb-2 text-sm text-justify text-slate-300'>
+                                            <div className='mb-2 text-sm md:text-justify text-slate-300'>
                                             Our personalized research services focus on your unique needs, exploring specialized markets, consumer trends, and industry dynamics for tailored insights.
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@ export default class Services extends Component {
                                             <div className='font-semibold '>
                                                 Industry Analysis and Trends
                                             </div>
-                                            <div className='mb-2 text-sm text-justify text-slate-300'>
+                                            <div className='mb-2 text-sm md:text-justify text-slate-300'>
                                             Remain at the forefront with our industry trend reports for an in-depth grasp of market shifts, tech advancements, and consumer preferences.
                                             </div>
                                         </div>
@@ -110,7 +110,7 @@ export default class Services extends Component {
                                             <div className='font-semibold '>
                                                 Competitive Intelligence
                                             </div>
-                                            <div className='mb-2 text-sm text-justify text-slate-300'>
+                                            <div className='mb-2 text-sm md:text-justify text-slate-300'>
                                             Confidently maneuver competition using our competitive intelligence. Assess key players, strategies, and products to understand strengths and weaknesses, gaining an edge.
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@ export default class Services extends Component {
                                             <div className='font-semibold '>
                                                 Consumer Insights & Behavior Analysis
                                             </div>
-                                            <div className='mb-2 text-sm text-justify text-slate-300'>
+                                            <div className='mb-2 text-sm md:text-justify text-slate-300'>
                                             Grasp your audience deeply. Our consumer insights use advanced methods to unravel behavior, preferences, and purchasing, refining strategies for engagement.
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@ export default class Services extends Component {
                                             <div className='font-semibold '>
                                                 Strategic Consulting
                                             </div>
-                                            <div className='mb-2 text-sm text-justify text-slate-300'>
+                                            <div className='mb-2 text-sm md:text-justify text-slate-300'>
                                             Gain tailored expert guidance aligned with your goals. Our strategic consulting delivers actionable advice and implementation strategies for market expansion and innovation.
                                             </div>
                                         </div>

@@ -30,8 +30,12 @@ export default function Search() {
         // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-to-bl from-blue-900 to-blue-500 text-white`}>
         // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-0 text-white`}>
         // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-45 text-white`}>
-        <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient text-white`}>
-            <div className='flex flex-col gap-8 px-4 text-center md:px-16 md:gap-8'>
+        <div className={`relative mx-auto py-12 bg-cover overflow-clip bg-bottom flex justify-center items-center bg-gradient text-white`}>
+            <video className='absolute top-0 z-10 hidden w-full md:block' autoPlay muted loop id="myVideo" poster="/assets/video/video-photo.webp">
+                <source data-src="https://cdn.vantagemarketresearch.com/video/VMR_New_Video.webm" type="video/mp4" src="https://cdn.vantagemarketresearch.com/video/VMR_New_Video.webm" />
+            </video>
+
+            <div className='z-10 flex flex-col gap-8 px-4 text-center md:px-16 md:gap-8'>
                 <div className="text-3xl font-semibold md:text-4xl" onClick={redirectToReportList}>
                     Navigating Trends, Illuminating Insights
                 </div>

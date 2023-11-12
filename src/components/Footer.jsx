@@ -12,14 +12,15 @@ const Footer = () => {
   const handleFormClose = () => setFormOpen(false);
   return (
     <div>
-      <div className="text-center text-white bg-slate-800 md:text-left">
+      <div className="relative text-center text-white bg-slate-800 md:text-left">
+        <img src={"/footer-guy.png"} alt="working-guy" className="absolute hidden md:block bottom-0 right-10 h-[520px] transform -scale-x-100" />
         <div className="md:flex">
           <div className="md:w-1/2">
             <div className="flex flex-col items-center gap-4 p-8 md:items-start md:px-12 md:py-16 md:flex-row border-slate-700">
               <div className="flex font-bold md:w-2/5">
                 <img src={'/cmilightlogo.png'} alt="logo" className="flex justify-center "></img>
               </div>
-              <div className="w-3/5 text-sm text-justify">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div>
+              <div className="w-3/5 text-sm md:text-justify">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div>
             </div>
             <div className="flex flex-col gap-4 p-8 text-sm border-t md:gap-36 md:flex-row md:px-12 md:py-16 border-slate-600">
               {/* <div>
@@ -74,7 +75,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-sm border-t border-slate-600">
-          <div className="md:h-[300px] flex flex-col md:flex-row md:items-end gap-8 px-12 py-8">
+          <div className="px-12 py-8 md:w-3/5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque placeat officiis sed minima quis ratione molestias corrupti, adipisci tempore ad maiores, nostrum saepe dolore fuga! Adipisci odit perferendis aliquid quas! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi voluptates obcaecati nobis deleniti quaerat quibusdam aperiam ipsam. Praesentium velit repellat cum eum vitae sint dolorum omnis. Corporis est quos necessitatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid totam officiis dolores voluptatibus eius iusto aspernatur nihil aperiam, iste modi! Repellat libero obcaecati hic itaque commodi sit fuga cupiditate ab.</div>
+          <div className="flex flex-col gap-8 px-12 py-8 md:flex-row md:items-end">
             <div>© 2023 Congruence</div>
             <div>Support</div>
             <div>Privacy</div>

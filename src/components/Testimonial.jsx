@@ -56,7 +56,7 @@ export default function Testimonial() {
                                 <div className='-translate-x-2 -translate-y-2 w-36'>
 
                                 </div>
-                                <div className='text-justify -translate-y-2'>{testimonial.testimonial}</div>
+                                <div className='md:text-justify -translate-y-2'>{testimonial.testimonial}</div>
                             </div></SwiperSlide>
                         )}
                     </Swiper>

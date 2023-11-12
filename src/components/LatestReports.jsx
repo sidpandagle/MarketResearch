@@ -46,7 +46,7 @@ export default function LatestReports() {
                                 slidesPerView: 1,
                             },
                             400: {
-                                slidesPerView: 2,
+                                slidesPerView: 1,
                             },
                             639: {
                                 slidesPerView: 2,
@@ -65,7 +65,7 @@ export default function LatestReports() {
                                     <div className="p-20 bg-white md:w-2/5 md:p-0 text-slate-400">
 
                                     </div>
-                                    <div className="flex flex-col justify-between p-4 text-sm text-justify md:w-3/5">
+                                    <div className="flex flex-col justify-between p-4 text-sm md:text-justify md:w-3/5">
                                         <div>
                                             <div className='mb-2 font-bold'>
                                                 {val.url}
@@ -75,7 +75,7 @@ export default function LatestReports() {
                                             </div>
                                         </div>
                                         <div className='flex justify-center md:justify-end'>
-                                            <Link to='/report'>
+                                            <Link to={`/report/${val.id}`}>
                                                 <button type="button" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                     Read Me
                                                 </button>

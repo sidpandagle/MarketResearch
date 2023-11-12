@@ -14,7 +14,7 @@ export default function EditPressRelease() {
     const htmlToText = (html) => {
         let temp = document.createElement('div');
         temp.innerHTML = html;
-        return temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50).join(' ') + '...';
+        return temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50).join(' ');
     }
     const { pressReleaseId } = useParams();
 

@@ -15,6 +15,7 @@ export default function Report() {
 
   const [selectedTitle, setSelectedTitle] = useState('Description');
   const [report, setReport] = useState({});
+  const [relatedReportList, setRelatedReportList] = useState([]);
 
   const scrollToTop = (value) => {
     setSelectedTitle(value)
@@ -37,9 +38,21 @@ export default function Report() {
       })
       .then((res) => {
         getReportImages(res.data.data);
+        getRelatedReports(res.data.data.category);
       })
   }, [])
 
+  const getRelatedReports = (categoryValue) => {
+    axios.get(`${apiUrl}/reports/category/${categoryValue}?page=1&per_page=3`).then(res => {
+      if (res.data.data.length) {
+        let filterData = res.data.data.filter(res => res.id !== Number(reportId));
+        filterData = filterData.filter((r, i) => i < 2);
+        setRelatedReportList(filterData)
+      } else {
+        setRelatedReportList([])
+      }
+    })
+  };
 
 
   const setBlankImage = (reportData) => {
@@ -180,14 +193,23 @@ export default function Report() {
               <div>
                 <div className='px-4 py-2'>Related Reports</div>
                 <div className=''>
-                  <div className='flex flex-col px-4 py-2 border-t-2 cursor-pointer group hover:bg-slate-100'>
-                    <div className="font-bold group-hover:text-primary">Workforce Analytics Market</div>
-                    <div className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse  ipsum dolor sit amet consectetur adipisicing elit. Esse</div>
-                  </div>
-                  <div className='flex flex-col px-4 py-2 border-t-2 cursor-pointer group hover:bg-slate-100'>
-                    <div className="font-bold group-hover:text-primary">Workforce Analytics Market</div>
-                    <div className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse  ipsum dolor sit amet consectetur adipisicing elit. Esse</div>
-                  </div>
+                  {
+                    relatedReportList.map((r, i) => {
+                      return (
+                        <div key={i} className='flex flex-col px-4 py-2 border-t-2 cursor-pointer group hover:bg-slate-100'>
+                          <div className="font-bold group-hover:text-primary">{r.url}</div>
+                          <div className="text-sm">{r.summary.split(' ').filter((s, j) => j < 15).join(' ')}...</div>
+                        </div>
+                      )
+                    })
+                  }
+                  {relatedReportList.length === 0
+                    &&
+                    <div className='flex flex-col px-4 py-2 border-t-2 cursor-pointer group hover:bg-slate-100'>
+                      <div className="p-4 font-bold text-center group-hover:text-primary">No Report Found</div>
+                      {/* <div className="text-sm">{r.summary.split(' ').filter((s, j) => j < 15).join(' ')}...</div> */}
+                    </div>
+                  }
                 </div>
               </div>
             </div>

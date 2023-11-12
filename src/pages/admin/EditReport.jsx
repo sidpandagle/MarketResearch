@@ -74,7 +74,7 @@ export default function EditReport() {
         temp.innerHTML = html;
         // console.log(temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50));
         // console.log(temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res, i) => i < 50 && res !== '').join(' ') + '...');
-        return temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50).join(' ') + '...';
+        return temp.textContent.replaceAll('\n', ' ').replaceAll('\t', ' ').split(' ').filter((res) => res !== '').filter((res, i) => i < 50).join(' ');
     }
     const { reportId } = useParams();
 

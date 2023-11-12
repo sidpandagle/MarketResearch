@@ -42,12 +42,12 @@ export default function LatestPressRelease() {
                                             <div className='font-bold'>
                                                 {moment(res.created_date).format('Do MMM YYYY')}
                                             </div>
-                                            <div className='mb-8 text-justify'>
+                                            <div className='mb-8 md:text-justify'>
                                                 {/* {res.summary} */}
                                                 {res.summary.split('...')[0].split(' ').filter((r, i) => i < 20).join(' ')}...
                                             </div>
                                             <div className='absolute bottom-[-10px] right-[20px] flex justify-center md:justify-end'>
-                                                <Link to='/press-release/1'>
+                                                <Link to={`/press-release/${res.id}`}>
                                                     <button type="button" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                         Read Me
                                                     </button>
