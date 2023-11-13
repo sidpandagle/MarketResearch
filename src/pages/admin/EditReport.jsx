@@ -183,6 +183,10 @@ export default function EditReport() {
 
 
     const onSubmit = (formData) => {
+        console.log(formData)
+        console.log(toc)
+        console.log(highlights)
+        console.log(methodology)
         axios.put(`${apiUrl}/reports/${reportId}`, {
             ...formData,
             id: reportId,
@@ -309,10 +313,10 @@ export default function EditReport() {
                             {/* <input {...register('toc')} type="text" name="toc" id="toc" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Table Of Content" required /> */}
                             <JoditEditor
                                 ref={tocEditor}
-                                value={methodology}
+                                value={toc}
                                 config={config}
                                 tabIndex={1} // tabIndex of textarea
-                                onBlur={newContent => setMethodology(newContent)} // preferred to use only this option to update the content for performance reasons
+                                onBlur={newContent => setToc(newContent)} // preferred to use only this option to update the content for performance reasons
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
                         </div>
@@ -322,10 +326,10 @@ export default function EditReport() {
 
                             <JoditEditor
                                 ref={highlightsEditor}
-                                value={toc}
+                                value={highlights}
                                 config={config}
                                 tabIndex={1} // tabIndex of textarea
-                                onBlur={newContent => setToc(newContent)} // preferred to use only this option to update the content for performance reasons
+                                onBlur={newContent => setHighlights(newContent)} // preferred to use only this option to update the content for performance reasons
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
                         </div>
@@ -334,10 +338,10 @@ export default function EditReport() {
                             {/* <input {...register('methodology')} type="text" name="methodology" id="methodology" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Methodology" required /> */}
                             <JoditEditor
                                 ref={methodologyEditor}
-                                value={highlights}
+                                value={methodology}
                                 config={config}
                                 tabIndex={1} // tabIndex of textarea
-                                onBlur={newContent => setHighlights(newContent)} // preferred to use only this option to update the content for performance reasons
+                                onBlur={newContent => setMethodology(newContent)} // preferred to use only this option to update the content for performance reasons
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
                         </div>
@@ -415,7 +419,7 @@ export default function EditReport() {
                     </div>
                     <div className='flex justify-center'>
                         <button type="submit" className="inline-flex items-center justify-center gap-4 px-8 py-3 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                            Edit
+                            Save
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-send" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M10 14l11 -11" />
@@ -453,7 +457,7 @@ export default function EditReport() {
                                     </div>
                                     <div className='flex justify-center'>
                                         <button type='submit' onClick={addFaq} className="inline-flex items-center justify-center gap-4 px-8 py-2 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                                            Add
+                                        Save
                                         </button>
                                     </div>
                                 </form>

@@ -4,7 +4,7 @@ export default class Contact extends Component {
   render() {
     return (
       <div>
-        <section className="relative z-10 overflow-hidden bg-white">
+        <section className="relative overflow-hidden bg-white -z-10">
           <div className="container">
             <div className="flex flex-wrap py-20 mx-10 lg:justify-between">
               <div className="w-full px-4 lg:w-1/2 xl:w-6/12">

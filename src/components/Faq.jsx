@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
 export default function Faq({ faqs }) {
-    const [selectedFaqId, setSelectedFaqId] = useState(0)
+    const [selectedFaqId, setSelectedFaqId] = useState(null)
     return (
-        <section className="py-12 sm:py-12 " >
+        <section className="py-10" >
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="max-w-2xl mx-auto text-center">
-                    <h2 className="text-3xl font-bold leading-tight text-black sm:text-2xl ">Frequently Asked Questions</h2>
+                    <h2 className="text-3xl italic font-bold leading-tight text-black underline underline-offset-8 sm:text-2xl ">Frequently Asked Questions</h2>
                 </div>
                 <div className="mx-auto mt-8 space-y-4 md:mt-8">
                     {

@@ -53,6 +53,7 @@ function App() {
       </Routes>
       <ScrollToTop />
       <ToastContainer
+        position='top-center'
         theme='light'
         hideProgressBar />
       <Footer />

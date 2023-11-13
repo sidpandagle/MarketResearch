@@ -40,7 +40,7 @@ export default function PressReleaseList() {
     }, []);
 
     const getAllpressRelease = () => {
-        axios.get(`${apiUrl}/pressReleases/`)
+        axios.get(`${apiUrl}/press_release/`)
             .then(response => {
                 console.log(response);
                 let repList = response.data.data.map(res => {

@@ -33,7 +33,7 @@ export default function AllPressRelease() {
           setPressReleaseList(reportList)
         } else {
           setPressReleaseList([])
-          notifyError('No reports for this category')
+          notifyError('No press releases for this category')
         }
       })
     }

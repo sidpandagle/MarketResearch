@@ -7,7 +7,7 @@ import ContentLoading from '../components/ContentLoading'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Faq from '../components/Faq';
-import { apiUrl, getAbrByCategory, licenses } from '../constants';
+import { apiUrl, getAbrByCategory, licenses, categories } from '../constants';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -37,7 +37,7 @@ export default function Report() {
         return res
       })
       .then((res) => {
-        getReportImages(res.data.data);
+        getReportImages();
         getRelatedReports(res.data.data.category);
       })
   }, [])
@@ -68,12 +68,11 @@ export default function Report() {
       imgToModify2.setAttribute("src", '');
       imgToModify2.style.height = '0px';
     }
-
     reportData.description = doc.documentElement.outerHTML;
     setReport(reportData)
   }
 
-  const getReportImages = (reportData) => {
+  const getReportImages = () => {
     axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
       let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
       let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
@@ -116,59 +115,104 @@ export default function Report() {
   return (
 
     <div className='px-4 py-2 mx-auto md:py-12 max-w-7xl md:pt-0 sm:px-6'>
-      <div className='pt-8 pb-4'> Congruence / {report.category} / {report.url}</div>
-      <div className="pb-8 md:flex">
-        <div className="mb-4 border rounded-md overflow-clip md:mb-0 md:w-3/4">
-          <div className="head">
-            <div className='items-center justify-between md:flex'>
-              <div className="w-full">
-                <div className='p-4 text-white bg-[#0E1035]'>
-                  <div className='mb-2 text-justify'>{report.title}</div>
-                  <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
-                    <div>Date: {moment(report.created_date).format('MMMM YYYY')}</div>
-                    <div>Report Code: CGN{getAbrByCategory(report.category)}{report.id}</div>
-                    <div>Pages: {report.pages}</div>
-                  </div>
-                </div>
-                <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} p-4 relative justify-between gap-2 py-4 bg-white md:flex`}>
-                  <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-primary text-white' : ''}`}>Description</div>
-                  <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-primary text-white' : ''}`}>Table Of Content</div>
-                  <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-primary text-white' : ''}`}>Highlights</div>
-                  <div onClick={() => scrollToTop('Methodology')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
-                  <div onClick={() => scrollToTop('Request')} className={`md:w-1/4 w-full p-2 md:mb-0 mb-4 text-sm box-border relative z-30 inline-flex items-center justify-center  px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none ${selectedTitle === 'Request' ? 'font-bold' : ''}`}>
-                    {/* Request Sample */}
-                    <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0" />
-                    <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0" />
-                    <span className="relative z-20 flex items-center text-sm">
-                      Request Sample
-                    </span>
-                  </div>
-                </div>
-                <div className={`p-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
+      {/* <div className='pt-8 pb-4 '> Congruence / {report.category} / <span className='text-primary'> {report.url}</span></div> */}
 
-                  {!report.description && <ContentLoading />}
-                  <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
-                  {report.description && <Faq faqs={JSON.parse(report.faqs)} />}
-                </div>
-                <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Table' && 'hidden'} `}>
-                  <div dangerouslySetInnerHTML={{ __html: report.toc }}></div>
-                </div>
-                <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Highlights' && 'hidden'} `}>
-                  <div dangerouslySetInnerHTML={{ __html: report.highlights }}></div>
-                </div>
-                <div className={`py-4 flex justify-center overflow-clip  ${selectedTitle !== 'Methodology' && 'hidden'} `}>
-                  <div dangerouslySetInnerHTML={{ __html: report.methodology }}></div>
-                </div>
-                <div className={`py-4 ${selectedTitle !== 'Request' && 'hidden'} `}>
-                  <RequestSample reportTitle={report.url} enquiryType='Request Sample' closeModal={() => { }} />
+      <nav className="flex pt-8 pb-4" aria-label="Breadcrumb">
+        <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+          <li className="inline-flex items-center">
+            <Link to='/'>
+              <div className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 ">
+                <svg className="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                </svg>
+                Home
+              </div>
+            </Link>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <svg className="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
+              </svg>
+              <Link to={`/category/${categories.find(res => res.name === report.category)?.id}`}>
+                <a href="#" className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{report.category}</a>
+              </Link>
+            </div>
+          </li>
+          <li aria-current="page">
+            <div className="flex items-center">
+              <svg className="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
+              </svg>
+              <span className="text-sm font-medium text-gray-500 ms-1 md:ms-2 ">{report.url}</span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+
+      <div className="pb-8 md:flex">
+        <div className="mb-4 border rounded-md shadow-lg overflow-clip md:mb-0 md:w-3/4">
+          <div className='items-center justify-between md:flex'>
+            <div className="w-full">
+              <div className='p-4 text-white bg-[#2C3E50]'>
+                <div className='mb-2 text-justify'>{report.title}</div>
+                <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
+                  <div className='pr-4 border-r-[1px]'><span>Date:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
+                  <div className='pr-4 border-r-[1px]'><span>Report Code:</span> CGN{getAbrByCategory(report.category)}{report.id}</div>
+                  <div ><span>Pages:</span> {report.pages}</div>
                 </div>
               </div>
-            </div >
+              <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} p-4 relative justify-between gap-2 bg-white md:flex`}>
+                <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-primary text-white' : ''}`}>Description</div>
+                <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-primary text-white' : ''}`}>Table Of Content</div>
+                <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-primary text-white' : ''}`}>Highlights</div>
+                <div onClick={() => scrollToTop('Methodology')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
+                <div onClick={() => scrollToTop('Request')} className={`md:w-1/4 w-full py-3 md:mb-0 mb-4 text-sm box-border relative z-30 inline-flex items-center justify-center  px-8  overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none ${selectedTitle === 'Request' ? 'font-bold' : ''}`}>
+                  {/* Request Sample */}
+                  <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0" />
+                  <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0" />
+                  <span className="relative z-20 flex items-center text-sm">
+                    Request Sample
+                  </span>
+                </div>
+              </div>
+              <div className='px-4'>
+                {selectedTitle === 'Description' &&
+                  <div>
+                    {!report.description && <ContentLoading />}
+                    <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
+                    {report.description && <Faq faqs={JSON.parse(report.faqs)} />}
+                  </div>
+                }
+                {selectedTitle === 'Table' &&
+                  <div>
+                    <div dangerouslySetInnerHTML={{ __html: report.toc }}></div>
+                  </div>
+                }
+                {selectedTitle === 'Highlights' &&
+                  <div>
+                    <div dangerouslySetInnerHTML={{ __html: report.highlights }}></div>
+                  </div>
+                }
+                {selectedTitle === 'Methodology' &&
+                  <div>
+                    <div dangerouslySetInnerHTML={{ __html: report.methodology }}></div>
+                  </div>
+                }
+                {selectedTitle === 'Request' &&
+                  <div>
+                    <RequestSample reportTitle={report.url} enquiryType='Request Sample' closeModal={() => { }} />
+                  </div>
+                }
+              </div>
+            </div>
           </div >
+
         </div >
         <div className="relative md:pl-4 md:w-1/4">
           <div className='sticky top-[20px] flex flex-col gap-4 '>
-            <div className='flex flex-col gap-2 p-4 border rounded-md bg-slate-50'>
+            <div className='flex flex-col gap-2 p-4 border rounded-md shadow-lg '>
               {
                 licenses.map((res, i) => {
                   return (
@@ -191,7 +235,7 @@ export default function Report() {
                 </button>
               </div>
             </div>
-            <div className='flex flex-col gap-2 border rounded-md'>
+            <div className='flex flex-col gap-2 border rounded-md shadow-lg'>
               <div>
                 <div className='px-4 py-2'>Related Reports</div>
                 <div className=''>
