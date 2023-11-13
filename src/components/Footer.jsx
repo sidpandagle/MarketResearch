@@ -40,7 +40,9 @@ const Footer = () => {
   return (
     <div>
       <div className="relative text-center text-white bg-slate-800 md:text-left">
-        <img src={"/footer-guy.png"} alt="working-guy" className="absolute hidden md:block bottom-0 right-10 h-[520px] transform -scale-x-100" />
+        {/* <img src={"/footer-guy.png"} alt="working-guy" className="absolute hidden md:block bottom-0 right-10 h-[420px] transform -scale-x-100" /> */}
+        {/* <img src={"/f1.png"} alt="working-guy" className="absolute hidden md:block bottom-0 right-10 h-[420px] transform -scale-x-100" /> */}
+        <img src={"/f3.png"} alt="working-guy" className="absolute hidden md:block bottom-10 right-20 h-[360px] transform" />
         <div className="md:flex">
           <div className="md:w-1/2">
             <div className="flex flex-col items-center gap-4 p-8 md:items-start md:px-12 md:py-16 md:flex-row border-slate-700">
@@ -102,11 +104,11 @@ const Footer = () => {
           </div>
         </div>
         <div className="text-sm border-t border-slate-600">
-          <div className="px-12 py-8 md:w-3/5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque placeat officiis sed minima quis ratione molestias corrupti, adipisci tempore ad maiores, nostrum saepe dolore fuga! Adipisci odit perferendis aliquid quas! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi voluptates obcaecati nobis deleniti quaerat quibusdam aperiam ipsam. Praesentium velit repellat cum eum vitae sint dolorum omnis. Corporis est quos necessitatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquid totam officiis dolores voluptatibus eius iusto aspernatur nihil aperiam, iste modi! Repellat libero obcaecati hic itaque commodi sit fuga cupiditate ab.</div>
+          <div className="px-12 py-8 md:w-3/5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque placeat officiis sed minima quis ratione molestias corrupti, adipisci tempore ad maiores, nostrum saepe dolore fuga! Adipisci odit perferendis aliquid quas! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi </div>
           <div className="flex flex-col gap-8 px-12 py-8 md:flex-row md:items-end">
             <div>© 2023 Congruence</div>
             {detailsList.map((r, i) => {
-              return <div onClick={() => handleDetailsOpen(r.title)}>{r.title}</div>
+              return <div key={i} onClick={() => handleDetailsOpen(r.title)}>{r.title}</div>
             })}
             {/* <div>Support</div>
             <div>Support</div> */}

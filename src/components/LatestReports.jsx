@@ -14,9 +14,8 @@ export default function LatestReports() {
 
     useEffect(() => {
         axios.get(`${apiUrl}/reports/latest?page=1&per_page=6`).then(res => {
-            let reportList = res.data.data;
-            if (reportList.length) {
-                setReportList(reportList)
+            if (res.data.data.length) {
+                setReportList(res.data.data)
             } else {
                 setReportList([])
                 notifyError('No latest reports')

@@ -118,21 +118,23 @@ export default function Report() {
     <div className='px-4 py-2 mx-auto md:py-12 max-w-7xl md:pt-0 sm:px-6'>
       <div className='pt-8 pb-4'> Congruence / {report.category} / {report.url}</div>
       <div className="pb-8 md:flex">
-        <div className="p-4 mb-4 border rounded-md md:mb-0 md:w-3/4">
+        <div className="mb-4 border rounded-md overflow-clip md:mb-0 md:w-3/4">
           <div className="head">
             <div className='items-center justify-between md:flex'>
               <div className="w-full">
-                <div className='mb-2 text-lg font-semibold'>{report.title}</div>
-                <div className='gap-4 py-4 text-sm text-center bg-white md:py-2 md:text-left md:flex'>
-                  <div>Date: {moment(report.created_date).format('MMMM YYYY')}</div>
-                  <div>Report Code: CGN{getAbrByCategory(report.category)}{report.id}</div>
-                  <div>Pages: {report.pages}</div>
+                <div className='p-4 text-white bg-[#0E1035]'>
+                  <div className='mb-2 text-justify'>{report.title}</div>
+                  <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
+                    <div>Date: {moment(report.created_date).format('MMMM YYYY')}</div>
+                    <div>Report Code: CGN{getAbrByCategory(report.category)}{report.id}</div>
+                    <div>Pages: {report.pages}</div>
+                  </div>
                 </div>
-                <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} relative justify-between gap-2 py-4 bg-white md:flex`}>
-                  <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-slate-500 text-white' : ''}`}>Description</div>
-                  <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-slate-500 text-white' : ''}`}>Table Of Content</div>
-                  <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-slate-500 text-white' : ''}`}>Highlights</div>
-                  <div onClick={() => scrollToTop('Methodology')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-slate-500 text-white' : ''}`}>Methodology</div>
+                <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} p-4 relative justify-between gap-2 py-4 bg-white md:flex`}>
+                  <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-primary text-white' : ''}`}>Description</div>
+                  <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-primary text-white' : ''}`}>Table Of Content</div>
+                  <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-primary text-white' : ''}`}>Highlights</div>
+                  <div onClick={() => scrollToTop('Methodology')} className={`md:w-1/4 p-2 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
                   <div onClick={() => scrollToTop('Request')} className={`md:w-1/4 w-full p-2 md:mb-0 mb-4 text-sm box-border relative z-30 inline-flex items-center justify-center  px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none ${selectedTitle === 'Request' ? 'font-bold' : ''}`}>
                     {/* Request Sample */}
                     <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0" />
@@ -142,7 +144,7 @@ export default function Report() {
                     </span>
                   </div>
                 </div>
-                <div className={`py-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
+                <div className={`p-4  ${selectedTitle !== 'Description' && 'hidden'}`}>
 
                   {!report.description && <ContentLoading />}
                   <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
