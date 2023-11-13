@@ -7,7 +7,8 @@ import "jodit";
 import "jodit/build/jodit.min.css";
 import { constConfig, categories, apiUrl } from '../../constants';
 import { useNavigate, useParams } from "react-router-dom";
-import Compressor from 'compressorjs';
+import imageCompression from 'browser-image-compression';
+
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
@@ -33,33 +34,64 @@ export default function EditReport() {
     }
 
 
-    const handleFileChange = (event, type) => {
+    const handleFileChange = async (event, type) => {
         const file = event.target.files[0];
-        if (file) {
-            new Compressor(file, {
-                quality: 0.8,
-                success: (compressedResult) => {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        const base64 = reader.result;
-                        updateImage(base64, type);
-                    };
-                    reader.readAsDataURL(compressedResult);
-                },
-            });
+        console.log('originalFile instanceof Blob', file instanceof Blob); // true
+        console.log(`originalFile size ${file.size / 1024 / 1024} MB`);
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
+        }
+        try {
+            if (file) {
+                const compressedFile = await imageCompression(file, options);
+                console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
+                console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+
+                const nData = new FormData();
+                nData.append('file', compressedFile)
+                nData.append('upload_preset', 'ml_default')
+                nData.append('cloud_name', 'dlxx8rmpi')
+                axios.post('https://api.cloudinary.com/v1_1/dlxx8rmpi/image/upload', nData).then(res => {
+                    // console.log(res.secure_url)
+                    if (type === 3) {
+                        // updateCoverImage(res.data.secure_url)
+                        setCoverImg(res.data.secure_url);
+                    } else {
+                        updateImage(res.data.secure_url, type);
+                    }
+                })
+
+                // BASE
+                // const reader = new FileReader();
+                // reader.onload = () => {
+                //     const base64 = reader.result;
+                //     updateImage(base64, type);
+                // };
+                // reader.readAsDataURL(compressedFile);
+                // BASE
+            }
+        } catch (error) {
+            console.log(error);
         }
     };
 
     const updateImage = (updatedImage, type) => {
         axios.post(`${apiUrl}/report_images/`, {
             img_file: updatedImage,
-            img_name: type === 1 ? `RP${reportId}_1` : `RP${reportId}_2`,
+            img_name: type === 1 ? `RP${reportId}_1` : `RP${reportId}_2`
         }, {
             headers: {
                 'Content-Type': 'application/json',
             },
         })
             .then(response => {
+                if (type === 1) {
+                    setImg1(updatedImage)
+                } else if (type === 2) {
+                    setImg2(updatedImage)
+                }
                 notifySuccess("Image updated successfully!");
             })
             .catch(error => {
@@ -94,8 +126,10 @@ export default function EditReport() {
     const [summary, setSummary] = useState('');
     const [img1, setImg1] = useState('');
     const [img2, setImg2] = useState('');
+    const [coverImg, setCoverImg] = useState('');
     const [img1View, setImg1View] = useState(false);
     const [img2View, setImg2View] = useState(false);
+    const [coverImgView, setCoverImgView] = useState(false);
 
     const config = useMemo(
         () => ({
@@ -115,7 +149,7 @@ export default function EditReport() {
                 setToc(reportData.toc);
                 setHighlights(reportData.highlights);
 
-                const { title, category, url, meta_title, meta_desc, meta_keyword, pages, created_date, faqs } = reportData;
+                const { title, category, url, meta_title, meta_desc, meta_keyword, pages, created_date, faqs, cover_img } = reportData;
                 setValue('title', title);
                 setValue('category', category);
                 setValue('url', url);
@@ -124,8 +158,10 @@ export default function EditReport() {
                 setValue('meta_keyword', meta_keyword);
                 setValue('pages', pages);
                 setValue('created_date', created_date);
+                setValue('created_date', created_date);
+                setCoverImg(cover_img);
 
-                if(reportData.faqs){
+                if (reportData.faqs) {
                     setFaqList(JSON.parse(reportData.faqs))
                 }
                 getReportImages();
@@ -156,6 +192,7 @@ export default function EditReport() {
             toc: toc,
             highlights: highlights,
             faqs: JSON.stringify(faqList),
+            cover_img: coverImg,
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -163,7 +200,6 @@ export default function EditReport() {
         })
             .then(response => {
                 navigate('/report/list')
-                getReportImages();
                 notifySuccess("Report updated successfully!");
             })
             .catch(error => {
@@ -171,6 +207,25 @@ export default function EditReport() {
                 notifyError('Something went wrong, please try again!');
             });
     }
+
+    // const updateCoverImage = (cImg) => {
+    //     axios.put(`${apiUrl}/reports/cover/${reportId}`, {
+    //         id: reportId,
+    //         cover_img: cImg
+    //     }, {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //     })
+    //         .then(response => {
+    //             setCoverImg(cImg);
+    //             notifySuccess("Cover Image Updated!");
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);
+    //             notifyError('Something went wrong, please try again!');
+    //         });
+    // }
 
     return (
         <div>
@@ -237,6 +292,16 @@ export default function EditReport() {
                                 }
                                 <div htmlFor="img2" className='text-sm'>Image 2 <span className={`text-primary underline cursor-pointer ${!img2 && 'hidden'}`} onMouseEnter={() => setImg2View(true)} onMouseLeave={() => setImg2View(false)}>Preview</span></div>
                                 <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
+                            </div>
+                            <div className="relative w-full">
+                                {
+                                    coverImgView &&
+                                    <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%] `}>
+                                        <img src={coverImg} alt="coverImg" className='object-contain' />
+                                    </div>
+                                }
+                                <div htmlFor="coverImg" className='text-sm'>Cover Image <span className={`text-primary underline cursor-pointer ${!coverImg && 'hidden'}`} onMouseEnter={() => setCoverImgView(true)} onMouseLeave={() => setCoverImgView(false)}>Preview</span></div>
+                                <input type="file" onChange={(e) => handleFileChange(e, 3)} name="coverImg" id="coverImg" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
                             </div>
                         </div>
                         <div className="w-full">

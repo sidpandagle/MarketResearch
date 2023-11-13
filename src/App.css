@@ -10,7 +10,9 @@
     background: linear-gradient(45deg, hsla(210, 91%, 39%, 1) 0%, hsla(321, 55%, 50%, 1) 100%);
 } */
 .bg-gradient {
-    background: linear-gradient(45deg, hsla(210, 91%, 25%, 1) 15%, hsla(321, 55%, 40%, 1) 85%);
+    /* background: linear-gradient(45deg, hsla(210, 91%, 25%, 1) 15%, hsla(321, 55%, 40%, 1) 85%); */
+
+    background: linear-gradient(135deg, hsla(237, 58%, 13%, 1) 0%, hsla(273, 36%, 35%, 1) 38%, hsla(280, 34%, 43%, 1) 70%, hsla(287, 38%, 54%, 1) 88%, hsla(295, 94%, 76%, 1) 100%);
 }
 
 .html-content {

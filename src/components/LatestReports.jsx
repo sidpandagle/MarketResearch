@@ -62,8 +62,8 @@ export default function LatestReports() {
                         {reportList.map((val, index) =>
                             <SwiperSlide key={index}>
                                 <div className="mx-2 border rounded-md md:h-60 md:flex overflow-clip">
-                                    <div className="p-20 bg-white md:w-2/5 md:p-0 text-slate-400">
-
+                                    <div className="flex items-center justify-center p-20 bg-white md:w-2/5 md:p-0 text-slate-400">
+                                        <img className='object-contain' src={val.cover_img} alt="" />
                                     </div>
                                     <div className="flex flex-col justify-between p-4 text-sm md:text-justify md:w-3/5">
                                         <div>

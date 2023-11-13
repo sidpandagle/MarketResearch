@@ -7,7 +7,7 @@ import "jodit";
 import "jodit/build/jodit.min.css";
 import { constConfig, categories, apiUrl } from '../../constants';
 import { useNavigate, useParams } from "react-router-dom";
-import Compressor from 'compressorjs';
+ 
 
 
 export default function EditPressRelease() {

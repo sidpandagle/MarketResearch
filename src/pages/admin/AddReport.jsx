@@ -8,7 +8,7 @@ import "jodit/build/jodit.min.css";
 import { constConfig, categories, apiUrl } from '../../constants';
 import { useNavigate } from "react-router-dom";
 import moment from 'moment/moment';
-import Compressor from 'compressorjs';
+import imageCompression from 'browser-image-compression';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
@@ -23,6 +23,7 @@ export default function AddReport() {
 
     const [img1, setImg1] = useState('');
     const [img2, setImg2] = useState('');
+    const [coverImg, setCoverImg] = useState('');
     const [publishDate, setPublishDate] = useState(moment().format('YYYY-MM-DD'));
     const [faqList, setFaqList] = useState([]);
     const [question, setQuestion] = useState('');
@@ -35,27 +36,62 @@ export default function AddReport() {
         handleFormClose();
     }
 
-    const handleFileChange = (event, type) => {
+    const handleFileChange = async (event, type) => {
         const file = event.target.files[0];
-        if (file) {
-            new Compressor(file, {
-                quality: 0.8,
-                success: (compressedResult) => {
-                    const reader = new FileReader();
-                    reader.onload = () => {
-                        const base64 = reader.result;
-                        if (type === 1) {
-                            console.log(base64)
-                            setImg1(base64);
-                        } else {
-                            console.log(base64)
-                            setImg2(base64);
-                        }
-                    };
-                    reader.readAsDataURL(compressedResult);
-                },
-            });
+        console.log('originalFile instanceof Blob', file instanceof Blob); // true
+        console.log(`originalFile size ${file.size / 1024 / 1024} MB`);
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
         }
+
+        try {
+            if (file) {
+                const compressedFile = await imageCompression(file, options);
+                console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
+                console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+
+                // Cloudinary Start
+                const nData = new FormData();
+                nData.append('file', compressedFile)
+                nData.append('upload_preset', 'ml_default')
+                nData.append('cloud_name', 'dlxx8rmpi')
+                axios.post('https://api.cloudinary.com/v1_1/dlxx8rmpi/image/upload', nData).then(res => {
+                    console.log(res)
+                    if (type === 1) {
+                        setImg1(res.data.secure_url);
+                    } else if (type === 2) {
+                        setImg2(res.data.secure_url);
+                    } else {
+                        setCoverImg(res.data.secure_url);
+                    }
+                })
+                // Cloudinary End
+
+                // BASE64 Start
+                // const reader = new FileReader();
+                // reader.onload = () => {
+                //     const base64 = reader.result;
+                //     if (type === 1) {
+                //         console.log(base64)
+                //         setImg1(base64);
+                //     } else if (type === 2) {
+                //         console.log(base64)
+                //         setImg2(base64);
+                //     } else {
+                //         console.log(base64)
+                //         setCoverImg(base64);
+                //     }   
+                // };
+                // reader.readAsDataURL(compressedFile);
+                // BASE64 End
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+
     };
 
     const htmlToText = (html) => {
@@ -110,6 +146,7 @@ export default function AddReport() {
                     methodology: methodology,
                     toc: toc,
                     highlights: highlights,
+                    cover_img: coverImg,
                 }
             }
             , {
@@ -174,6 +211,10 @@ export default function AddReport() {
                             <div className="w-full">
                                 <label htmlFor="img2" className='text-sm'>Image 2</label>
                                 <input type="file" onChange={(e) => handleFileChange(e, 2)} name="img2" id="img2" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
+                            </div>
+                            <div className="w-full">
+                                <label htmlFor="cover" className='text-sm'>Cover Image</label>
+                                <input type="file" onChange={(e) => handleFileChange(e, 3)} name="cover" id="cover" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
                             </div>
                         </div>
                         <div className="w-full">

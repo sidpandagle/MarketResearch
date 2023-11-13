@@ -8,7 +8,7 @@ import "jodit/build/jodit.min.css";
 import { constConfig, categories, apiUrl } from '../../constants';
 import { useNavigate } from "react-router-dom";
 import moment from 'moment/moment';
-import Compressor from 'compressorjs';
+ 
 
 
 export default function AddPressRelease() {

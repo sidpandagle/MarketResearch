@@ -42,7 +42,12 @@ const AllReport = () => {
 
   return (
     <div>
-      <div className="mb-6 md:text-3xl text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">{category.toUpperCase()}</div>
+      <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">
+        <img className='absolute bottom-0 w-full' src={"/category_covers/agriculture.jpeg"} alt="" />
+        <div className='z-10'>
+          {category.toUpperCase()}
+        </div>
+      </div>
       <div className="max-w-6xl px-4 mx-auto sm:px-6">
         <div className="py-2 text-center md:pt-10 md:text-left">
           <div className="pb-12 mx-auto max-w-8xl md:pb-10">
