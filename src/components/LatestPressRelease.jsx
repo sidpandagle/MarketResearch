@@ -33,18 +33,19 @@ export default function LatestPressRelease() {
                             return (
                                 <div key={i} className="p-4 md:w-1/2">
                                     {/* <motion.div initial={{ scale: 0.8 }} whileInView={{ scale: 1 }} transition={{ delay: 0.2 }}> */}
-                                    <div className="text-left border rounded-md md:flex">
-                                        <div className='flex items-center justify-center w-2/5'>
-                                            <div className="bg-slate-400 md:w-[140px] md:h-[140px] rounded-lg md:p-0 text-slate-400">
-                                            </div>
+                                    <div className="text-left border rounded-md md:flex ">
+                                        <div className='flex items-center justify-center w-2/5 h-44 rounded-s-md overflow-clip'>
+                                            <img src={res.cover_img} className='object-contain' alt="cover_img" />
                                         </div>
-                                        <div className="relative flex flex-col justify-between p-4 text-sm md:w-3/5">
-                                            <div className='font-bold'>
+                                        <div className="relative flex flex-col p-4 text-sm md:w-3/5">
+                                            <div className='text-xs font-semibold text-right'>
                                                 {moment(res.created_date).format('Do MMM YYYY')}
                                             </div>
-                                            <div className='mb-8 md:text-justify'>
-                                                {/* {res.summary} */}
-                                                {res.summary.split('...')[0].split(' ').filter((r, i) => i < 20).join(' ')}...
+                                            <div className='pt-2 pb-1 font-semibold'>
+                                                {res.url}
+                                            </div>
+                                            <div className='mb-8 text-xs md:text-justify'>
+                                                {res.summary.split(' ').filter((r, i) => i < 20).join(' ')}...
                                             </div>
                                             <div className='absolute bottom-[-10px] right-[20px] flex justify-center md:justify-end'>
                                                 <Link to={`/press-release/${res.id}`}>

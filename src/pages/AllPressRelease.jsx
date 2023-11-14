@@ -72,7 +72,8 @@ export default function AllPressRelease() {
                           {moment(res.created_date).format('Do MMM YYYY')}
                         </div>
                         <div className='flex flex-col gap-2 p-4 mb-6 border-2 rounded-md cursor-pointer group-hover:bg-slate-50'>
-                          <div className="font-semibold group-hover:text-primary group-hover:underline">{res.title.split(' ').filter((r, i) => i < 20).join(' ')}...</div>
+                          {/* <div className="font-semibold group-hover:text-primary group-hover:underline">{res.title.split(' ').filter((r, i) => i < 20).join(' ')}...</div> */}
+                          <div className="font-semibold group-hover:text-primary group-hover:underline">{res.url}</div>
                           <div className="text-xs">{res.summary}...</div>
                         </div>
                       </div>
