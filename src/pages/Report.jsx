@@ -10,6 +10,7 @@ import Faq from '../components/Faq';
 import { apiUrl, getAbrByCategory, licenses, categories } from '../constants';
 import axios from 'axios';
 import moment from 'moment';
+import SEO from '../components/SEO';
 
 export default function Report() {
 
@@ -114,7 +115,10 @@ export default function Report() {
 
   return (
 
+
     <div className='px-4 py-2 mx-auto md:py-12 max-w-7xl md:pt-0 sm:px-6'>
+
+      <SEO title={report.meta_title} description={report.meta_desc} keywords={report.meta_keyword} name='Congruence Market Research' type='article' />
       {/* <div className='pt-8 pb-4 '> Congruence / {report.category} / <span className='text-primary'> {report.url}</span></div> */}
 
       <nav className="flex pt-8 pb-4" aria-label="Breadcrumb">
@@ -135,7 +139,7 @@ export default function Report() {
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
               </svg>
               <Link to={`/category/${categories.find(res => res.name === report.category)?.id}`}>
-                <a href="#" className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{report.category}</a>
+                <div className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{report.category}</div>
               </Link>
             </div>
           </li>

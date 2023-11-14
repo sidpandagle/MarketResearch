@@ -6,6 +6,7 @@ import moment from 'moment';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import RequestSample from '../components/RequestSample';
+import SEO from '../components/SEO';
 
 
 export default function PressRelease() {
@@ -36,6 +37,8 @@ export default function PressRelease() {
 
     return (
         <div>
+            <SEO title={pressRelease.meta_title} description={pressRelease.meta_desc} keywords={pressRelease.meta_keyword} name='Congruence Market Research' type='article' />
+
             <div className="max-w-6xl px-4 mx-auto sm:px-6">
                 <div className='flex justify-between'>
                     <nav className="flex pt-8 pb-4" aria-label="Breadcrumb">

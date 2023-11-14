@@ -22,6 +22,7 @@ import AddPressRelease from './pages/admin/AddPressRelease';
 import PressReleaseList from './pages/admin/PressReleaseList';
 import EditPressRelease from './pages/admin/EditPressRelease';
 import SearchList from './pages/SearchList';
+import { HelmetProvider } from 'react-helmet-async';
 
 export const notifySuccess = (value) => toast.success(value);
 export const notifyWarning = (value) => toast.warning(value);
@@ -30,34 +31,37 @@ export const notifyInfo = (value) => toast.info(value);
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:categoryId" element={<AllReport />} />
-        <Route path="/all-press-release/:categoryId" element={<AllPressRelease />} />
-        <Route path="/press-release/:pressReleaseId" element={<PressRelease />} />
-        <Route path="/offering" element={<Offering />} />
-        <Route path="/buy-now/:reportId/:buyId" element={<BuyNow />} />
-        <Route path="/report/:reportId" element={<Report />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/search/:keyword" element={<SearchList />} />
-        <Route path="/report/add" element={<AddReport />} />
-        <Route path="/report/list" element={<ReportList />} />
-        <Route path="/report/edit/:reportId" element={<EditReport />} />
-        <Route path="/press-release/add" element={<AddPressRelease />} />
-        <Route path="/press-release/list" element={<PressReleaseList />} />
-        <Route path="/press-release/edit/:pressReleaseId" element={<EditPressRelease />} />
-      </Routes>
-      <ScrollToTop />
-      <ToastContainer
-        position='top-center'
-        theme='light'
-        hideProgressBar />
-      <Footer />
-    </ >
+    <HelmetProvider>
+      <>
+
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/category/:categoryId" element={<AllReport />} />
+          <Route path="/all-press-release/:categoryId" element={<AllPressRelease />} />
+          <Route path="/press-release/:pressReleaseId" element={<PressRelease />} />
+          <Route path="/offering" element={<Offering />} />
+          <Route path="/buy-now/:reportId/:buyId" element={<BuyNow />} />
+          <Route path="/report/:reportId" element={<Report />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/search/:keyword" element={<SearchList />} />
+          <Route path="/report/add" element={<AddReport />} />
+          <Route path="/report/list" element={<ReportList />} />
+          <Route path="/report/edit/:reportId" element={<EditReport />} />
+          <Route path="/press-release/add" element={<AddPressRelease />} />
+          <Route path="/press-release/list" element={<PressReleaseList />} />
+          <Route path="/press-release/edit/:pressReleaseId" element={<EditPressRelease />} />
+        </Routes>
+        <ScrollToTop />
+        <ToastContainer
+          position='top-center'
+          theme='light'
+          hideProgressBar />
+        <Footer />
+      </ >
+    </HelmetProvider>
   );
 }
 
