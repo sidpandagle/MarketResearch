@@ -65,16 +65,16 @@ const Footer = () => {
               <div>
                 <div className="mb-4 text-xl font-bold">Company</div>
                 <Link to='/about'>
-                <div className="mb-2">About Us</div>
+                  <div className="mb-2">About Us</div>
                 </Link>
                 <Link to='/careers'>
                   <div className="mb-2">Careers</div>
                 </Link>
                 <Link to='/contact'>
-                <div className="mb-2">Contact Us</div>
+                  <div className="mb-2">Contact Us</div>
                 </Link>
                 <Link to='/all-press-release/1'>
-                <div className="mb-2">Press Release</div>
+                  <div className="mb-2">Press Release</div>
                 </Link>
               </div>
 
