@@ -48,63 +48,63 @@ export default function Clients() {
           <div className="">
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/basf.jpeg'} alt="basf" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/basf.png'} alt="basf" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/total.jpeg'} alt="total" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/total.png'} alt="total" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/pfizer.jpeg'} alt="pfizer" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/pfizer.png'} alt="pfizer" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/atos.jpeg'} alt="atos" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/atos.png'} alt="atos" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/sanofi.jpeg'} alt="sanofi" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/sanofi.png'} alt="sanofi" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
+              <div className="flex items-center justify-center w-56 h-44">
 
-                <img className='pointer-events-none' src={'/logos/microsoft.jpeg'} alt="microsoft" />
+                <img className='pointer-events-none' src={'/client_logos/microsoft.png'} alt="microsoft" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/hcl.jpeg'} alt="hcl" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/hcl.png'} alt="hcl" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/nestle.jpeg'} alt="nestle" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/nestle.png'} alt="nestle" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/vmware.jpeg'} alt="vmware" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/vmware.png'} alt="vmware" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
-              <div className="flex items-center justify-center w-48 h-44">
-                <img className='w-24 pointer-events-none' src={'/logos/randstad.jpeg'} alt="randstad" />
+              <div className="flex items-center justify-center w-56 h-44">
+                <img className='w-24 pointer-events-none' src={'/client_logos/ranstad.png'} alt="randstad" />
               </div>
             </SwiperSlide>
           </div>
