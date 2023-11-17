@@ -59,7 +59,7 @@ export default function BuyNow() {
                                 <div className='flex flex-col justify-between py-2'>
                                     <div>
                                         <div className='gap-4 md:flex'>
-                                            <img src={report.cover_img} className='object-cover w-16 h-20 rounded-md bg-slate-500' alt="" />
+                                            <img loading="lazy" src={report.cover_img} className='object-cover w-16 h-20 rounded-md bg-slate-500' alt="" />
                                             {/* <div className='object-fill font-semibold text-white rounded-md overflow-clip bg-slate-500'>
                                             </div> */}
                                             <div>
@@ -110,7 +110,7 @@ export default function BuyNow() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <img src={"/payment-methods.webp"} alt="payments" />
+                                                <img loading="lazy" src={"/payment-methods.webp"} alt="payments" />
                                             </div>
                                         </div>
                                         <div className='flex items-center justify-center p-4 text-sm'>

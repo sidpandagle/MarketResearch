@@ -49,62 +49,62 @@ export default function Clients() {
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/basf.png'} alt="basf" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/basf.png'} alt="basf" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/total.png'} alt="total" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/total.png'} alt="total" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/pfizer.png'} alt="pfizer" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/pfizer.png'} alt="pfizer" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/atos.png'} alt="atos" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/atos.png'} alt="atos" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/sanofi.png'} alt="sanofi" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/sanofi.png'} alt="sanofi" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
 
-                <img className='pointer-events-none' src={'/client_logos/microsoft.png'} alt="microsoft" />
+                <img loading="lazy" className='pointer-events-none' src={'/client_logos/microsoft.png'} alt="microsoft" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/hcl.png'} alt="hcl" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/hcl.png'} alt="hcl" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/nestle.png'} alt="nestle" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/nestle.png'} alt="nestle" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/vmware.png'} alt="vmware" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/vmware.png'} alt="vmware" />
               </div>
             </SwiperSlide>
             <SwiperSlide>
               {/* Item */}
               <div className="flex items-center justify-center w-56 h-44">
-                <img className='w-24 pointer-events-none' src={'/client_logos/ranstad.png'} alt="randstad" />
+                <img loading="lazy" className='w-24 pointer-events-none' src={'/client_logos/ranstad.png'} alt="randstad" />
               </div>
             </SwiperSlide>
           </div>

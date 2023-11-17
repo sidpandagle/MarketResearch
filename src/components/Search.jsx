@@ -2,6 +2,7 @@ import React, { Component, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { categories } from '../constants'
 import { useNavigate } from "react-router-dom";
+import { notifyError } from '../App';
 
 export default function Search() {
     const navigate = useNavigate();
@@ -20,11 +21,21 @@ export default function Search() {
         }
     }
 
-    const handleSearch = (e) => {
+    const handleEnterSearch = (e) => {
         if (e.key === 'Enter') {
-            navigate(`/search/${keyword}`)
+            handleSearch();
         }
     }
+    
+    const handleSearch = () => {
+        if(keyword){
+            navigate(`/search/${keyword}`)
+        }else{
+            notifyError('Enter search keyword')
+        }
+    }
+
+
     return (
         // <div className={`mx-auto h-[90vh] bg-cover bg-bottom flex justify-center items-center`} style={{ backgroundImage: `url(/world-background.jpg)` }}>
         // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-to-bl from-blue-900 to-blue-500 text-white`}>
@@ -44,8 +55,8 @@ export default function Search() {
                     <div className="text-sm text-center md:w-5/6 md:text-lg" onClick={redirectToPressReleaseList}>Empower your business with data-driven strategies. Discover trends, analyze markets, and seize opportunities for sustainable success. Explore limitless possibilities today!</div>
                 </div>
                 <div className='flex items-center justify-center'>
-                    <div className='flex justify-between overflow-hidden bg-white rounded-lg md:w-1/2 focus-within:shadow-lg'>
-                        <div className="flex items-center h-12 ">
+                    <div className='flex justify-between items-center overflow-hidden bg-white rounded-lg md:w-1/2 focus-within:shadow-lg'>
+                        <div className="flex items-center">
                             <div className="grid w-12 h-full text-gray-300 place-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -56,16 +67,14 @@ export default function Search() {
                                 type="text"
                                 id="search"
                                 value={keyword}
-                                onKeyDown={handleSearch}
+                                onKeyDown={handleEnterSearch}
                                 onChange={(e) => setKeyword(e.target.value)}
                                 placeholder="Search something.." />
                         </div>
                         {/* <button className='px-8 m-1 text-sm font-bold tracking-wide text-white rounded-md bg-primary'>Search</button> */}
-                        <Link to={`/search/${keyword}`}>
-                            <button className="inline-flex items-center justify-center gap-2 px-4 py-2 m-1 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md md:px-8 hover:bg-indigo-600 focus:outline-none focus:ring-1 ">
-                                Search
-                            </button>
-                        </Link>
+                        <button onClick={handleSearch}>
+                            <div class="codepen-button"><span className='px-6 py-2'>Search</span></div>
+                        </button>
 
                     </div>
                 </div>
@@ -80,7 +89,7 @@ export default function Search() {
                     {categories.map((res, index) => (
                         <Link key={index} to={`/category/${res.id}`}>
                             <div className='flex flex-col items-center gap-1 mb-2 duration-200 hover:scale-125 hover:font-semibold'>
-                                <img src={res.icon} alt='category-icon' className="flex justify-center w-6 duration-100 "></img>
+                                <img loading="lazy" src={res.icon} alt='category-icon' className="flex justify-center w-6 duration-100 "></img>
                                 <div className="text-center mx-1 text-[8px] md:text-[10px] w-20">{res.name}</div>
                             </div>
                         </Link>

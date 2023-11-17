@@ -109,7 +109,7 @@ export default class Offering extends Component {
                 </ul>
                 <p className="mb-2 font-light lg:text-xl">Syndicate report service offers ready-to-access industry reports, providing crucial insights for businesses navigating dynamic market environments</p>
               </div>
-              <img className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
+              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
             </div>
           </div>
         </section>
@@ -117,7 +117,7 @@ export default class Offering extends Component {
           <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-12 lg:px-6">
 
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-              <img className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="feature image 2" />
+              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="feature image 2" />
               <div className="text-gray-500 sm:text-lg -400">
                 <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Tailored research solutions for unique business needs.</h2>
                 <p className="mb-2 font-light lg:text-xl">Our custom research solutions offer personalized data analysis, in-depth market research, and strategic insights aligned with your specific business requirements.</p>
@@ -200,7 +200,7 @@ export default class Offering extends Component {
                 </ul>
                 <p className="mb-2 font-light lg:text-xl">Consulting services offer expert guidance and actionable strategies derived from comprehensive market analysis to drive your business growth.</p>
               </div>
-              <img className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
+              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
             </div>
           </div>
         </section>

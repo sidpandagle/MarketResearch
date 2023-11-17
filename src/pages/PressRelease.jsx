@@ -14,6 +14,7 @@ export default function PressRelease() {
     const [pressRelease, setPressRelease] = useState({});
     const [report, setReport] = useState({});
     const [formOpen, setFormOpen] = useState(false);
+    const [enquiryType, setEnquiryType] = useState('Request Sample');
     const handleFormOpen = () => setFormOpen(true);
     const handleFormClose = () => setFormOpen(false);
 
@@ -28,11 +29,14 @@ export default function PressRelease() {
 
 
     const getReportByReportId = (reportId) => {
-
         axios.get(`${apiUrl}/reports/${reportId}`).then((res) => {
             setReport(res.data.data);
         })
+    }
 
+    const buyNow = () => {
+        setEnquiryType('Buy Now');
+        handleFormOpen();
     }
 
     return (
@@ -46,10 +50,10 @@ export default function PressRelease() {
                             <li className="inline-flex items-center">
                                 <Link to='/'>
                                     <div className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 ">
-                                        <svg className="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <svg className="w-3 h-3 me-1 md:me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                                         </svg>
-                                        Home
+                                        <span className='hidden md:block'>Home</span>
                                     </div>
                                 </Link>
                             </li>
@@ -87,15 +91,33 @@ export default function PressRelease() {
                                         <div className='text-xl font-semibold'>
                                             {pressRelease.title}
                                         </div>
-                                        <div className='text-right'>
+                                        <div className='flex flex-col md:flex-row justify-between items-center mt-4'>
+                                            <div className='flex flex-col md:flex-row gap-4'>
+                                                <div className='flex flex-col md:flex-row gap-1'>
+                                                    <div>
+                                                        Formats:
+                                                    </div>
+                                                    <div className='flex justify-center md:justify-normal gap-1'>
+                                                        <img loading="lazy" className='h-6' src={"/format_icons/pdf.png"} alt="pdf-icon" />
+                                                        <img loading="lazy" className='h-6' src={"/format_icons/ppt.png"} alt="ppt-icon" />
+                                                        <img loading="lazy" className='h-6' src={"/format_icons/xls.png"} alt="xls-icon" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    Pages: {report.pages}
+                                                </div>
+                                            </div>
+                                            <div className='flex flex-col md:flex-row gap-4 mt-4 md:mt-0'>
+                                                <button onClick={buyNow} className="inline-flex items-center justify-center gap-4 w-44 py-2  font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                                                    Buy Now
+                                                </button>
+                                                <button onClick={handleFormOpen} className="codepen-button gap-4 w-44  font-semibold text-white transition-all ">
+                                                    <span className='flex justify-center items-center py-2'>
+                                                        Request Sample
+                                                    </span>
+                                                </button>
 
-                                            <button onClick={handleFormOpen} className="inline-flex items-center justify-center gap-4 px-8 py-1 mt-6 mr-4 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md w-60 text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                                                Buy Now
-                                            </button>
-                                            <button onClick={handleFormOpen} className="inline-flex items-center justify-center gap-4 px-8 py-1 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md w-60 text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                                                Request Sample
-                                            </button>
-
+                                            </div>
                                         </div>
                                     </div>
                                     <div className='flex flex-col gap-2 p-4 py-6'>
@@ -118,10 +140,10 @@ export default function PressRelease() {
                         <div className=' m-2 py-6 px-6 w-[700px] rounded-md bg-white'>
                             <div className="flex justify-between pb-2 mb-2 text-xl font-semibold text-center">
                                 <div></div>
-                                <div>Request Sample</div>
+                                <div>{enquiryType}</div>
                                 <svg height={24} width={24} onClick={handleFormClose} className="cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" /><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#1C274C" /> </g></svg>
                             </div>
-                            <RequestSample reportTitle={report.title} enquiryType='Request Sample' closeModal={handleFormClose} />
+                            <RequestSample reportTitle={report.title} enquiryType={enquiryType} closeModal={handleFormClose} />
                         </div>
                     </div>
                 </Box>

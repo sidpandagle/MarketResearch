@@ -234,8 +234,8 @@ export default function EditReport() {
     return (
         <div>
             <div className="max-w-6xl px-4 py-2 m-6 mx-auto border rounded-md md:py-12 md:pt-8 sm:px-6">
-                {/* <img src={img1} alt="" />
-                <img src={img2} alt="" /> */}
+                {/* <img loading="lazy" src={img1} alt="" />
+                <img loading="lazy" src={img2} alt="" /> */}
                 <div className='pb-4 text-xl font-semibold'>Edit Report</div>
                 <form action="#" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-2">
@@ -281,7 +281,7 @@ export default function EditReport() {
                                 {
                                     img1View &&
                                     <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%]`}>
-                                        <img src={img1} alt="img1" className='object-contain' />
+                                        <img loading="lazy" src={img1} alt="img1" className='object-contain' />
                                     </div>
                                 }
                                 <div htmlFor="img1" className='text-sm'>Image 1 <span className={`text-primary underline cursor-pointer ${!img1 && 'hidden'}`} onMouseEnter={() => setImg1View(true)} onMouseLeave={() => setImg1View(false)}>Preview</span> </div>
@@ -291,7 +291,7 @@ export default function EditReport() {
                                 {
                                     img2View &&
                                     <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%] `}>
-                                        <img src={img2} alt="img2" className='object-contain' />
+                                        <img loading="lazy" src={img2} alt="img2" className='object-contain' />
                                     </div>
                                 }
                                 <div htmlFor="img2" className='text-sm'>Image 2 <span className={`text-primary underline cursor-pointer ${!img2 && 'hidden'}`} onMouseEnter={() => setImg2View(true)} onMouseLeave={() => setImg2View(false)}>Preview</span></div>
@@ -301,7 +301,7 @@ export default function EditReport() {
                                 {
                                     coverImgView &&
                                     <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%] `}>
-                                        <img src={coverImg} alt="coverImg" className='object-contain' />
+                                        <img loading="lazy" src={coverImg} alt="coverImg" className='object-contain' />
                                     </div>
                                 }
                                 <div htmlFor="coverImg" className='text-sm'>Cover Image <span className={`text-primary underline cursor-pointer ${!coverImg && 'hidden'}`} onMouseEnter={() => setCoverImgView(true)} onMouseLeave={() => setCoverImgView(false)}>Preview</span></div>

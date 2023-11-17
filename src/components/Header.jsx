@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className="px-4">
             <div className="w-full m-4 text-2xl md:m-0">
               <Link to='/'>
-                <img src={'/cmidarklogo.png'} alt="logo" className="flex justify-center w-56"></img>
+                <img loading="lazy" src={'/cmidarklogo.png'} alt="logo" className="flex justify-center w-56"></img>
               </Link>
             </div>
           </div>

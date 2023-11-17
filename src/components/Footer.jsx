@@ -40,17 +40,17 @@ const Footer = () => {
   return (
     <div>
       <div className="relative text-center text-white bg-slate-800 md:text-left">
-        {/* <img src={"/footer-guy.png"} alt="working-guy" className="absolute hidden md:block bottom-0 right-10 h-[420px] transform -scale-x-100" /> */}
-        <img src={"/f1.png"} alt="working-guy" className="absolute hidden md:block bottom-12 right-20 h-[360px] transform -scale-x-100" />
-        {/* <img src={"/f3.png"} alt="working-guy" className="absolute hidden md:block bottom-10 right-20 h-[360px] transform" /> */}
+        {/* <img loading="lazy" src={"/footer-guy.png"} alt="working-guy" className="absolute hidden md:block bottom-0 right-10 h-[420px] transform -scale-x-100" /> */}
+        <img loading="lazy" src={"/f1.png"} alt="working-guy" className="absolute hidden md:block bottom-12 right-20 h-[360px] transform -scale-x-100" />
+        {/* <img loading="lazy" src={"/f3.png"} alt="working-guy" className="absolute hidden md:block bottom-10 right-20 h-[360px] transform" /> */}
         <div className="md:flex">
           <div className="md:w-1/2">
             <div className="flex flex-col items-center gap-4 p-8 md:items-start md:px-12 md:py-16 md:flex-row border-slate-700">
-              <div className="flex font-bold md:w-2/5">
-                <img src={'/cmilightlogo.png'} alt="logo" className="flex justify-center "></img>
+              <div className="flex font-bold md:w-1/2">
+                <img loading="lazy" src={'/cmilightlogo.png'} alt="logo" className="flex justify-center "></img>
               </div>
               {/* <div className="w-3/5 text-sm md:text-justify">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div> */}
-              {/* <div className="w-3/5 text-sm md:text-justify">Harvesting market intelligence to sow success, cultivating strategies for growth in dynamic landscapes. Your compass in the evolving business terrain.</div> */}
+              <div className="md:w-1/2 text-3xl leading-relaxed ">Navigating Trends, Illuminating Insights</div>
             </div>
             <div className="flex flex-col gap-4 p-8 text-sm border-t md:gap-36 md:flex-row md:px-12 md:py-16 border-slate-600">
               {/* <div>

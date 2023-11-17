@@ -171,8 +171,8 @@ export default function EditPressRelease() {
     return (
         <div>
             <div className="max-w-6xl px-4 py-2 m-6 mx-auto border rounded-md md:py-12 md:pt-8 sm:px-6">
-                {/* <img src={img1} alt="" />
-                <img src={img2} alt="" /> */}
+                {/* <img loading="lazy" src={img1} alt="" />
+                <img loading="lazy" src={img2} alt="" /> */}
                 <div className='pb-4 text-xl font-semibold'>Edit Press Release</div>
                 <form action="#" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-2">
@@ -193,7 +193,7 @@ export default function EditPressRelease() {
                                 {
                                     coverImgView &&
                                     <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%]`}>
-                                        <img src={coverImg} alt="cover_img" className='object-contain' />
+                                        <img loading="lazy" src={coverImg} alt="cover_img" className='object-contain' />
                                     </div>
                                 }
                                 <div htmlFor="cover_img" className='text-sm'>Cover <span className={`text-primary underline cursor-pointer ${!coverImg && 'hidden'}`} onMouseEnter={() => setCoverImgView(true)} onMouseLeave={() => setCoverImgView(false)}>Preview</span> </div>

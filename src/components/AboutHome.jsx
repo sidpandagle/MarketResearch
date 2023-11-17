@@ -19,7 +19,7 @@ export default class AboutHome extends Component {
               
             </div>
             <div className="p-10 pb-0 md:p-0 md:w-1/2">
-              <img className='w-full rounded-lg h-72 brightness-200' src={'/gray-back.png'} alt="about-img" srcSet="" />
+              <img loading="lazy" className='w-full rounded-lg h-72 brightness-200' src={'/gray-back.png'} alt="about-img" srcSet="" />
             </div>
           </div>
         </div>

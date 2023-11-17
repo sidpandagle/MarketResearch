@@ -129,7 +129,7 @@ export default function Report() {
                 <svg className="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                   <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
                 </svg>
-                Home
+                <span className='hidden md:block'>Home</span>
               </div>
             </Link>
           </li>
@@ -173,13 +173,8 @@ export default function Report() {
                 <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-primary text-white' : ''}`}>Table Of Content</div>
                 <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-primary text-white' : ''}`}>Highlights</div>
                 <div onClick={() => scrollToTop('Methodology')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
-                <div onClick={() => scrollToTop('Request')} className={`md:w-1/4 w-full py-3 md:mb-0 mb-4 text-sm box-border relative z-30 inline-flex items-center justify-center  px-8  overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none ${selectedTitle === 'Request' ? 'font-bold' : ''}`}>
-                  {/* Request Sample */}
-                  <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0" />
-                  <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0" />
-                  <span className="relative z-20 flex items-center text-sm">
-                    Request Sample
-                  </span>
+                <div onClick={() => scrollToTop('Request')} className={`codepen-button md:w-1/4 w-full md:mb-0 mb-4 text-sm box-border relative z-30 flex justify-center items-center border rounded-sm cursor-pointer ${selectedTitle === 'Request' ? 'font-bold' : ''}`}>
+                  <span className='text-center py-2'>Request Sample</span>
                 </div>
               </div>
               <div className='px-4'>
@@ -232,8 +227,10 @@ export default function Report() {
               <div className='flex flex-col gap-2 mt-2'>
                 {/* <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Buy Now</button>
                 <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Inquiry Before Buying</button> */}
-                <Link to={`/buy-now/${reportId}/${licenses.find(res => res.license === license)?.id}`} className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                  Buy Now
+                <Link to={`/buy-now/${reportId}/${licenses.find(res => res.license === license)?.id}`} className="codepen-button inline-flex items-center justify-center font-semibold">
+                  <span className='flex justify-center items-center text-center py-2'>
+                    Buy Now
+                  </span>
                 </Link>
                 <button type="button" onClick={handleDiscountFormOpen} className="inline-flex items-center justify-center px-8 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                   Request Discount
