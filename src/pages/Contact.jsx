@@ -6,18 +6,18 @@ export default class Contact extends Component {
       <div>
         <section className="relative overflow-hidden bg-white -z-10">
           <div className="container">
-            <div className="flex flex-wrap py-20 mx-10 lg:justify-between">
+            <div className="flex flex-wrap py-10 mx-4 md:py-20 md:mx-10 lg:justify-between">
               <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
                 <div className="mb-12 max-w-[570px] lg:mb-0">
                   <span className="block mb-4 text-base font-semibold text-primary">Contact Us</span>
-                  <h2 className="mb-6 text-[32px] font-bold uppercase text-dark sm:text-[40px] lg:text-[28px] xl:text-[32px]">
+                  <h2 className="mb-6 text-2xl md:text-[32px] font-bold uppercase text-dark sm:text-[40px] lg:text-[28px] xl:text-[32px]">
                     Get in Touch with <br /> Congruence Market Insights
                   </h2>
                   <p className="text-base leading-relaxed mb-9 text-body-color">
                     At Congruence Market Insights, we value your inquiries, feedback, and the opportunity to connect with you. Whether you have questions, require information, or wish to explore potential collaborations, we are here to assist you.
                   </p>
                   <div className="mb-8 flex w-full max-w-[500px]">
-                    <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
+                    <div className="hidden md:flex mr-6  h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
                       <svg
                         width={24}
                         height={24}
@@ -47,7 +47,7 @@ export default class Contact extends Component {
                     </div>
                   </div>
                   <div className="mb-8 flex w-full max-w-[370px]">
-                    <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
+                    <div className="hidden md:flex mr-6  h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
                       <svg
                         width={24}
                         height={26}
@@ -69,7 +69,7 @@ export default class Contact extends Component {
                     </div>
                   </div>
                   <div className="mb-8 flex w-full max-w-[500px]">
-                    <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
+                    <div className="hidden md:flex mr-6  h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
                       <svg
                         width={28}
                         height={19}
@@ -83,7 +83,7 @@ export default class Contact extends Component {
                       <h4 className="mb-1 text-xl font-bold text-dark">
                         Email Address
                       </h4>
-                      <p className="text-base text-body-color">
+                      <p className="text-body-color text-sm md:text-base ">
                         sales@congruencemarketinsights.com
                       </p>
                     </div>
@@ -92,8 +92,8 @@ export default class Contact extends Component {
                   </div>
                 </div>
               </div>
-              <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
-                <div className="relative p-8 bg-white rounded-lg shadow-lg sm:p-12">
+              <div className="w-full  md:px-4 lg:w-1/2 xl:w-5/12">
+                <div className="relative p-4 bg-white rounded-lg shadow-lg sm:p-12">
                   <form>
                     <ContactInputBox
                       type="text"

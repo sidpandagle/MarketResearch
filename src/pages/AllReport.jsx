@@ -43,7 +43,7 @@ const AllReport = () => {
   return (
     <div>
       <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">
-        <img loading="lazy" className='absolute bottom-0 w-full' src={"/category_covers/agriculture.jpeg"} alt="" />
+        <img loading="lazy" className='absolute bottom-0 h-full w-auto md:w-full md:h-auto' src={"/category_covers/agriculture.jpeg"} alt="" />
         <div className='z-10'>
           {category.toUpperCase()}
         </div>

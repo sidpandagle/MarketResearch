@@ -257,7 +257,7 @@ export default function EditReport() {
                             </div>
                             <div className="w-full">
                                 <label htmlFor="url" className='text-sm'>URL / Short Title</label>
-                                <input {...register('url')} disabled type="text" name="url" id="url" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="URL" required />
+                                <input {...register('url')} type="text" name="url" id="url" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="URL" required />
                             </div>
                         </div>
                         <div className="w-full">

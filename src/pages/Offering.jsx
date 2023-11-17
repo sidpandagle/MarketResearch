@@ -7,15 +7,15 @@ export default class Offering extends Component {
     }
     return (
       <div>
-        <div className='flex flex-col justify-between max-w-screen-xl gap-8 px-4 py-4 mx-auto md:flex-row lg:py-12 lg:px-6'>
-          <div className='duration-200 cursor-pointer md:w-1/3 hover:scale-95'>
-            <div onClick={() => scrollTo('section-1')} className='p-8 text-3xl font-bold  rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Syndicate</div>
+        <div className='flex  justify-between max-w-screen-xl md:gap-8 gap-2 px-4 py-4 mx-auto lg:py-12 lg:px-6'>
+          <div className='duration-200 cursor-pointer w-1/3 md:hover:scale-95'>
+            <div onClick={() => scrollTo('section-1')} className='md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white bg-slate-500 h-20 md:h-[360px]'>Syndicate</div>
           </div>
-          <div className='duration-200 cursor-pointer md:w-1/3 hover:scale-95'>
-            <div onClick={() => scrollTo('section-2')} className='p-8 text-3xl font-bold  rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Custom</div>
+          <div className='duration-200 cursor-pointer w-1/3 md:hover:scale-95'>
+            <div onClick={() => scrollTo('section-2')} className='md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white bg-slate-500 h-20 md:h-[360px]'>Custom</div>
           </div>
-          <div className='duration-200 cursor-pointer md:w-1/3 hover:scale-95'>
-            <div onClick={() => scrollTo('section-3')} className='p-8 text-3xl font-bold  rounded-md flex justify-end items-end text-white bg-slate-500 h-[360px]'>Consulting</div>
+          <div className='duration-200 cursor-pointer w-1/3 md:hover:scale-95'>
+            <div onClick={() => scrollTo('section-3')} className='md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white bg-slate-500 h-20 md:h-[360px]'>Consulting</div>
           </div>
         </div>
 
