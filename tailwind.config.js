@@ -8,7 +8,8 @@ module.exports = {
       colors: {
         primary: '#0076EB',
         secondary: '#8639F9',
-        tertiary: '#1ACEC2',
+        // tertiary: '#1ACEC2',
+        tertiary: '#6fe3db',
       },
       gridTemplateColumns: {
         '14': 'repeat(14, minmax(0, 1fr))',

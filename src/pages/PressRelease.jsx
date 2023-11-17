@@ -89,13 +89,16 @@ export default function PressRelease() {
                                         </div>
                                         <div className='text-right'>
 
-                                            <button onClick={handleFormOpen} className="inline-flex items-center justify-center gap-4 px-8 py-1 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                                            <button onClick={handleFormOpen} className="inline-flex items-center justify-center gap-4 px-8 py-1 mt-6 mr-4 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md w-60 text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                                                Buy Now
+                                            </button>
+                                            <button onClick={handleFormOpen} className="inline-flex items-center justify-center gap-4 px-8 py-1 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md w-60 text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                 Request Sample
                                             </button>
 
                                         </div>
                                     </div>
-                                    <div className='flex flex-col gap-2 p-4 py-2'>
+                                    <div className='flex flex-col gap-2 p-4 py-6'>
                                         <div dangerouslySetInnerHTML={{ __html: pressRelease.description }}></div>
                                     </div>
                                 </div>

@@ -159,7 +159,8 @@ export default function Report() {
         <div className="mb-4 border rounded-md shadow-lg overflow-clip md:mb-0 md:w-3/4">
           <div className='items-center justify-between md:flex'>
             <div className="w-full">
-              <div className='p-4 text-white bg-[#2C3E50]'>
+              {/* <div className='p-4 text-white bg-[#2C3E50]'> */}
+              <div className='p-4 font-semibold text-black bg-tertiary'>
                 <div className='mb-2 text-justify'>{report.title}</div>
                 <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
                   <div className='pr-4 border-r-[1px]'><span>Date:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
