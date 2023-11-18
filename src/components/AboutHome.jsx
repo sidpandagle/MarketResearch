@@ -7,7 +7,7 @@ export default class AboutHome extends Component {
         <div className='max-w-6xl mx-auto sm:px-6'>
           <div className="mb-10 text-3xl font-extrabold text-center ">About Us</div>
           <div className="items-center text-center md:text-left md:flex">
-            <div className="pr-8 md:w-1/2">
+            <div className="md:pr-8 md:w-1/2">
               {/* <div className="mb-4 text-2xl font-semibold">Lorem ipsum dolor sit </div> */}
               <div className='flex flex-col gap-4'>
                 <div className='px-8 md:text-justify md:p-0'>Congruence Market Insights is a leading market research firm dedicated to providing in-depth analysis and strategic solutions for businesses across diverse industries.</div>

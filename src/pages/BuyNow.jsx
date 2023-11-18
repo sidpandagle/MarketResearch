@@ -58,7 +58,7 @@ export default function BuyNow() {
                                 <div className="mb-2 text-xl font-semibold">Order Summary</div>
                                 <div className='flex flex-col justify-between py-2'>
                                     <div>
-                                        <div className='gap-4 md:flex'>
+                                        <div className='gap-4 flex flex-col items-center md:items-start md:flex-row'>
                                             <img loading="lazy" src={report.cover_img} className='object-cover w-16 h-20 rounded-md bg-slate-500' alt="" />
                                             {/* <div className='object-fill font-semibold text-white rounded-md overflow-clip bg-slate-500'>
                                             </div> */}

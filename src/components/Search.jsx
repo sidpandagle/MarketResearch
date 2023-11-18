@@ -73,7 +73,7 @@ export default function Search() {
                         </div>
                         {/* <button className='px-8 m-1 text-sm font-bold tracking-wide text-white rounded-md bg-primary'>Search</button> */}
                         <button onClick={handleSearch}>
-                            <div class="codepen-button"><span className='px-6 py-2'>Search</span></div>
+                            <div className="codepen-button"><span className='px-6 py-2'>Search</span></div>
                         </button>
 
                     </div>
