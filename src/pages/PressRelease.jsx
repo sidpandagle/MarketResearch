@@ -91,13 +91,13 @@ export default function PressRelease() {
                                         <div className='text-xl font-semibold'>
                                             {pressRelease.title}
                                         </div>
-                                        <div className='flex flex-col md:flex-row justify-between items-center mt-4'>
-                                            <div className='flex flex-col md:flex-row gap-4'>
-                                                <div className='flex flex-col md:flex-row gap-1'>
+                                        <div className='flex flex-col items-center justify-between mt-4 md:flex-row'>
+                                            <div className='flex flex-col gap-4 md:flex-row'>
+                                                <div className='flex flex-col gap-1 md:flex-row'>
                                                     <div>
                                                         Formats:
                                                     </div>
-                                                    <div className='flex justify-center md:justify-normal gap-1'>
+                                                    <div className='flex justify-center gap-1 md:justify-normal'>
                                                         <img loading="lazy" className='h-6' src={"/format_icons/pdf.png"} alt="pdf-icon" />
                                                         <img loading="lazy" className='h-6' src={"/format_icons/ppt.png"} alt="ppt-icon" />
                                                         <img loading="lazy" className='h-6' src={"/format_icons/xls.png"} alt="xls-icon" />
@@ -107,12 +107,14 @@ export default function PressRelease() {
                                                     Pages: {report.pages}
                                                 </div>
                                             </div>
-                                            <div className='flex flex-col md:flex-row gap-4 mt-4 md:mt-0'>
-                                                <button onClick={buyNow} className="inline-flex items-center justify-center gap-4 w-44 py-2  font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                                                    Buy Now
-                                                </button>
-                                                <button onClick={handleFormOpen} className="codepen-button gap-4 w-44  font-semibold text-white transition-all ">
-                                                    <span className='flex justify-center items-center py-2'>
+                                            <div className='flex flex-col gap-4 mt-4 md:flex-row md:mt-0'>
+                                                <Link to={`/buy-now/${String(report.id)}/1`}>
+                                                    <button className="inline-flex items-center justify-center gap-4 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md w-44 text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
+                                                        Buy Now
+                                                    </button>
+                                                </Link>
+                                                <button onClick={handleFormOpen} className="gap-4 font-semibold text-white transition-all codepen-button w-44 ">
+                                                    <span className='flex items-center justify-center py-2'>
                                                         Request Sample
                                                     </span>
                                                 </button>
@@ -120,7 +122,7 @@ export default function PressRelease() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='flex flex-col gap-2 p-4 py-6'>
+                                    <div className='flex flex-col gap-2 p-4 py-6 select-none'>
                                         <div dangerouslySetInnerHTML={{ __html: pressRelease.description }}></div>
                                     </div>
                                 </div>

@@ -2,20 +2,20 @@
 export const apiUrl = 'https://congapi.178765.xyz'
 
 export const categories = [
-    { id: 1, abr: 'AGR', name: 'Agriculture', icon: `/category_icons/agriculture.png` },
-    { id: 2, abr: 'AAT', name: 'Automotive & Transportation', icon: `/category_icons/automotive.png` },
-    { id: 3, abr: 'BAC', name: 'Building & Construction', icon: `/category_icons/construction.png` },
-    { id: 4, abr: 'CAM', name: 'Chemicals & Materials', icon: `/category_icons/experiment.png` },
-    { id: 5, abr: 'CGS', name: 'Consumer Goods', icon: `/category_icons/box.png` },
-    { id: 6, abr: 'AAD', name: 'Aerospace & Defense', icon: `/category_icons/defense.png` },
-    { id: 7, abr: 'EAS', name: 'Electronics & Semiconductors', icon: `/category_icons/electronics.png` },
-    { id: 8, abr: 'ENR', name: 'Energy & Natural Resources', icon: `/category_icons/tools.png` },
-    { id: 9, abr: 'FAB', name: 'Food & Beverages', icon: `/category_icons/carrot.png` },
-    { id: 10, abr: 'HLS', name: 'Healthcare & Life Sciences', icon: `/category_icons/cross.png` },
-    { id: 11, abr: 'HEG', name: 'Heavy Engineering', icon: `/category_icons/automation.png` },
-    { id: 12, abr: 'IAT', name: 'IT & Telecom', icon: `/category_icons/telecom.png` },
-    { id: 13, abr: 'PAC', name: 'Packaging', icon: `/category_icons/packaging.png` },
-    { id: 14, abr: 'PHR', name: 'Pharmaceutical', icon: `/category_icons/patient.png` },
+    { id: 1, abr: 'AGR', url: 'agriculture', name: 'Agriculture', icon: `/category_icons/agriculture.png` },
+    { id: 2, abr: 'AAT', url: 'automotive-and-transportation', name: 'Automotive & Transportation', icon: `/category_icons/automotive.png` },
+    { id: 3, abr: 'BAC', url: 'building-and-construction', name: 'Building & Construction', icon: `/category_icons/construction.png` },
+    { id: 4, abr: 'CAM', url: 'chemicals-and-materials', name: 'Chemicals & Materials', icon: `/category_icons/experiment.png` },
+    { id: 5, abr: 'CGS', url: 'consumer-goods', name: 'Consumer Goods', icon: `/category_icons/box.png` },
+    { id: 6, abr: 'AAD', url: 'aerospace-and-defense', name: 'Aerospace & Defense', icon: `/category_icons/defense.png` },
+    { id: 7, abr: 'EAS', url: 'electronics-and-semiconductors', name: 'Electronics & Semiconductors', icon: `/category_icons/electronics.png` },
+    { id: 8, abr: 'ENR', url: 'energy-and-natural-resources', name: 'Energy & Natural Resources', icon: `/category_icons/tools.png` },
+    { id: 9, abr: 'FAB', url: 'food-and-beverages', name: 'Food & Beverages', icon: `/category_icons/carrot.png` },
+    { id: 10, abr: 'HLS', url: 'healthcare-and-life-sciences', name: 'Healthcare & Life Sciences', icon: `/category_icons/cross.png` },
+    { id: 11, abr: 'HEG', url: 'heavy-engineering', name: 'Heavy Engineering', icon: `/category_icons/automation.png` },
+    { id: 12, abr: 'IAT', url: 'it-and-telecom', name: 'IT & Telecom', icon: `/category_icons/telecom.png` },
+    { id: 13, abr: 'PAC', url: 'packaging', name: 'Packaging', icon: `/category_icons/packaging.png` },
+    { id: 14, abr: 'PHR', url: 'pharmaceutical', name: 'Pharmaceutical', icon: `/category_icons/patient.png` },
 ]
 
 

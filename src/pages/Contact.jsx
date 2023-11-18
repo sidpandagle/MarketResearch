@@ -10,7 +10,7 @@ export default class Contact extends Component {
               <div className="w-full px-4 lg:w-1/2 xl:w-6/12">
                 <div className="mb-12 max-w-[570px] lg:mb-0">
                   <span className="block mb-4 text-base font-semibold text-primary">Contact Us</span>
-                  <h2 className="mb-6 text-2xl md:text-[32px] font-bold uppercase text-dark sm:text-[40px] lg:text-[28px] xl:text-[32px]">
+                  <h2 className="mb-6 text-2xl md:text-[32px] font-bold text-[#652E7E] uppercase text-dark sm:text-[40px] lg:text-[28px] xl:text-[32px]">
                     Get in Touch with <br /> Congruence Market Insights
                   </h2>
                   <p className="text-base leading-relaxed mb-9 text-body-color">
@@ -28,7 +28,7 @@ export default class Contact extends Component {
                       </svg>
                     </div>
                     <div className="w-full">
-                      <h4 className="mb-1 text-xl font-bold text-dark">
+                      <h4 className="text-[#652E7E] mb-1 text-xl font-bold text-dark">
                         Our Location
                       </h4>
 
@@ -60,7 +60,7 @@ export default class Contact extends Component {
                       </svg>
                     </div>
                     <div className="w-full">
-                      <h4 className="mb-1 text-xl font-bold text-dark">
+                      <h4 className="text-[#652E7E] mb-1 text-xl font-bold text-dark">
                         Phone Number
                       </h4>
                       <p className="text-base text-body-color">
@@ -80,10 +80,10 @@ export default class Contact extends Component {
                       </svg>
                     </div>
                     <div className="w-full">
-                      <h4 className="mb-1 text-xl font-bold text-dark">
+                      <h4 className="text-[#652E7E] mb-1 text-xl font-bold text-dark">
                         Email Address
                       </h4>
-                      <p className="text-body-color text-sm md:text-base ">
+                      <p className="text-sm text-body-color md:text-base ">
                         sales@congruencemarketinsights.com
                       </p>
                     </div>
@@ -92,7 +92,7 @@ export default class Contact extends Component {
                   </div>
                 </div>
               </div>
-              <div className="w-full  md:px-4 lg:w-1/2 xl:w-5/12">
+              <div className="w-full md:px-4 lg:w-1/2 xl:w-5/12">
                 <div className="relative p-4 bg-white rounded-lg shadow-lg sm:p-12">
                   <form>
                     <ContactInputBox

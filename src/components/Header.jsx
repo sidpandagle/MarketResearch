@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { categories } from '../constants'
 
@@ -10,6 +10,15 @@ const Navbar = () => {
     setCategoryOpen(!isCategoryOpen);
     setMenuOpen(false);
   }
+
+  useEffect(() => {
+    document.addEventListener('mouseup', function (e) {
+      const categoryDropDown = document.getElementById('openedCategoryDropDown');
+      if (categoryDropDown && !categoryDropDown.contains(e.target)) {
+        setCategoryOpen(false)
+      }
+    });
+  }, [])
 
   return (
     // #F17B63
@@ -66,19 +75,21 @@ const Navbar = () => {
                         </svg>
                       }
                     </Link>
-                    <div className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-[100%] md:top-[170%] left-[-35%] md:left-[-120%] text-sm w-[300px] md:w-[550px] ${!isCategoryOpen && "hidden"
-                      }`}>
-                      <div className="grid grid-cols-1 gap-x-2 gap-y-0 md:grid-cols-2">
-                        {categories.map((res, index) => {
-                          return (
-                            <Link key={index} onClick={() => redirectToCategory()} to={`/category/${res.id}`}>
-                              <div className="mb-3 cursor-pointer hover:font-bold">
-                                {res.name}
-                              </div>
-                            </Link>)
-                        })}
-                      </div>
-                    </div >
+                    {
+                      isCategoryOpen &&
+                      <div id='openedCategoryDropDown' className={`absolute z-20 bg-white py-6 px-10  shadow-2xl rounded-md top-[100%] md:top-[170%] left-[-35%] md:left-[-120%] text-sm w-[300px] md:w-[550px]`}>
+                        <div className="grid grid-cols-1 gap-x-2 gap-y-0 md:grid-cols-2">
+                          {categories.map((res, index) => {
+                            return (
+                              <Link key={index} onClick={() => redirectToCategory()} to={`/category/${res.url}`}>
+                                <div className="mb-3 cursor-pointer hover:font-bold">
+                                  {res.name}
+                                </div>
+                              </Link>)
+                          })}
+                        </div>
+                      </div >
+                    }
                   </div >
                   <div className="relative">
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/all-press-release/1">Press Release</Link>

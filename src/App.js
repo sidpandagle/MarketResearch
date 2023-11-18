@@ -37,12 +37,12 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryId" element={<AllReport />} />
+          <Route path="/category/:categoryUrl" element={<AllReport />} />
           <Route path="/all-press-release/:categoryId" element={<AllPressRelease />} />
           <Route path="/press-release/:pressReleaseId" element={<PressRelease />} />
           <Route path="/offering" element={<Offering />} />
           <Route path="/buy-now/:reportId/:buyId" element={<BuyNow />} />
-          <Route path="/report/:reportId" element={<Report />} />
+          <Route path="/industry-report/:reportUrl/:reportId" element={<Report />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />

@@ -138,7 +138,7 @@ export default function Report() {
               <svg className="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
               </svg>
-              <Link to={`/category/${categories.find(res => res.name === report.category)?.id}`}>
+              <Link to={`/category/${categories.find(res => res.name === report.category)?.url}`}>
                 <div className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{report.category}</div>
               </Link>
             </div>
@@ -163,8 +163,8 @@ export default function Report() {
               <div className='p-4 font-semibold text-black bg-tertiary'>
                 <div className='mb-2 text-justify'>{report.title}</div>
                 <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
-                  <div className='pr-4 border-r-[1px]'><span>Date:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
-                  <div className='pr-4 border-r-[1px]'><span>Report Code:</span> CGN{getAbrByCategory(report.category)}{report.id}</div>
+                  <div className='pr-4 border-black border-r-[1px]'><span>Date:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
+                  <div className='pr-4 border-black border-r-[1px]'><span>Report Code:</span> CGN{getAbrByCategory(report.category)}{report.id}</div>
                   <div ><span>Pages:</span> {report.pages}</div>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function Report() {
                 <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-primary text-white' : ''}`}>Highlights</div>
                 <div onClick={() => scrollToTop('Methodology')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
                 <div onClick={() => scrollToTop('Request')} className={`codepen-button md:w-1/4 w-full md:mb-0 mb-4 text-sm box-border relative z-30 flex justify-center items-center border rounded-sm cursor-pointer ${selectedTitle === 'Request' ? 'font-bold' : ''}`}>
-                  <span className='text-center py-2'>Request Sample</span>
+                  <span className='py-2 text-center'>Request Sample</span>
                 </div>
               </div>
               <div className='px-4'>
@@ -227,8 +227,8 @@ export default function Report() {
               <div className='flex flex-col gap-2 mt-2'>
                 {/* <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Buy Now</button>
                 <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Inquiry Before Buying</button> */}
-                <Link to={`/buy-now/${reportId}/${licenses.find(res => res.license === license)?.id}`} className="codepen-button inline-flex items-center justify-center font-semibold">
-                  <span className='flex justify-center items-center text-center py-2'>
+                <Link to={`/buy-now/${reportId}/${licenses.find(res => res.license === license)?.id}`} className="inline-flex items-center justify-center font-semibold codepen-button">
+                  <span className='flex items-center justify-center py-2 text-center'>
                     Buy Now
                   </span>
                 </Link>

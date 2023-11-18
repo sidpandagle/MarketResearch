@@ -9,7 +9,7 @@ import { notifyError } from '../App';
 
 const AllReport = () => {
 
-  const { categoryId } = useParams();
+  const { categoryUrl } = useParams();
   const [category, setCategory] = useState('');
   const [categoryList, setCategoryList] = useState([]);
   const [reportList, setReportList] = useState([]);
@@ -19,16 +19,16 @@ const AllReport = () => {
   }
 
   useEffect(() => {
-    setCategory(categories.find(res => res.id === Number(categoryId)).name)
+    setCategory(categories.find(res => res.url === categoryUrl).name)
     axios.get(`${apiUrl}/reports/category/category_count`).then(res => {
       let categoryList = res.data.data.map(res => {
-        res.id = categories.find(result => result.name == res.category).id;
+        res.id = categories.find(result => result.name === res.category).id;
         return res;
       })
       setCategoryList(categoryList)
     })
-    if (categoryId) {
-      axios.get(`${apiUrl}/reports/category/${categories.find(res => res.id === Number(categoryId)).name}?page=1&per_page=100`).then(res => {
+    if (categoryUrl) {
+      axios.get(`${apiUrl}/reports/category/${categories.find(res => res.url === categoryUrl).name}?page=1&per_page=100`).then(res => {
         let reportList = res.data.data;
         if (reportList.length) {
           setReportList(reportList)
@@ -38,12 +38,12 @@ const AllReport = () => {
         }
       })
     }
-  }, [categoryId]);
+  }, [categoryUrl]);
 
   return (
     <div>
       <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">
-        <img loading="lazy" className='absolute bottom-0 h-full w-auto md:w-full md:h-auto' src={"/category_covers/agriculture.jpeg"} alt="" />
+        <img loading="lazy" className='absolute bottom-0 w-auto h-full md:w-full md:h-auto' src={"/category_covers/agriculture.jpeg"} alt="" />
         <div className='z-10'>
           {category.toUpperCase()}
         </div>
@@ -58,7 +58,7 @@ const AllReport = () => {
                   <div className='flex flex-col gap-2'>
                     {categoryList.map((res, key) => {
                       return (
-                        <Link key={key} to={`/category/${res.id}`} onClick={scrollToTop}>
+                        <Link key={key} to={`/category/${categories.find(r => r.name === res.category)?.url}`} onClick={scrollToTop}>
                           <div className={`py-2 text-sm cursor-pointer hover:text-primary ${res.category == category && 'text-primary'} ${key < categoryList.length - 1 && 'border-b-2'}`} key={key}>{res.category} ({res.count})</div>
                         </Link>
                       )
@@ -70,7 +70,7 @@ const AllReport = () => {
                 <div className="px-4 mb-4 text-xl font-semibold">Research Reports in {category}</div>
                 {reportList.map((res, key) => {
                   return (
-                    <Link to={`/report/${res.id}`} key={key}>
+                    <Link to={`/industry-report/${res.url.split(' ').join('-').toLowerCase()}/${res.id}`} key={key}>
                       <div className='group' >
                         <div className='flex flex-col gap-2 p-4 border-b-2 cursor-pointer group-hover:bg-slate-50'>
                           <div className="font-semibold group-hover:text-primary group-hover:underline">{res.title.split('').filter((res, i) => i < 160).join('')}... </div>
