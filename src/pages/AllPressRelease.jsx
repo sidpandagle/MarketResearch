@@ -9,7 +9,7 @@ import moment from 'moment';
 export default function AllPressRelease() {
 
   const { categoryId } = useParams();
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState({});
   const [categoryList, setCategoryList] = useState([]);
   const [pressReleaseList, setPressReleaseList] = useState([]);
 
@@ -18,10 +18,10 @@ export default function AllPressRelease() {
   }
 
   useEffect(() => {
-    setCategory(categories.find(res => res.id === Number(categoryId)).name)
+    setCategory(categories.find(res => res.id === Number(categoryId)))
     axios.get(`${apiUrl}/press_release/category/category_count`).then(res => {
       let categoryList = res.data.data.map(res => {
-        res.id = categories.find(result => result.name == res.category).id;
+        res.id = categories.find(result => result.name === res.category).id;
         return res;
       })
       setCategoryList(categoryList)
@@ -40,7 +40,12 @@ export default function AllPressRelease() {
   }, [categoryId]);
   return (
     <div>
-      <div className="mb-6 md:text-3xl text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">{'Press Release - ' + category.toUpperCase()}</div>
+      <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center  text-white">
+        <img loading="lazy" className='absolute flex items-center justify-center w-auto h-auto md:object-contain md:w-full' src={category.back_cover} alt="" />
+        <div className='z-10'>
+          {category.name && category.name.toUpperCase()}
+        </div>
+      </div>
       <div className="max-w-6xl px-4 mx-auto sm:px-6">
         <div className="py-2 text-center md:pt-10 md:text-left">
           <div className="pb-12 mx-auto max-w-8xl md:pb-10">

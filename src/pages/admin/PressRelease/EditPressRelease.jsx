@@ -1,11 +1,11 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { notifySuccess, notifyError } from '../../App';
+import { notifySuccess, notifyError } from '../../../App';
 import axios from 'axios';
 import JoditEditor from 'jodit-react';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { constConfig, categories, apiUrl } from '../../constants';
+import { constConfig, categories, apiUrl } from '../../../constants';
 import { useNavigate, useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';

@@ -34,11 +34,6 @@ export default function PressRelease() {
         })
     }
 
-    const buyNow = () => {
-        setEnquiryType('Buy Now');
-        handleFormOpen();
-    }
-
     return (
         <div>
             <SEO title={pressRelease.meta_title} description={pressRelease.meta_desc} keywords={pressRelease.meta_keyword} name='Congruence Market Research' type='article' />

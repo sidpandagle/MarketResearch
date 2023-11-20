@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { notifySuccess, notifyError } from '../../App';
+import { notifySuccess, notifyError } from '../../../App';
 import axios from 'axios';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { getAbrByCategory, apiUrl } from '../../constants';
+import { categories, getAbrByCategory, apiUrl } from '../../../constants';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -13,41 +13,41 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 
-export default function PressReleaseList() {
+export default function ReportList() {
 
 
-    const [pressReleaseList, setPressReleaseList] = useState([]);
+    const [reportList, setReportList] = useState([]);
     const [markedId, setMarkedId] = useState(0);
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const getAllPressReleaseOnce = () => {
-            axios.get(`${apiUrl}/press_release/`)
+        const getAllReportOnce = () => {
+            axios.get(`${apiUrl}/reports/`)
                 .then(response => {
                     console.log(response);
                     let repList = response.data.data.map(res => {
                         res.abr = getAbrByCategory(res.category);
                         return res;
                     })
-                    setPressReleaseList(repList.reverse())
+                    setReportList(repList.reverse())
                 })
                 .catch(error => {
                     console.error('Error:', error);
                     notifyError('Something went wrong, please try again!');
                 });
         }
-        getAllPressReleaseOnce();
+        getAllReportOnce();
     }, []);
 
-    const getAllpressRelease = () => {
-        axios.get(`${apiUrl}/press_release/`)
+    const getAllReport = () => {
+        axios.get(`${apiUrl}/reports/`)
             .then(response => {
                 console.log(response);
                 let repList = response.data.data.map(res => {
                     res.abr = getAbrByCategory(res.name);
                     return res;
                 })
-                setPressReleaseList(repList.reverse())
+                setReportList(repList.reverse())
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -67,12 +67,12 @@ export default function PressReleaseList() {
         handleClickOpen();
     };
 
-    const deletepressRelease = () => {
-        axios.delete(`${apiUrl}/press_release/${markedId}`)
+    const deleteReport = () => {
+        axios.delete(`${apiUrl}/reports/${markedId}`)
             .then(response => {
                 handleClose();
-                getAllpressRelease();
-                notifySuccess("Press Release deleted successfully!");
+                getAllReport();
+                notifySuccess("Report deleted successfully!");
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -84,8 +84,8 @@ export default function PressReleaseList() {
         <div>
             <div className="px-4 py-2 mx-auto md:py-12 max-w-7xl md:pt-8 sm:px-6 min-h-[90vh]">
                 <div className='flex items-baseline justify-between pb-4 '>
-                    <div className='text-xl font-semibold'>Press Releases</div>
-                    <Link to='/press-release/add'>
+                    <div className='text-xl font-semibold'>Reports</div>
+                    <Link to='/report/add'>
                         <button type="submit" className="inline-flex items-center justify-center gap-4 px-6 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                             Add
                         </button>
@@ -102,7 +102,7 @@ export default function PressReleaseList() {
                                     Category
                                 </th>
                                 <th scope="col" className="w-[60%] px-6 py-3">
-                                    Title
+                                    Short Title
                                 </th>
                                 <th scope="col" className="w-[10%] px-6 py-3">
                                     Action
@@ -110,21 +110,21 @@ export default function PressReleaseList() {
                             </tr>
                         </thead>
                         <tbody>
-                            {pressReleaseList.map((res, key) => {
+                            {reportList.map((res, key) => {
                                 return (
                                     <tr key={key} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                         <td className="px-6 py-4">
-                                            CGNPR{res.abr}{res.id}
+                                            CGNRP{res.abr}{res.id}
                                         </td>
                                         <td className="px-6 py-4">
                                             {res.category}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {res.title}
+                                            {res.url}
                                         </td>
                                         <td className="flex gap-4 px-6 py-4">
-                                            <Link to={`/press-release/edit/${res.id}`}>
-                                                <IconButton aria-label="delete">
+                                            <Link to={`/report/edit/${res.id}`}>
+                                                <IconButton>
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-pencil" width={20} height={20} viewBox="0 0 24 24" strokeWidth="1.5" stroke="#597e8d" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                         <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
@@ -149,7 +149,7 @@ export default function PressReleaseList() {
                             })}
                         </tbody>
                     </table>
-                    {pressReleaseList.length === 0 && <div className='flex justify-center p-4 border'>Loading</div>}
+                    {reportList.length === 0 && <div className='flex justify-center p-4 border'>Loading</div>}
                 </div>
 
             </div>
@@ -169,7 +169,7 @@ export default function PressReleaseList() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={deletepressRelease} autoFocus>
+                    <Button onClick={deleteReport} autoFocus>
                         Ok
                     </Button>
                 </DialogActions>

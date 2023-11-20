@@ -10,7 +10,7 @@ import { notifyError } from '../App';
 const AllReport = () => {
 
   const { categoryUrl } = useParams();
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState({});
   const [categoryList, setCategoryList] = useState([]);
   const [reportList, setReportList] = useState([]);
 
@@ -19,10 +19,11 @@ const AllReport = () => {
   }
 
   useEffect(() => {
-    setCategory(categories.find(res => res.url === categoryUrl).name)
+    setCategory(categories.find(res => res.url === categoryUrl))
     axios.get(`${apiUrl}/reports/category/category_count`).then(res => {
       let categoryList = res.data.data.map(res => {
         res.id = categories.find(result => result.name === res.category).id;
+        res.back_cover = categories.find(result => result.name === res.category).back_cover;
         return res;
       })
       setCategoryList(categoryList)
@@ -42,10 +43,10 @@ const AllReport = () => {
 
   return (
     <div>
-      <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">
-        <img loading="lazy" className='absolute bottom-0 w-auto h-full md:w-full md:h-auto' src={"/category_covers/agriculture.jpeg"} alt="" />
+      <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center  text-white">
+        <img loading="lazy" className='absolute flex items-center justify-center w-auto h-auto h-full md:object-contain md:w-full' src={category.back_cover} alt="" />
         <div className='z-10'>
-          {category.toUpperCase()}
+          {category.name && category.name.toUpperCase()}
         </div>
       </div>
       <div className="max-w-6xl px-4 mx-auto sm:px-6">
@@ -59,7 +60,7 @@ const AllReport = () => {
                     {categoryList.map((res, key) => {
                       return (
                         <Link key={key} to={`/category/${categories.find(r => r.name === res.category)?.url}`} onClick={scrollToTop}>
-                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${res.category == category && 'text-primary'} ${key < categoryList.length - 1 && 'border-b-2'}`} key={key}>{res.category} ({res.count})</div>
+                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${res.category === category.namve && 'text-primary'} ${key < categoryList.length - 1 && 'border-b-2'}`} key={key}>{res.category} ({res.count})</div>
                         </Link>
                       )
                     })}
@@ -67,7 +68,7 @@ const AllReport = () => {
                 </div>
               </div>
               <div className="mt-12 md:w-3/4 md:ml-8 md:mt-0">
-                <div className="px-4 mb-4 text-xl font-semibold">Research Reports in {category}</div>
+                <div className="px-4 mb-4 text-xl font-semibold">Research Reports in {category.name}</div>
                 {reportList.map((res, key) => {
                   return (
                     <Link to={`/industry-report/${res.url.split(' ').join('-').toLowerCase()}/${res.id}`} key={key}>

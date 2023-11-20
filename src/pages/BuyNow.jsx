@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import BuyNowForm from '../components/BuyNowForm'
 import { useParams } from 'react-router-dom'
-import { apiUrl, getAbrByCategory, licenses } from '../constants';
+import { apiUrl, getAbrByCategory } from '../constants';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -40,13 +40,22 @@ export default function BuyNow() {
     const { reportId, buyId } = useParams();
     const [report, setReport] = useState({});
     const [license, setLicense] = useState({});
+
     useEffect(() => {
-        setLicense(licenses.find(res => res.id === Number(buyId)))
         axios.get(`${apiUrl}/reports/${reportId}`).then(res => {
             console.log(res.data.data);
             setReport(res.data.data);
+            getPriceList();
         })
-    })
+    }, [])
+
+
+    const getPriceList = () => {
+        axios.get(`${apiUrl}/price`).then(res => {
+            setLicense(res.data.data.find(res => res.id === Number(buyId)))
+        })
+    };
+
 
     return (
         <div className="p-4 mx-auto max-w-7xl sm:px-6">

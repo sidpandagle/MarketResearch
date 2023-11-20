@@ -7,15 +7,24 @@ export default class Offering extends Component {
     }
     return (
       <div>
-        <div className='flex  justify-between max-w-screen-xl md:gap-8 gap-2 px-4 py-4 mx-auto lg:py-12 lg:px-6'>
-          <div className='duration-200 cursor-pointer w-1/3 md:hover:scale-95'>
-            <div onClick={() => scrollTo('section-1')} className='md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white bg-slate-500 h-20 md:h-[360px]'>Syndicate</div>
+        <div className='flex justify-between max-w-screen-xl gap-2 px-4 py-4 mx-auto md:gap-8 lg:py-12 lg:px-6'>
+          <div className='w-1/3 duration-200 cursor-pointer md:hover:scale-95'>
+            <div onClick={() => scrollTo('section-1')} className='overflow-clip relative md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white h-20 md:h-[360px]'>
+              <img loading='lazy' className='absolute top-0 right-0 object-cover w-full h-full -z-10 ' src="/others/syndicate2.jpg" alt="" />
+              <span className='z-10'>Syndicate</span>
+            </div>
           </div>
-          <div className='duration-200 cursor-pointer w-1/3 md:hover:scale-95'>
-            <div onClick={() => scrollTo('section-2')} className='md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white bg-slate-500 h-20 md:h-[360px]'>Custom</div>
+          <div className='w-1/3 duration-200 cursor-pointer md:hover:scale-95'>
+            <div onClick={() => scrollTo('section-2')} className='overflow-clip relative md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white h-20 md:h-[360px]'>
+              <img loading='lazy' className='absolute top-0 right-0 object-cover w-full h-full -z-10 ' src="/others/custom.jpg" alt="" />
+              <span className='z-10'>Custom</span>
+            </div>
           </div>
-          <div className='duration-200 cursor-pointer w-1/3 md:hover:scale-95'>
-            <div onClick={() => scrollTo('section-3')} className='md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white bg-slate-500 h-20 md:h-[360px]'>Consulting</div>
+          <div className='w-1/3 duration-200 cursor-pointer md:hover:scale-95'>
+            <div onClick={() => scrollTo('section-3')} className='overflow-clip relative md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white h-20 md:h-[360px]'>
+              <img loading='lazy' className='absolute top-0 right-0 object-cover w-full h-full -z-10 ' src="/others/consulting1.jpg" alt="" />
+              <span className='z-10'>Consulting</span>
+            </div>
           </div>
         </div>
 
@@ -109,7 +118,7 @@ export default class Offering extends Component {
                 </ul>
                 <p className="mb-2 font-light lg:text-xl">Syndicate report service offers ready-to-access industry reports, providing crucial insights for businesses navigating dynamic market environments</p>
               </div>
-              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
+              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src='/others/syndicate1.jpg' alt="dashboard feature image" />
             </div>
           </div>
         </section>
@@ -117,7 +126,7 @@ export default class Offering extends Component {
           <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-12 lg:px-6">
 
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="feature image 2" />
+              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/others/custom.jpg'} alt="feature image 2" />
               <div className="text-gray-500 sm:text-lg -400">
                 <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Tailored research solutions for unique business needs.</h2>
                 <p className="mb-2 font-light lg:text-xl">Our custom research solutions offer personalized data analysis, in-depth market research, and strategic insights aligned with your specific business requirements.</p>
@@ -200,7 +209,7 @@ export default class Offering extends Component {
                 </ul>
                 <p className="mb-2 font-light lg:text-xl">Consulting services offer expert guidance and actionable strategies derived from comprehensive market analysis to drive your business growth.</p>
               </div>
-              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
+              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/others/consulting2.jpg'} alt="dashboard feature image" />
             </div>
           </div>
         </section>

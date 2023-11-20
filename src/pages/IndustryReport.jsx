@@ -7,16 +7,17 @@ import ContentLoading from '../components/ContentLoading'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Faq from '../components/Faq';
-import { apiUrl, getAbrByCategory, licenses, categories } from '../constants';
+import { apiUrl, getAbrByCategory, categories } from '../constants';
 import axios from 'axios';
 import moment from 'moment';
 import SEO from '../components/SEO';
 
-export default function Report() {
+export default function IndustryReport() {
 
   const [selectedTitle, setSelectedTitle] = useState('Description');
   const [report, setReport] = useState({});
   const [relatedReportList, setRelatedReportList] = useState([]);
+  const [priceList, setPriceList] = useState([]);
 
   const scrollToTop = (value) => {
     setSelectedTitle(value)
@@ -32,6 +33,10 @@ export default function Report() {
   const { reportId } = useParams();
 
   useEffect(() => {
+    getReport();
+  }, [])
+
+  const getReport = () => {
     axios.get(`${apiUrl}/reports/${reportId}`)
       .then((res) => {
         setBlankImage(res.data.data);
@@ -41,7 +46,14 @@ export default function Report() {
         getReportImages();
         getRelatedReports(res.data.data.category);
       })
-  }, [])
+    getPriceList();
+  }
+
+  const getPriceList = () => {
+    axios.get(`${apiUrl}/price`).then(res => {
+      setPriceList(res.data.data.reverse())
+    })
+  };
 
   const getRelatedReports = (categoryValue) => {
     axios.get(`${apiUrl}/reports/category/${categoryValue}?page=1&per_page=3`).then(res => {
@@ -214,7 +226,7 @@ export default function Report() {
           <div className='sticky top-[20px] flex flex-col gap-4 '>
             <div className='flex flex-col gap-2 p-4 border rounded-md shadow-lg '>
               {
-                licenses.map((res, i) => {
+                priceList.map((res, i) => {
                   return (
                     <div key={i} onClick={() => setLicense(res.license)} className={`flex justify-between cursor-default hover:text-primary ${license == res.license && 'text-primary'} p-1 rounded-sm`}>
                       <div className='flex gap-2'>
@@ -227,7 +239,7 @@ export default function Report() {
               <div className='flex flex-col gap-2 mt-2'>
                 {/* <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Buy Now</button>
                 <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Inquiry Before Buying</button> */}
-                <Link to={`/buy-now/${reportId}/${licenses.find(res => res.license === license)?.id}`} className="inline-flex items-center justify-center font-semibold codepen-button">
+                <Link to={`/buy-now/${reportId}/${priceList.find(res => res.license === license)?.id}`} className="inline-flex items-center justify-center font-semibold codepen-button">
                   <span className='flex items-center justify-center py-2 text-center'>
                     Buy Now
                   </span>

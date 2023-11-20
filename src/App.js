@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import AllReport from './pages/AllReport';
 import Offering from './pages/Offering';
-import Report from './pages/Report';
+import IndustryReport from './pages/IndustryReport';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
@@ -12,17 +12,20 @@ import ScrollToTop from './utils/ScrollToTop'
 import AllPressRelease from './pages/AllPressRelease';
 import PressRelease from './pages/PressRelease';
 import BuyNow from './pages/BuyNow';
-import AddReport from './pages/admin/AddReport';
+import AddReport from './pages/admin/Report/AddReport';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ReportList from './pages/admin/ReportList';
-import EditReport from './pages/admin/EditReport';
+import ReportList from './pages/admin/Report/ReportList';
+import EditReport from './pages/admin/Report/EditReport';
 import Careers from './pages/Careers';
-import AddPressRelease from './pages/admin/AddPressRelease';
-import PressReleaseList from './pages/admin/PressReleaseList';
-import EditPressRelease from './pages/admin/EditPressRelease';
+import AddPressRelease from './pages/admin/PressRelease/AddPressRelease';
+import PressReleaseList from './pages/admin/PressRelease/PressReleaseList';
+import EditPressRelease from './pages/admin/PressRelease/EditPressRelease';
 import SearchList from './pages/SearchList';
 import { HelmetProvider } from 'react-helmet-async';
+import EditPrice from './pages/admin/Price/EditPrice';
+import PriceList from './pages/admin/Price/PriceList';
+import AddPrice from './pages/admin/Price/AddPrice';
 
 export const notifySuccess = (value) => toast.success(value);
 export const notifyWarning = (value) => toast.warning(value);
@@ -42,7 +45,7 @@ function App() {
           <Route path="/press-release/:pressReleaseId" element={<PressRelease />} />
           <Route path="/offering" element={<Offering />} />
           <Route path="/buy-now/:reportId/:buyId" element={<BuyNow />} />
-          <Route path="/industry-report/:reportUrl/:reportId" element={<Report />} />
+          <Route path="/industry-report/:reportUrl/:reportId" element={<IndustryReport />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />
@@ -53,6 +56,9 @@ function App() {
           <Route path="/press-release/add" element={<AddPressRelease />} />
           <Route path="/press-release/list" element={<PressReleaseList />} />
           <Route path="/press-release/edit/:pressReleaseId" element={<EditPressRelease />} />
+          <Route path="/price/add" element={<AddPrice />} />
+          <Route path="/price/list" element={<PriceList />} />
+          <Route path="/price/edit/:priceId" element={<EditPrice />} />
         </Routes>
         <ScrollToTop />
         <ToastContainer

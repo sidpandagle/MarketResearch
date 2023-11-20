@@ -21,7 +21,7 @@ export default class About extends Component {
                                     <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-right  text-[#652E7E] text-gray-900 md:text-left">Who We Are</h2>
                                     <div className="mb-2 text-lg font-light text-right md:text-left">At Congruence Market Insights, we are a team of passionate researchers, analysts, and strategists who are dedicated to providing unparalleled market intelligence. With a blend of experience and expertise, we delve deep into market trends, consumer behavior, and industry dynamics to deliver insights that matter. Our commitment goes beyond numbers; we aim to empower businesses with actionable insights that lead to informed decision-making.</div>
                                 </div>
-                                <img loading="lazy" className="hidden w-full h-64 mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
+                                <img loading="lazy" className="hidden object-cover w-full h-64 mb-4 rounded-lg lg:mb-0 lg:flex" src={'/others/about1.jpg'} alt="about1" />
                             </div>
                             <div className="items-center gap-8 xl:gap-16">
                                 <div className="text-gray-700">
@@ -87,7 +87,7 @@ export default class About extends Component {
                                 </div>
                             </div>
                             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-                                <img loading="lazy" className="hidden w-full h-64 mb-4 rounded-lg lg:mb-0 lg:flex" src={'/gray-back.png'} alt="dashboard feature image" />
+                                <img loading="lazy" className="items-center justify-center hidden object-cover w-full h-64 mb-4 rounded-lg lg:mb-0 lg:flex" src={'/others/about2.jpg'} alt="about2" />
                                 <div className="text-gray-600">
                                     <h2 className="mb-4 text-3xl font-extrabold tracking-tight  text-[#652E7E] text-gray-900 ">Our Approach</h2>
                                     <div className="mb-2 text-lg font-light ">We pride ourselves on our innovative approach to market research. We integrate advanced technologies into our analysis, ensuring that our approach not only captures data but also delves into the core of consumer preferences and industry trends. Our customized solutions are tailored to meet the unique needs of each client, offering a comprehensive understanding of their specific market drivers, trends, challenges and opportunities.</div>
