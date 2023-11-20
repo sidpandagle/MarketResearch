@@ -44,7 +44,7 @@ const AllReport = () => {
   return (
     <div>
       <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center  text-white">
-        <img loading="lazy" className='absolute flex items-center justify-center w-auto h-auto h-full md:object-contain md:w-full' src={category.back_cover} alt="" />
+        <img loading="lazy" className='absolute flex items-center justify-center w-auto h-auto md:object-contain md:w-full' src={category.back_cover} alt="" />
         <div className='z-10'>
           {category.name && category.name.toUpperCase()}
         </div>
