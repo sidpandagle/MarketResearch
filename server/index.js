@@ -26,16 +26,16 @@ app.get('/*', async (req, res, next) => {
             return res.status(404).end()
         }
         console.log(req)
-         axios.get('https://congapi.178765.xyz/press_release/5').then((r) => {
-            // console.log(r.data.data)
+        axios.get('https://congapi.178765.xyz/press_release/5').then((r) => {
+            console.log(r.data.data)
             htmlData = htmlData.replace(
                 "<title>React App</title>",
                 `<title>CONGSSR</title>`
             )
                 .replace('__META_OG_TITLE__', r.data.data.category)
-                .replace('__META_OG_DESCRIPTION__', r.data.data.category)
-                .replace('__META_DESCRIPTION__', r.data.data.category)
-                .replace('__META_OG_IMAGE__', r.data.data.category)
+                .replace('__META_OG_DESCRIPTION__', 'r.data.data.category')
+                .replace('__META_DESCRIPTION__', 'r.data.data.category')
+                .replace('__META_OG_IMAGE__', 'r.data.data.category')
             return res.send(htmlData);
         });
     });
