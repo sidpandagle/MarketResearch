@@ -1,5 +1,5 @@
-export const apiUrl = 'http://localhost:8000'
-// export const apiUrl = 'https://congapi.178765.xyz'
+// export const apiUrl = 'http://localhost:8000'
+export const apiUrl = 'https://congapi.178765.xyz'
 
 export const categories = [
     { id: 1, abr: 'AGR', url: 'agriculture', name: 'Agriculture', icon: `/category_icons/agriculture.png`,back_cover: `/category_covers/agri.jpg` },
