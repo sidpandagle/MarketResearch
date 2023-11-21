@@ -56,7 +56,6 @@ export default function EditReport() {
                 axios.post('https://api.cloudinary.com/v1_1/dlxx8rmpi/image/upload', nData).then(res => {
                     // console.log(res.secure_url)
                     if (type === 3) {
-                        // updateCoverImage(res.data.secure_url)
                         setCoverImg(res.data.secure_url);
                     } else {
                         updateImage(res.data.secure_url, type);
@@ -80,7 +79,7 @@ export default function EditReport() {
     const updateImage = (updatedImage, type) => {
         axios.post(`${apiUrl}/report_images/`, {
             img_file: updatedImage,
-            img_name: type === 1 ? `RP${reportId}_1` : `RP${reportId}_2`
+            img_name: type === 1 ? `RP${reportId}_1` : type === 2 ? `RP${reportId}_2`:`RP${reportId}_MT1`
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -91,6 +90,8 @@ export default function EditReport() {
                     setImg1(updatedImage)
                 } else if (type === 2) {
                     setImg2(updatedImage)
+                } else if (type === 4) {
+                    setMethodologyImg(updatedImage)
                 }
                 notifySuccess("Image updated successfully!");
             })
@@ -127,9 +128,11 @@ export default function EditReport() {
     const [img1, setImg1] = useState('');
     const [img2, setImg2] = useState('');
     const [coverImg, setCoverImg] = useState('');
+    const [methodologyImg, setMethodologyImg] = useState('');
     const [img1View, setImg1View] = useState(false);
     const [img2View, setImg2View] = useState(false);
     const [coverImgView, setCoverImgView] = useState(false);
+    const [methodologyImgView, setMethodologyImgView] = useState(false);
 
     const config = useMemo(
         () => ({
@@ -178,6 +181,7 @@ export default function EditReport() {
         axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
             setImg1(response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '')
             setImg2(response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '')
+            setMethodologyImg(response.data.data.find(res => res.img_name.includes('_MT1'))?.img_file || '')
         })
     }
 
@@ -345,6 +349,16 @@ export default function EditReport() {
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
                         </div>
+                        <div className="relative w-full">
+                            {
+                                methodologyImgView &&
+                                <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%]`}>
+                                    <img loading="lazy" src={methodologyImg} alt="methodology-img" className='object-contain' />
+                                </div>
+                            }
+                            <div htmlFor="methodology-img" className='text-sm'>Methodology Image <span className={`text-primary underline cursor-pointer ${!methodologyImg && 'hidden'}`} onMouseEnter={() => setMethodologyImgView(true)} onMouseLeave={() => setMethodologyImgView(false)}>Preview</span> </div>
+                            <input type="file" onChange={(e) => handleFileChange(e, 4)} name="methodology-img" id="methodology-img" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
+                        </div>
                         <div className="w-full">
                             <label htmlFor="meta_title" className='text-sm'>Meta Title</label>
                             <input {...register('meta_title')} type="text" name="meta_title" id="meta_title" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Meta Title" required />
@@ -457,7 +471,7 @@ export default function EditReport() {
                                     </div>
                                     <div className='flex justify-center'>
                                         <button type='submit' onClick={addFaq} className="inline-flex items-center justify-center gap-4 px-8 py-2 mt-6 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
-                                        Save
+                                            Save
                                         </button>
                                     </div>
                                 </form>

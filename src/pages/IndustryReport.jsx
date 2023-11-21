@@ -18,6 +18,7 @@ export default function IndustryReport() {
   const [report, setReport] = useState({});
   const [relatedReportList, setRelatedReportList] = useState([]);
   const [priceList, setPriceList] = useState([]);
+  const [methodologyImg, setMethodologyImg] = useState('');
 
   const scrollToTop = (value) => {
     setSelectedTitle(value)
@@ -50,7 +51,7 @@ export default function IndustryReport() {
   }
 
   const getPriceList = () => {
-    axios.get(`${apiUrl}/price`).then(res => {
+    axios.get(`${apiUrl}/price/`).then(res => {
       setPriceList(res.data.data.reverse())
     })
   };
@@ -70,9 +71,11 @@ export default function IndustryReport() {
 
   const setBlankImage = (reportData) => {
     const parser = new DOMParser();
-    const doc = parser.parseFromString(reportData.description, "text/html");
-    const imgToModify1 = doc.querySelectorAll("img")[0];
-    const imgToModify2 = doc.querySelectorAll("img")[1];
+
+    // For Description
+    const descriptionDoc = parser.parseFromString(reportData.description, "text/html");
+    const imgToModify1 = descriptionDoc.querySelectorAll("img")[0];
+    const imgToModify2 = descriptionDoc.querySelectorAll("img")[1];
     if (imgToModify1) {
       imgToModify1.setAttribute("src", '');
       imgToModify1.style.height = '0px';
@@ -81,7 +84,17 @@ export default function IndustryReport() {
       imgToModify2.setAttribute("src", '');
       imgToModify2.style.height = '0px';
     }
-    reportData.description = doc.documentElement.outerHTML;
+    reportData.description = descriptionDoc.documentElement.outerHTML;
+
+    // For Methodology
+    const methodologyDoc = parser.parseFromString(reportData.methodology, "text/html");
+    const methodologyImgToModify1 = methodologyDoc.querySelectorAll("img")[0];
+    if (methodologyImgToModify1) {
+      methodologyImgToModify1.setAttribute("src", '');
+      methodologyImgToModify1.style.height = '0px';
+    }
+    reportData.methodology = methodologyDoc.documentElement.outerHTML;
+
     setReport(reportData)
   }
 
@@ -89,21 +102,31 @@ export default function IndustryReport() {
     axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
       let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
       let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
+      setMethodologyImg(response.data.data.find(res => res.img_name.includes('_MT1'))?.img_file || '');
 
+      const descriptionImages = document.querySelectorAll('.description-content p span img');
 
-      const allImages = document.querySelectorAll('.html-content p span img');
+      if (descriptionImages.length > 0) {
+        descriptionImages[0].src = img1 ? img1 : '';
+        descriptionImages[0].style.height = 'auto';
 
-      if (allImages.length > 0) {
-        allImages[0].src = img1 ? img1 : '';
-        allImages[0].style.height = 'auto';
-
-        if (allImages.length > 1) {
-          allImages[1].src = img2 ? img2 : '';
-          allImages[1].style.height = 'auto';
+        if (descriptionImages.length > 1) {
+          descriptionImages[1].src = img2 ? img2 : '';
+          descriptionImages[1].style.height = 'auto';
         }
       }
 
-      // updateImageSrc(img2, img1, reportData)
+    })
+  }
+
+  const setMethodologyImgInDom = () => {
+    setTimeout(() => {
+      const methodologyImages = document.querySelectorAll('.methodology-content p span img');
+      console.log(methodologyImages);
+      if (methodologyImages.length > 0) {
+        methodologyImages[0].src = methodologyImg ? methodologyImg : '';
+        methodologyImages[0].style.height = 'auto';
+      }
     })
   }
 
@@ -184,7 +207,7 @@ export default function IndustryReport() {
                 <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-primary text-white' : ''}`}>Description</div>
                 <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-primary text-white' : ''}`}>Table Of Content</div>
                 <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-primary text-white' : ''}`}>Highlights</div>
-                <div onClick={() => scrollToTop('Methodology')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
+                <div onClick={() => { scrollToTop('Methodology'); setMethodologyImgInDom(); }} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
                 <div onClick={() => scrollToTop('Request')} className={`codepen-button md:w-1/4 w-full md:mb-0 mb-4 text-sm box-border relative z-30 flex justify-center items-center border rounded-sm cursor-pointer ${selectedTitle === 'Request' ? 'font-bold' : ''}`}>
                   <span className='py-2 text-center'>Request Sample</span>
                 </div>
@@ -193,7 +216,7 @@ export default function IndustryReport() {
                 {selectedTitle === 'Description' &&
                   <div>
                     {!report.description && <ContentLoading />}
-                    <div className='html-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
+                    <div className='html-content description-content' dangerouslySetInnerHTML={{ __html: report.description }}></div>
                     {report.description && <Faq faqs={JSON.parse(report.faqs)} />}
                   </div>
                 }
@@ -209,7 +232,7 @@ export default function IndustryReport() {
                 }
                 {selectedTitle === 'Methodology' &&
                   <div>
-                    <div dangerouslySetInnerHTML={{ __html: report.methodology }}></div>
+                    <div className='html-content methodology-content' dangerouslySetInnerHTML={{ __html: report.methodology }}></div>
                   </div>
                 }
                 {selectedTitle === 'Request' &&

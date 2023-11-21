@@ -24,6 +24,7 @@ export default function AddReport() {
     const [img1, setImg1] = useState('');
     const [img2, setImg2] = useState('');
     const [coverImg, setCoverImg] = useState('');
+    const [methodologyImg, setMethodologyImg] = useState('');
     const [publishDate, setPublishDate] = useState(moment().format('YYYY-MM-DD'));
     const [faqList, setFaqList] = useState([]);
     const [question, setQuestion] = useState('');
@@ -63,8 +64,10 @@ export default function AddReport() {
                         setImg1(res.data.secure_url);
                     } else if (type === 2) {
                         setImg2(res.data.secure_url);
-                    } else {
+                    } else if (type === 3) {
                         setCoverImg(res.data.secure_url);
+                    }else {
+                        setMethodologyImg(res.data.secure_url);
                     }
                 })
                 // Cloudinary End
@@ -137,7 +140,7 @@ export default function AddReport() {
         const url = `${apiUrl}/reports/`;
         axios.post(url,
             {
-                images: [{ 'img_file': img1, 'img_name': 'RPXXX_1' }, { 'img_file': img2, 'img_name': 'RPXXX_2' }],
+                images: [{ 'img_file': img1, 'img_name': 'RPXXX_1' }, { 'img_file': img2, 'img_name': 'RPXXX_2' }, { 'img_file': methodologyImg, 'img_name': 'RPXXX_MT1' }],
                 report: {
                     ...formData,
                     faqs: JSON.stringify(faqList),
@@ -253,6 +256,10 @@ export default function AddReport() {
                                 onBlur={newContent => setMethodology(newContent)} // preferred to use only this option to update the content for performance reasons
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
+                        </div>
+                        <div className="w-full">
+                            <label htmlFor="cover" className='text-sm'>Methodology Image</label>
+                            <input type="file" onChange={(e) => handleFileChange(e, 4)} name="cover" id="cover" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
                         </div>
                         <div className="w-full">
                             <label htmlFor="meta_title" className='text-sm'>Meta Title</label>
