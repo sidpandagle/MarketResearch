@@ -6,6 +6,7 @@ import { apiUrl, categories } from '../constants'
 import axios from 'axios';
 import moment from 'moment';
 import { notifyError } from '../App';
+import SEO from '../components/SEO';
 
 const AllReport = () => {
 
@@ -43,9 +44,10 @@ const AllReport = () => {
 
   return (
     <div>
-      <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center  text-white">
-        <img loading="lazy" className='absolute flex items-center justify-center w-auto h-auto md:object-contain md:w-full' src={category.back_cover} alt="" />
-        <div className='z-10'>
+      <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
+      <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient text-white">
+        {category.back_cover && <img loading="lazy" className='absolute flex items-center justify-center w-auto h-auto md:object-contain md:w-full' src={category.back_cover} alt="" />}
+        <div className='z-10 px-4 py-2 bg-slate-800 drop-shadow'>
           {category.name && category.name.toUpperCase()}
         </div>
       </div>
@@ -71,7 +73,7 @@ const AllReport = () => {
                 <div className="px-4 mb-4 text-xl font-semibold">Research Reports in {category.name}</div>
                 {reportList.map((res, key) => {
                   return (
-                    <Link to={`/industry-report/${res.url.split(' ').join('-').toLowerCase()}/${res.id}`} key={key}>
+                    <Link to={`/industry-report/${res.url}`} key={key}>
                       <div className='group' >
                         <div className='flex flex-col gap-2 p-4 border-b-2 cursor-pointer group-hover:bg-slate-50'>
                           <div className="font-semibold group-hover:text-primary group-hover:underline">{res.title.split('').filter((res, i) => i < 160).join('')}... </div>

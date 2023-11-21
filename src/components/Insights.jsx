@@ -30,7 +30,7 @@ export default function Insights() {
                         <div className='text-5xl font-bold'>
                             <CountUpUtil startValue={consultingProjectsPerMonth / 1.6} endValue={consultingProjectsPerMonth} />
                             <span className='text-4xl text-blue-500'>+</span></div>
-                        <div className='text-sm font-semibold'>Consulting Projects <br /> per Month</div>
+                        <div className='text-sm font-semibold'>Consulting Projects <br /> </div>
                     </div>
                     <div className='flex flex-col gap-1 md:w-1/5'>
                         <div className='text-5xl font-bold'>

@@ -79,7 +79,7 @@ export default function EditReport() {
     const updateImage = (updatedImage, type) => {
         axios.post(`${apiUrl}/report_images/`, {
             img_file: updatedImage,
-            img_name: type === 1 ? `RP${reportId}_1` : type === 2 ? `RP${reportId}_2`:`RP${reportId}_MT1`
+            img_name: type === 1 ? `RP${reportId}_1` : type === 2 ? `RP${reportId}_2` : `RP${reportId}_MT1`
         }, {
             headers: {
                 'Content-Type': 'application/json',
@@ -214,7 +214,15 @@ export default function EditReport() {
                 console.error('Error:', error);
                 notifyError('Something went wrong, please try again!');
             });
+
+
+
     }
+    const [url, setUrl] = useState('');
+
+    const handleUrlChange = (e) => {
+        setUrl(e.target.value.replace(/\s/g, '-').toLowerCase());
+    };
 
     // const updateCoverImage = (cImg) => {
     //     axios.put(`${apiUrl}/reports/cover/${reportId}`, {
@@ -261,7 +269,7 @@ export default function EditReport() {
                             </div>
                             <div className="w-full">
                                 <label htmlFor="url" className='text-sm'>URL / Short Title</label>
-                                <input {...register('url')} type="text" name="url" id="url" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="URL" required />
+                                <input {...register('url')} value={url} onChange={handleUrlChange} type="text" name="url" id="url" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="URL" required />
                             </div>
                         </div>
                         <div className="w-full">

@@ -31,21 +31,21 @@ export default function IndustryReport() {
 
   const [license, setLicense] = useState('Single User License');
 
-  const { reportId } = useParams();
+  const { reportUrl } = useParams();
 
   useEffect(() => {
     getReport();
-  }, [])
+  }, [reportUrl])
 
   const getReport = () => {
-    axios.get(`${apiUrl}/reports/${reportId}`)
+    axios.get(`${apiUrl}/reports/url/${reportUrl}`)
       .then((res) => {
         setBlankImage(res.data.data);
         return res
       })
       .then((res) => {
-        getReportImages();
-        getRelatedReports(res.data.data.category);
+        getReportImages(res.data.data.id);
+        getRelatedReports(res.data.data);
       })
     getPriceList();
   }
@@ -56,10 +56,10 @@ export default function IndustryReport() {
     })
   };
 
-  const getRelatedReports = (categoryValue) => {
-    axios.get(`${apiUrl}/reports/category/${categoryValue}?page=1&per_page=3`).then(res => {
+  const getRelatedReports = (repData) => {
+    axios.get(`${apiUrl}/reports/category/${repData.category}?page=1&per_page=3`).then(res => {
       if (res.data.data.length) {
-        let filterData = res.data.data.filter(res => res.id !== Number(reportId));
+        let filterData = res.data.data.filter(res => res.id !== repData.id);
         filterData = filterData.filter((r, i) => i < 2);
         setRelatedReportList(filterData)
       } else {
@@ -98,8 +98,8 @@ export default function IndustryReport() {
     setReport(reportData)
   }
 
-  const getReportImages = () => {
-    axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
+  const getReportImages = (repId) => {
+    axios.get(`${apiUrl}/report_images/RP${repId}`).then((response) => {
       let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
       let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
       setMethodologyImg(response.data.data.find(res => res.img_name.includes('_MT1'))?.img_file || '');
@@ -183,7 +183,7 @@ export default function IndustryReport() {
               <svg className="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
               </svg>
-              <span className="text-sm font-medium text-gray-500 ms-1 md:ms-2 ">{report.url}</span>
+              <span className="text-sm font-medium text-gray-500 ms-1 md:ms-2 ">{report.url?.split('-').map(res => res[0].toUpperCase() + res.slice(1)).join(' ')}</span>
             </div>
           </li>
         </ol>
@@ -198,7 +198,7 @@ export default function IndustryReport() {
               <div className='p-4 font-semibold text-black bg-tertiary'>
                 <div className='mb-2 text-justify'>{report.title}</div>
                 <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
-                  <div className='pr-4 border-black border-r-[1px]'><span>Date:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
+                  <div className='pr-4 border-black border-r-[1px]'><span>Published:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
                   <div className='pr-4 border-black border-r-[1px]'><span>Report Code:</span> CGN{getAbrByCategory(report.category)}{report.id}</div>
                   <div ><span>Pages:</span> {report.pages}</div>
                 </div>
@@ -262,7 +262,7 @@ export default function IndustryReport() {
               <div className='flex flex-col gap-2 mt-2'>
                 {/* <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Buy Now</button>
                 <button className='w-full py-2 font-semibold text-white bg-blue-500 rounded-md text-md'>Inquiry Before Buying</button> */}
-                <Link to={`/buy-now/${reportId}/${priceList.find(res => res.license === license)?.id}`} className="inline-flex items-center justify-center font-semibold codepen-button">
+                <Link to={`/buy-now/${report.id}/${priceList.find(res => res.license === license)?.id}`} className="inline-flex items-center justify-center font-semibold codepen-button">
                   <span className='flex items-center justify-center py-2 text-center'>
                     Buy Now
                   </span>
@@ -279,10 +279,13 @@ export default function IndustryReport() {
                   {
                     relatedReportList.map((r, i) => {
                       return (
-                        <div key={i} className='flex flex-col px-4 py-2 border-t-2 cursor-pointer group hover:bg-slate-100'>
-                          <div className="font-bold group-hover:text-primary">{r.url}</div>
-                          <div className="text-sm">{r.summary.split(' ').filter((s, j) => j < 15).join(' ')}...</div>
-                        </div>
+                        // <Link key={i} to={`/industry-report/${r.url}`} onClick={() => window.location.reload()}>
+                        <Link key={i} to={`/industry-report/${r.url}`}>
+                          <div className='flex flex-col px-4 py-2 border-t-2 cursor-pointer group hover:bg-slate-100'>
+                            <div className="font-bold group-hover:text-primary">{r.url?.split('-').map(res => res[0].toUpperCase() + res.slice(1)).join(' ')}</div>
+                            <div className="text-sm">{r.summary.split(' ').filter((s, j) => j < 15).join(' ')}...</div>
+                          </div>
+                        </Link>
                       )
                     })
                   }

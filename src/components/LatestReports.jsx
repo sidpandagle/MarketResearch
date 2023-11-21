@@ -24,9 +24,15 @@ export default function LatestReports() {
     }, []);
 
     return (
-        <div className='bg-gradient'>
-
-            <div className="max-w-6xl py-12 mx-auto text-white md:pt-10 sm:px-6">
+        <div className='relative flex items-start justify-between overflow-clip'>
+            {/* <img src="/hex.jpg" alt="bgimg" className='absolute top-0 left-0 z-0 object-contain' /> */}
+            {/* <div className='absolute top-0 left-0 z-0'>
+                <img src="/abstract.jpg" alt="bgimg" className='object-contain' />
+            </div> */}
+            <div className='absolute -z-10'>
+                <img src="/abstract.jpg" alt="bgimg" className='' />
+            </div>
+            <div className="z-10 max-w-6xl py-12 mx-auto text-white md:pt-10 sm:px-6">
                 <div className='mb-8 text-3xl font-extrabold text-center'>Latest Reports</div>
                 <div className="flex items-center justify-between mt-6">
                     <div className="p" onClick={() => { my_swiper.slidePrev() }}>
@@ -68,14 +74,14 @@ export default function LatestReports() {
                                     <div className="flex flex-col justify-between p-4 text-sm md:text-justify md:w-3/5">
                                         <div>
                                             <div className='mb-2 font-bold'>
-                                                {val.url}
+                                                {val.url.split('-').map(res => res[0].toUpperCase() + res.slice(1)).join(' ')}
                                             </div>
                                             <div className='pb-4'>
                                                 {val.summary.split('...')[0].split(' ').filter((r, i) => i < 30).join(' ')}...
                                             </div>
                                         </div>
                                         <div className='flex justify-center md:justify-end'>
-                                            <Link to={`/industry-report/${val.url.split(' ').join('-').toLowerCase()}/${val.id}`}>
+                                            <Link to={`/industry-report/${val.url}`}>
                                                 <button type="button" className="inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                     Read Me
                                                 </button>

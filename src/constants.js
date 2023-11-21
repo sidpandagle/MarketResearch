@@ -7,7 +7,7 @@ export const categories = [
     { id: 3, abr: 'BAC', url: 'building-and-construction', name: 'Building & Construction', icon: `/category_icons/construction.png`,back_cover: `/category_covers/building.jpg` },
     { id: 4, abr: 'CAM', url: 'chemicals-and-materials', name: 'Chemicals & Materials', icon: `/category_icons/experiment.png`,back_cover: `/category_covers/chemicals.jpg` },
     { id: 5, abr: 'CGS', url: 'consumer-goods', name: 'Consumer Goods', icon: `/category_icons/box.png`,back_cover: `/category_covers/consumer.jpg` },
-    { id: 6, abr: 'AAD', url: 'aerospace-and-defense', name: 'Aerospace & Defense', icon: `/category_icons/defense.png`,back_cover: `/category_covers/test.jpg` },
+    { id: 6, abr: 'AAD', url: 'aerospace-and-defense', name: 'Aerospace & Defense', icon: `/category_icons/defense.png`,back_cover: `/category_covers/aero.jpg` },
     { id: 7, abr: 'EAS', url: 'electronics-and-semiconductors', name: 'Electronics & Semiconductors', icon: `/category_icons/electronics.png`,back_cover: `/category_covers/electronics.jpg` },
     { id: 8, abr: 'ENR', url: 'energy-and-natural-resources', name: 'Energy & Natural Resources', icon: `/category_icons/tools.png`,back_cover: `/category_covers/energy.jpg` },
     { id: 9, abr: 'FAB', url: 'food-and-beverages', name: 'Food & Beverages', icon: `/category_icons/carrot.png`,back_cover: `/category_covers/food.jpg` },

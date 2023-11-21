@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SEO from '../components/SEO';
 
 export default class Offering extends Component {
   render() {
@@ -7,6 +8,7 @@ export default class Offering extends Component {
     }
     return (
       <div>
+        <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
         <div className='flex justify-between max-w-screen-xl gap-2 px-4 py-4 mx-auto md:gap-8 lg:py-12 lg:px-6'>
           <div className='w-1/3 duration-200 cursor-pointer md:hover:scale-95'>
             <div onClick={() => scrollTo('section-1')} className='overflow-clip relative md:p-8 p-4 text-xs md:text-3xl font-bold  rounded-md flex justify-center md:justify-end items-end text-white h-20 md:h-[360px]'>
@@ -126,7 +128,7 @@ export default class Offering extends Component {
           <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-12 lg:px-6">
 
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/others/custom.jpg'} alt="feature image 2" />
+              <img loading="lazy" className="hidden w-full mb-4 rounded-lg lg:mb-0 lg:flex" src={'/others/custom2.jpg'} alt="feature image 2" />
               <div className="text-gray-500 sm:text-lg -400">
                 <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Tailored research solutions for unique business needs.</h2>
                 <p className="mb-2 font-light lg:text-xl">Our custom research solutions offer personalized data analysis, in-depth market research, and strategic insights aligned with your specific business requirements.</p>

@@ -45,7 +45,7 @@ function App() {
           <Route path="/press-release/:pressReleaseId" element={<PressRelease />} />
           <Route path="/offering" element={<Offering />} />
           <Route path="/buy-now/:reportId/:buyId" element={<BuyNow />} />
-          <Route path="/industry-report/:reportUrl/:reportId" element={<IndustryReport />} />
+          <Route path="/industry-report/:reportUrl" element={<IndustryReport />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />

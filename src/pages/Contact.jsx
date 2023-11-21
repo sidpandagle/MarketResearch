@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import SEO from '../components/SEO';
 
 export default class Contact extends Component {
   render() {
     return (
       <div>
+        <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
         <section className="relative overflow-hidden bg-white -z-10">
           <div className="container">
             <div className="flex flex-wrap py-10 mx-4 md:py-20 md:mx-10 lg:justify-between">

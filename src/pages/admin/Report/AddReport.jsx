@@ -66,7 +66,7 @@ export default function AddReport() {
                         setImg2(res.data.secure_url);
                     } else if (type === 3) {
                         setCoverImg(res.data.secure_url);
-                    }else {
+                    } else {
                         setMethodologyImg(res.data.secure_url);
                     }
                 })
@@ -167,6 +167,13 @@ export default function AddReport() {
             });
     }
 
+
+    const [url, setUrl] = useState('');
+
+    const handleUrlChange = (e) => {
+        setUrl(e.target.value.replace(/\s/g, '-').toLowerCase());
+    };
+
     return (
         <div>
             <div className="max-w-6xl px-4 py-2 m-6 mx-auto border rounded-md md:py-12 md:pt-8 sm:px-6">
@@ -191,7 +198,7 @@ export default function AddReport() {
                             </div>
                             <div className="w-full">
                                 <label htmlFor="url" className='text-sm'>URL / Short Title</label>
-                                <input {...register('url')} type="text" name="url" id="url" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="URL" required />
+                                <input {...register('url')} type="text" name="url" id="url" value={url} onChange={handleUrlChange} className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="URL" required />
                             </div>
                         </div>
                         <div className="w-full">

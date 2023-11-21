@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import ReturnPolicy from '../components/ReturnPolicy';
 import Terms from '../components/Terms';
 import Privacy from '../components/Privacy';
+import SEO from '../components/SEO';
 
 export default function BuyNow() {
 
@@ -51,7 +52,7 @@ export default function BuyNow() {
 
 
     const getPriceList = () => {
-        axios.get(`${apiUrl}/price`).then(res => {
+        axios.get(`${apiUrl}/price/`).then(res => {
             setLicense(res.data.data.find(res => res.id === Number(buyId)))
         })
     };
@@ -59,6 +60,7 @@ export default function BuyNow() {
 
     return (
         <div className="p-4 mx-auto max-w-7xl sm:px-6">
+            <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
             <div className="py-2 text-center md:pt-2 md:text-left">
                 <div className="pb-12 mx-auto max-w-8xl md:pb-10">
                     <div className='flex flex-col gap-4 md:flex-row'>
@@ -74,7 +76,7 @@ export default function BuyNow() {
                                             <div>
                                                 <div className='font-semibold'>
                                                     {/* {report.title.split('2030')[0] + '2030'} */}
-                                                    {report.url}
+                                                    {report.url?.split('-').map(res => res[0].toUpperCase() + res.slice(1)).join(' ')}
                                                 </div>
                                                 <div className='flex justify-center pt-2 text-sm md:justify-normal'>
                                                     <div className='pr-4 border-r-2 border-slate-300'>

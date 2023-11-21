@@ -6,6 +6,7 @@ import { apiUrl, categories } from '../constants'
 import axios from 'axios';
 import moment from 'moment';
 import { notifyError } from '../App';
+import SEO from '../components/SEO';
 
 const SearchList = () => {
 
@@ -33,6 +34,7 @@ const SearchList = () => {
 
   return (
     <div>
+      <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
       {/* <div className="mb-6 md:text-3xl text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient  text-white">{category.toUpperCase()}</div> */}
       <div className="max-w-6xl px-4 mx-auto sm:px-6">
         <div className="py-2 text-center md:pt-10 md:text-left">

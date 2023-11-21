@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
+import SEO from '../components/SEO';
 
 export default class Careers extends Component {
     render() {
         return (
 
             <div>
+                <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
                 <div className="max-w-6xl p-4 mx-auto sm:px-6">
                     <div className='py-8 text-center'>
                         <div className='mb-4 text-3xl font-extrabold tracking-tight text-gray-900 '>
