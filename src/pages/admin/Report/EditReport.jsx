@@ -156,6 +156,7 @@ export default function EditReport() {
                 setValue('title', title);
                 setValue('category', category);
                 setValue('url', url);
+                setUrl(url)
                 setValue('meta_title', meta_title);
                 setValue('meta_desc', meta_desc);
                 setValue('meta_keyword', meta_keyword);
