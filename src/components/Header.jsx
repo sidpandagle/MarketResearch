@@ -26,7 +26,7 @@ const Navbar = () => {
     // #F1D763
     // #636363
     // #F163E0
-    < div >
+    < div className="z-20">
       <header className='w-full bg-white border-b shadow-lg border-slate-200'>
         <div className="relative flex items-center justify-between md:mx-4">
           <div className="px-4">
