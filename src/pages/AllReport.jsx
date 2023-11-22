@@ -14,6 +14,8 @@ const AllReport = () => {
   const [category, setCategory] = useState({});
   const [categoryList, setCategoryList] = useState([]);
   const [reportList, setReportList] = useState([]);
+  const [reportCount, setReportCount] = useState(0);
+  const [page, setPage] = useState(1);
 
   const scrollToTop = () => {
     window.scroll(0, 0)
@@ -22,15 +24,21 @@ const AllReport = () => {
   useEffect(() => {
     setCategory(categories.find(res => res.url === categoryUrl))
     axios.get(`${apiUrl}/reports/category/category_count`).then(res => {
+      let rc = 0;
       let categoryList = res.data.data.map(res => {
         res.id = categories.find(result => result.name === res.category).id;
         res.back_cover = categories.find(result => result.name === res.category).back_cover;
+        rc += res.count;
         return res;
       })
+      setReportCount(rc)
       setCategoryList(categoryList)
     })
+  }, [categoryUrl]);
+
+  useEffect(() => {
     if (categoryUrl) {
-      axios.get(`${apiUrl}/reports/category/${categories.find(res => res.url === categoryUrl).name}?page=1&per_page=100`).then(res => {
+      axios.get(`${apiUrl}/reports/category/${categories.find(res => res.url === categoryUrl).name}?page=${page}&per_page=8`).then(res => {
         let reportList = res.data.data;
         if (reportList.length) {
           setReportList(reportList)
@@ -40,7 +48,7 @@ const AllReport = () => {
         }
       })
     }
-  }, [categoryUrl]);
+  }, [categoryUrl, page]);
 
   return (
     <div>
@@ -62,7 +70,7 @@ const AllReport = () => {
                     {categoryList.map((res, key) => {
                       return (
                         <Link key={key} to={`/category/${categories.find(r => r.name === res.category)?.url}`} onClick={scrollToTop}>
-                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${res.category === category.namve && 'text-primary'} ${key < categoryList.length - 1 && 'border-b-2'}`} key={key}>{res.category} ({res.count})</div>
+                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${res.category === category.name && 'text-primary'} ${key < categoryList.length - 1 && 'border-b-2'}`} key={key}>{res.category} ({res.count})</div>
                         </Link>
                       )
                     })}
@@ -88,6 +96,33 @@ const AllReport = () => {
                     </Link>
                   )
                 })}
+                <div className='text-center'>
+                  <nav >
+                    <ul className="cursor-pointer inline-flex -space-x-px text-sm  my-4">
+                      <li>
+                        <div onClick={() => (page - 1) > 0 ? setPage(page - 1) : ''} className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</div>
+                      </li>
+                      {(page - 2) > 0 && <li>
+                        <div onClick={() => setPage(page - 2)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page - 2}</div>
+                      </li>}
+                      {(page - 1) > 0 && <li>
+                        <div onClick={() => setPage(page - 1)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page - 1}</div>
+                      </li>}
+                      <li>
+                        <div className={`flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 `}>{page}</div>
+                      </li>
+                      {(page + 1) <= (reportCount / 8) && <li>
+                        <div onClick={() => setPage(page + 1)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page + 1}</div>
+                      </li>}
+                      {(page + 2) <= (reportCount / 8) && <li>
+                        <div onClick={() => setPage(page + 2)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page + 2}</div>
+                      </li>}
+                      <li>
+                        <div onClick={() => (page + 1) <= (reportCount / 8) ? setPage(page + 1) : ''} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</div>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
               </div>
             </div>
           </div>

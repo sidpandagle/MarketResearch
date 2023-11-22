@@ -67,7 +67,7 @@ export default function RequestSample({ reportTitle, enquiryType, closeModal }) 
     }
     return (
         <section className="">
-            <div className="">
+            <div className="my-4">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid gap-4 sm:grid-cols-2 sm:gap-4">
                         <div className="w-full">

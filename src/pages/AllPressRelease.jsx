@@ -13,6 +13,8 @@ export default function AllPressRelease() {
   const [category, setCategory] = useState({});
   const [categoryList, setCategoryList] = useState([]);
   const [pressReleaseList, setPressReleaseList] = useState([]);
+  const [reportCount, setReportCount] = useState(0);
+  const [page, setPage] = useState(1);
 
   const scrollToTop = () => {
     window.scroll(0, 0)
@@ -21,14 +23,19 @@ export default function AllPressRelease() {
   useEffect(() => {
     setCategory(categories.find(res => res.id === Number(categoryId)))
     axios.get(`${apiUrl}/press_release/category/category_count`).then(res => {
+      let rc = 0;
       let categoryList = res.data.data.map(res => {
         res.id = categories.find(result => result.name === res.category).id;
+        rc += res.count;
         return res;
       })
+      setReportCount(rc)
       setCategoryList(categoryList)
     })
+  }, [categoryId]);
+  useEffect(() => {
     if (categoryId) {
-      axios.get(`${apiUrl}/press_release/category/${categories.find(res => res.id === Number(categoryId)).name}?page=1&per_page=100`).then(res => {
+      axios.get(`${apiUrl}/press_release/category/${categories.find(res => res.id === Number(categoryId)).name}?page=${page}&per_page=8`).then(res => {
         let reportList = res.data.data;
         if (reportList.length) {
           setPressReleaseList(reportList)
@@ -38,7 +45,7 @@ export default function AllPressRelease() {
         }
       })
     }
-  }, [categoryId]);
+  }, [categoryId, page]);
   return (
     <div>
       <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
@@ -59,7 +66,7 @@ export default function AllPressRelease() {
                     {categoryList.map((res, key) => {
                       return (
                         <Link key={key} to={`/all-press-release/${res.id}`} onClick={scrollToTop}>
-                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${res.category == category && 'text-primary'} ${key < categoryList.length - 1 && 'border-b-2'}`} key={key}>{res.category} ({res.count})</div>
+                          <div className={`py-2 text-sm cursor-pointer hover:text-primary ${res.category === category.name && 'text-primary'} ${key < categoryList.length - 1 && 'border-b-2'}`} key={key}>{res.category} ({res.count})</div>
                         </Link>
                       )
                     })}
@@ -87,6 +94,34 @@ export default function AllPressRelease() {
                     </Link>
                   )
                 })}
+
+                <div className='text-center'>
+                  <nav >
+                    <ul className="cursor-pointer inline-flex -space-x-px text-sm  my-4">
+                      <li>
+                        <div onClick={() => (page - 1) > 0 ? setPage(page - 1) : ''} className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">Previous</div>
+                      </li>
+                      {(page - 2) > 0 && <li>
+                        <div onClick={() => setPage(page - 2)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page - 2}</div>
+                      </li>}
+                      {(page - 1) > 0 && <li>
+                        <div onClick={() => setPage(page - 1)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page - 1}</div>
+                      </li>}
+                      <li>
+                        <div className={`flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 `}>{page}</div>
+                      </li>
+                      {(page + 1) <= (reportCount / 8) && <li>
+                        <div onClick={() => setPage(page + 1)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page + 1}</div>
+                      </li>}
+                      {(page + 2) <= (reportCount / 8) && <li>
+                        <div onClick={() => setPage(page + 2)} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">{page + 2}</div>
+                      </li>}
+                      <li>
+                        <div onClick={() => (page + 1) <= (reportCount / 8) ? setPage(page + 1) : ''} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">Next</div>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
               </div>
             </div>
           </div>
