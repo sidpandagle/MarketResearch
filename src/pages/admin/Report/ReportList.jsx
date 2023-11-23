@@ -3,7 +3,7 @@ import { notifySuccess, notifyError } from '../../../App';
 import axios from 'axios';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { categories, getAbrByCategory, apiUrl } from '../../../constants';
+import { apiUrl } from '../../../constants';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -26,7 +26,7 @@ export default function ReportList() {
                 .then(response => {
                     console.log(response);
                     let repList = response.data.data.map(res => {
-                        res.abr = getAbrByCategory(res.category);
+                        res.abr = 'XXX';
                         return res;
                     })
                     setReportList(repList.reverse())
@@ -44,7 +44,7 @@ export default function ReportList() {
             .then(response => {
                 console.log(response);
                 let repList = response.data.data.map(res => {
-                    res.abr = getAbrByCategory(res.name);
+                    res.abr = 'XXX';
                     return res;
                 })
                 setReportList(repList.reverse())

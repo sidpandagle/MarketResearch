@@ -5,7 +5,7 @@ import axios from 'axios';
 import JoditEditor from 'jodit-react';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { constConfig, categories, apiUrl } from '../../../constants';
+import { constConfig, apiUrl, getCategories } from '../../../constants';
 import { useNavigate } from "react-router-dom";
 import moment from 'moment/moment';
 import imageCompression from 'browser-image-compression';
@@ -29,6 +29,8 @@ export default function AddReport() {
     const [faqList, setFaqList] = useState([]);
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
+    const [categories, setCategories] = useState([]);
+  
 
     const addFaq = () => {
         setFaqList([...faqList, { question: question, answer: answer }])
@@ -72,23 +74,6 @@ export default function AddReport() {
                 })
                 // Cloudinary End
 
-                // BASE64 Start
-                // const reader = new FileReader();
-                // reader.onload = () => {
-                //     const base64 = reader.result;
-                //     if (type === 1) {
-                //         console.log(base64)
-                //         setImg1(base64);
-                //     } else if (type === 2) {
-                //         console.log(base64)
-                //         setImg2(base64);
-                //     } else {
-                //         console.log(base64)
-                //         setCoverImg(base64);
-                //     }   
-                // };
-                // reader.readAsDataURL(compressedFile);
-                // BASE64 End
             }
         } catch (error) {
             console.log(error);
@@ -107,6 +92,7 @@ export default function AddReport() {
 
     useEffect(() => {
         setValue('pages', '250');
+        getCategoryList()
     }, [])
 
     const navigate = useNavigate();
@@ -173,6 +159,13 @@ export default function AddReport() {
     const handleUrlChange = (e) => {
         setUrl(e.target.value.replace(/\s/g, '-').toLowerCase());
     };
+
+    
+  const getCategoryList = () => {
+    getCategories().then(data => {
+      setCategories(data)
+    });
+  }
 
     return (
         <div>

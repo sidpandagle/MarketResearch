@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { apiUrl, categories } from '../constants';
+import { apiUrl} from '../constants';
 import moment from 'moment';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -57,7 +57,7 @@ export default function PressRelease() {
                                     <svg className="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
                                     </svg>
-                                    <Link to={`/all-press-release/${categories.find(res => res.name === pressRelease.category)?.id}`}>
+                                    <Link to={`/all-press-release/${pressRelease.catgory_id}`}>
                                         <div className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{pressRelease.category}</div>
                                     </Link>
                                 </div>
@@ -99,11 +99,11 @@ export default function PressRelease() {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    Pages: {report.pages}
+                                                    Pages: {report?.pages}
                                                 </div>
                                             </div>
                                             <div className='flex flex-col gap-4 mt-4 md:flex-row md:mt-0'>
-                                                <Link to={`/buy-now/${String(report.id)}/1`}>
+                                                <Link to={`/buy-now/${String(report?.id)}/1`}>
                                                     <button className="inline-flex items-center justify-center gap-4 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md w-44 text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                         Buy Now
                                                     </button>
@@ -140,7 +140,7 @@ export default function PressRelease() {
                                 <svg height={24} width={24} onClick={handleFormClose} className="cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" /><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#1C274C" /> </g></svg>
                             </div>
                             <div className="h-[82vh] overflow-auto text-sm md:text-md">
-                                <RequestSample reportTitle={report.title} enquiryType={enquiryType} closeModal={handleFormClose} />
+                                <RequestSample reportTitle={report?.title} enquiryType={enquiryType} closeModal={handleFormClose} />
                             </div>
                         </div>
                     </div>

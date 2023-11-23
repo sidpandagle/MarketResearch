@@ -41,7 +41,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryUrl" element={<AllReport />} />
-          <Route path="/all-press-release/:categoryId" element={<AllPressRelease />} />
+          <Route path="/all-press-release/:categoryUrl" element={<AllPressRelease />} />
           <Route path="/press-release/:pressReleaseId" element={<PressRelease />} />
           <Route path="/offering" element={<Offering />} />
           <Route path="/buy-now/:reportId/:buyId" element={<BuyNow />} />

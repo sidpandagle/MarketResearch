@@ -5,7 +5,7 @@ import axios from 'axios';
 import JoditEditor from 'jodit-react';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { constConfig, categories, apiUrl } from '../../../constants';
+import { constConfig, apiUrl, getCategories } from '../../../constants';
 import { useNavigate, useParams } from "react-router-dom";
 import imageCompression from 'browser-image-compression';
 
@@ -25,6 +25,7 @@ export default function EditReport() {
     const [faqList, setFaqList] = useState([]);
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
+    const [categories, setCategories] = useState([]);
 
     const addFaq = () => {
         setFaqList([...faqList, { question: question, answer: answer }])
@@ -32,6 +33,13 @@ export default function EditReport() {
         setAnswer('')
         handleFormClose();
     }
+
+    
+  const getCategoryList = () => {
+    getCategories().then(data => {
+      setCategories(data)
+    });
+  }
 
 
     const handleFileChange = async (event, type) => {
@@ -143,6 +151,7 @@ export default function EditReport() {
 
 
     useEffect(() => {
+        getCategoryList();
         axios.get(`${apiUrl}/reports/${reportId}`)
             .then(response => {
                 const reportData = response.data.data;

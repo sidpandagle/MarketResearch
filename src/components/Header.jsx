@@ -1,10 +1,13 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { categories } from '../constants'
+import { apiUrl, getCategories } from "../constants";
+import { notifyError } from "../App";
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isCategoryOpen, setCategoryOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
 
   function redirectToCategory() {
     setCategoryOpen(!isCategoryOpen);
@@ -12,6 +15,7 @@ const Navbar = () => {
   }
 
   useEffect(() => {
+    getCategoryList();
     document.addEventListener('mouseup', function (e) {
       const categoryDropDown = document.getElementById('openedCategoryDropDown');
       if (categoryDropDown && !categoryDropDown.contains(e.target)) {
@@ -20,12 +24,13 @@ const Navbar = () => {
     });
   }, [])
 
+  const getCategoryList = () => {
+    getCategories().then(data => {
+      setCategories(data)
+    });
+  }
+
   return (
-    // #F17B63
-    // #63F188
-    // #F1D763
-    // #636363
-    // #F163E0
     < div className="z-20">
       <header className='w-full bg-white border-b shadow-lg border-slate-200'>
         <div className="relative flex items-center justify-between md:mx-4">
@@ -92,7 +97,7 @@ const Navbar = () => {
                     }
                   </div >
                   <div className="relative">
-                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/all-press-release/1">Press Release</Link>
+                    <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/all-press-release/agriculture">Press Release</Link>
                   </div>
                   <div className="relative">
                     <Link className='flex py-2 text-base font-medium lg:ml-12 lg:inline-flex' onClick={() => { setMenuOpen(!isMenuOpen); setCategoryOpen(false) }} to="/offering">Offerings</Link>

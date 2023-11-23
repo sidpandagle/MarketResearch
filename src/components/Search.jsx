@@ -1,13 +1,16 @@
 import React, { Component, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { categories } from '../constants'
 import { useNavigate } from "react-router-dom";
 import { notifyError } from '../App';
+import { getCategories } from '../constants';
+import { useEffect } from 'react';
 
 export default function Search() {
     const navigate = useNavigate();
     const [triple, setTriple] = useState(0);
     const [keyword, setKeyword] = useState('');
+    const [categories, setCategories] = useState([]);
+
     const redirectToReportList = () => {
         setTriple(triple + 1)
         if (triple === 2) {
@@ -32,14 +35,24 @@ export default function Search() {
             handleSearch();
         }
     }
-    
+
     const handleSearch = () => {
-        if(keyword){
+        if (keyword) {
             navigate(`/search/${keyword}`)
-        }else{
+        } else {
             notifyError('Enter search keyword')
         }
     }
+
+
+    const getCategoryList = () => {
+        getCategories().then(data => {
+            setCategories(data)
+        });
+    }
+    useEffect(() => {
+        getCategoryList();
+    }, [])
 
 
     return (

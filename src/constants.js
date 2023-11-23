@@ -1,27 +1,7 @@
+import axios from "axios"
+
 // export const apiUrl = 'http://localhost:8000'
 export const apiUrl = 'https://congapi.178765.xyz'
-
-export const categories = [
-    { id: 1, abr: 'AGR', url: 'agriculture', name: 'Agriculture', icon: `/category_icons/agriculture.png`,back_cover: `/category_covers/agri.jpg` },
-    { id: 2, abr: 'AAT', url: 'automotive-and-transportation', name: 'Automotive & Transportation', icon: `/category_icons/automotive.png`,back_cover: `/category_covers/automative.jpg` },
-    { id: 3, abr: 'BAC', url: 'building-and-construction', name: 'Building & Construction', icon: `/category_icons/construction.png`,back_cover: `/category_covers/building.jpg` },
-    { id: 4, abr: 'CAM', url: 'chemicals-and-materials', name: 'Chemicals & Materials', icon: `/category_icons/experiment.png`,back_cover: `/category_covers/chemicals.jpg` },
-    { id: 5, abr: 'CGS', url: 'consumer-goods', name: 'Consumer Goods', icon: `/category_icons/box.png`,back_cover: `/category_covers/consumer.jpg` },
-    { id: 6, abr: 'AAD', url: 'aerospace-and-defense', name: 'Aerospace & Defense', icon: `/category_icons/defense.png`,back_cover: `/category_covers/aero.jpg` },
-    { id: 7, abr: 'EAS', url: 'electronics-and-semiconductors', name: 'Electronics & Semiconductors', icon: `/category_icons/electronics.png`,back_cover: `/category_covers/electronics.jpg` },
-    { id: 8, abr: 'ENR', url: 'energy-and-natural-resources', name: 'Energy & Natural Resources', icon: `/category_icons/tools.png`,back_cover: `/category_covers/energy.jpg` },
-    { id: 9, abr: 'FAB', url: 'food-and-beverages', name: 'Food & Beverages', icon: `/category_icons/carrot.png`,back_cover: `/category_covers/food.jpg` },
-    { id: 10, abr: 'HLS', url: 'healthcare-and-life-sciences', name: 'Healthcare & Life Sciences', icon: `/category_icons/cross.png`,back_cover: `/category_covers/healthcare.jpg` },
-    { id: 11, abr: 'HEG', url: 'heavy-engineering', name: 'Heavy Engineering', icon: `/category_icons/automation.png`,back_cover: `/category_covers/heavy_engg.jpg` },
-    { id: 12, abr: 'IAT', url: 'it-and-telecom', name: 'IT & Telecom', icon: `/category_icons/telecom.png`,back_cover: `/category_covers/it.jpg` },
-    { id: 13, abr: 'PAC', url: 'packaging', name: 'Packaging', icon: `/category_icons/packaging.png`,back_cover: `/category_covers/packaging.jpg` },
-    { id: 14, abr: 'PHR', url: 'pharmaceutical', name: 'Pharmaceutical', icon: `/category_icons/patient.png`,back_cover: `/category_covers/pharma.jpg` },
-]
-
-
-export const getAbrByCategory = (category_name) => {
-    return categories.find(res => res.name === category_name)?.abr || '';
-}
 
 export const reCaptchaKey = '6Ldr4ucoAAAAAKwW2FX-bCJIo6YHztxzf97Y_Tl8'
 
@@ -126,5 +106,17 @@ export const constConfig =
         insertUnorderedList: 'ctrl+shift+8',
         openSearchDialog: 'ctrl+f',
         openReplaceDialog: 'ctrl+r'
+    }
+}
+
+
+export const getCategories = async () => {
+    if (localStorage.getItem('category_list')) {
+        return JSON.parse(localStorage.getItem('category_list'));
+    } else {
+        return await axios.get(`${apiUrl}/category/`).then(res => {
+            localStorage.setItem('category_list', JSON.stringify(res.data.data))
+            return res.data.data
+        })
     }
 }

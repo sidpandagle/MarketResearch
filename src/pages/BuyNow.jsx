@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import BuyNowForm from '../components/BuyNowForm'
 import { useParams } from 'react-router-dom'
-import { apiUrl, getAbrByCategory } from '../constants';
+import { apiUrl } from '../constants';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -81,7 +81,8 @@ export default function BuyNow() {
                                                 <div className='flex justify-center pt-2 text-sm md:justify-normal'>
                                                     <div className='pr-4 border-r-2 border-slate-300'>
                                                         <div>Report ID</div>
-                                                        <div>CNG{getAbrByCategory(report.category)}{report.id}</div>
+                                                        {/* <div>CNG{getAbrByCategory(report.category)}{report.id}</div> */}
+                                                        <div>CNG{report.category_url}{report.id}</div>
                                                     </div>
                                                     <div className='pl-4'>
                                                         <div>Category</div>

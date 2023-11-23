@@ -5,7 +5,7 @@ import axios from 'axios';
 import JoditEditor from 'jodit-react';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { constConfig, categories, apiUrl } from '../../../constants';
+import { constConfig, apiUrl, getCategories } from '../../../constants';
 import { useNavigate, useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -34,6 +34,7 @@ export default function EditPressRelease() {
     const [reportName, setReportName] = useState('');
     const [reportId, setReportId] = useState(0);
     const [coverImgView, setCoverImgView] = useState(false);
+    const [categories, setCategories] = useState([]);
 
     const config = useMemo(
         () => ({
@@ -100,7 +101,14 @@ export default function EditPressRelease() {
             })
     }
 
+    const getCategoryList = () => {
+        getCategories().then(data => {
+            setCategories(data)
+        });
+    }
+
     useEffect(() => {
+        getCategoryList();
         axios.get(`${apiUrl}/press_release/${pressReleaseId}`)
             .then(response => {
                 const pressReleaseData = response.data.data;
@@ -167,6 +175,12 @@ export default function EditPressRelease() {
                 notifyError('Something went wrong, please try again!');
             });
     }
+    const [url, setUrl] = useState('');
+
+    const handleUrlChange = (e) => {
+        setUrl(e.target.value.replace(/\s/g, '-').toLowerCase());
+    };
+
 
     return (
         <div>
@@ -183,7 +197,7 @@ export default function EditPressRelease() {
                         <div className='flex justify-between gap-2'>
                             <div className="w-full">
                                 <label htmlFor="url" className='text-sm'>Short Title</label>
-                                <input {...register('url')} type="text" name="url" id="url" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Short Title" required />
+                                <input {...register('url')} value={url} onChange={handleUrlChange} type="text" name="url" id="url" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Short Title" required />
                             </div>
                             {/* <div className="w-full">
                                 <label htmlFor="cover_img" className='text-sm'>Cover Image</label>
