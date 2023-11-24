@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { apiUrl } from '../constants';
+import { apiUrl, toCapitalCase } from '../constants';
 import { notifyError } from '../App';
 
 export default function LatestReports() {
@@ -24,13 +24,13 @@ export default function LatestReports() {
     }, []);
 
     return (
-        <div className='relative flex items-start justify-between overflow-clip'>
+        <div className='relative overflow-clip'>
             {/* <img src="/hex.jpg" alt="bgimg" className='absolute top-0 left-0 z-0 object-contain' /> */}
             {/* <div className='absolute top-0 left-0 z-0'>
                 <img src="/abstract.jpg" alt="bgimg" className='object-contain' />
             </div> */}
-            <div className='absolute -z-10'>
-                <img src="/abstract.jpg" alt="bgimg" className='' />
+            <div className='absolute w-full h-full -z-10 bg-gradient'>
+                <img src="/abstract.jpg" alt="bgimg" className='hidden md:block' />
             </div>
             <div className="z-10 max-w-6xl py-12 mx-auto text-white md:pt-10 sm:px-6">
                 <div className='mb-8 text-3xl font-extrabold text-center'>Latest Reports</div>
@@ -74,7 +74,7 @@ export default function LatestReports() {
                                     <div className="flex flex-col justify-between p-4 text-sm md:text-justify md:w-3/5">
                                         <div>
                                             <div className='mb-2 font-bold'>
-                                                {val.url.split('-').map(res => res[0].toUpperCase() + res.slice(1)).join(' ')}
+                                                {toCapitalCase(val.url)}
                                             </div>
                                             <div className='pb-4'>
                                                 {val.summary.split('...')[0].split(' ').filter((r, i) => i < 30).join(' ')}...

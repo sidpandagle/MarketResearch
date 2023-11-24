@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 export default class Services extends Component {
     render() {
         return (
-            <div className='relative flex items-center justify-between text-white overflow-clip'>
+            <div className='relative text-white overflow-clip'>
 
-                <div className='absolute -z-10'>
-                    <img src="/abstract.jpg" alt="bgimg" className='' />
+                <div className='absolute flex items-center justify-between w-full h-full -z-10 bg-gradient'>
+                    <img src="/abstract.jpg" alt="bgimg" className='hidden md:block' />
                 </div>
                 <div className="px-4 mx-auto max-w-7xl sm:px-6">
                     <div className="pt-12 md:py-12 md:pt-10">

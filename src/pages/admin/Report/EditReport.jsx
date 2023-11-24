@@ -34,12 +34,12 @@ export default function EditReport() {
         handleFormClose();
     }
 
-    
-  const getCategoryList = () => {
-    getCategories().then(data => {
-      setCategories(data)
-    });
-  }
+
+    const getCategoryList = () => {
+        getCategories().then(data => {
+            setCategories(data)
+        });
+    }
 
 
     const handleFileChange = async (event, type) => {
@@ -98,9 +98,10 @@ export default function EditReport() {
                     setImg1(updatedImage)
                 } else if (type === 2) {
                     setImg2(updatedImage)
-                } else if (type === 4) {
-                    setMethodologyImg(updatedImage)
                 }
+                // else if (type === 4) {
+                //     setMethodologyImg(updatedImage)
+                // }
                 notifySuccess("Image updated successfully!");
             })
             .catch(error => {
@@ -123,24 +124,24 @@ export default function EditReport() {
 
     const descriptionEditor = useRef(null);
     const tocEditor = useRef(null);
-    const methodologyEditor = useRef(null);
+    // const methodologyEditor = useRef(null);
     const highlightsEditor = useRef(null);
 
     const { register, handleSubmit, setValue } = useForm();
 
     const [description, setDescription] = useState('');
-    const [methodology, setMethodology] = useState('');
+    // const [methodology, setMethodology] = useState('');
     const [toc, setToc] = useState('');
     const [highlights, setHighlights] = useState('');
     const [summary, setSummary] = useState('');
     const [img1, setImg1] = useState('');
     const [img2, setImg2] = useState('');
     const [coverImg, setCoverImg] = useState('');
-    const [methodologyImg, setMethodologyImg] = useState('');
+    // const [methodologyImg, setMethodologyImg] = useState('');
     const [img1View, setImg1View] = useState(false);
     const [img2View, setImg2View] = useState(false);
     const [coverImgView, setCoverImgView] = useState(false);
-    const [methodologyImgView, setMethodologyImgView] = useState(false);
+    // const [methodologyImgView, setMethodologyImgView] = useState(false);
 
     const config = useMemo(
         () => ({
@@ -157,13 +158,13 @@ export default function EditReport() {
                 const reportData = response.data.data;
                 // Assuming that reportData contains fields like description, methodology, toc, and highlights
                 setDescription(reportData.description);
-                setMethodology(reportData.methodology);
+                // setMethodology(reportData.methodology);
                 setToc(reportData.toc);
                 setHighlights(reportData.highlights);
 
-                const { title, category, url, meta_title, meta_desc, meta_keyword, pages, created_date, faqs, cover_img } = reportData;
+                const { title, category_id, url, meta_title, meta_desc, meta_keyword, pages, created_date, faqs, cover_img } = reportData;
                 setValue('title', title);
-                setValue('category', category);
+                setValue('category_id', category_id);
                 setValue('url', url);
                 setUrl(url)
                 setValue('meta_title', meta_title);
@@ -174,8 +175,8 @@ export default function EditReport() {
                 setValue('created_date', created_date);
                 setCoverImg(cover_img);
 
-                if (reportData.faqs) {
-                    setFaqList(JSON.parse(reportData.faqs))
+                if (faqs) {
+                    setFaqList(JSON.parse(faqs))
                 }
                 getReportImages();
             })
@@ -191,7 +192,7 @@ export default function EditReport() {
         axios.get(`${apiUrl}/report_images/RP${reportId}`).then((response) => {
             setImg1(response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '')
             setImg2(response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '')
-            setMethodologyImg(response.data.data.find(res => res.img_name.includes('_MT1'))?.img_file || '')
+            // setMethodologyImg(response.data.data.find(res => res.img_name.includes('_MT1'))?.img_file || '')
         })
     }
 
@@ -200,13 +201,13 @@ export default function EditReport() {
         console.log(formData)
         console.log(toc)
         console.log(highlights)
-        console.log(methodology)
+        // console.log(methodology)
         axios.put(`${apiUrl}/reports/${reportId}`, {
             ...formData,
             id: reportId,
             summary: summary,
             description: description,
-            methodology: methodology,
+            // methodology: methodology,
             toc: toc,
             highlights: highlights,
             faqs: JSON.stringify(faqList),
@@ -267,12 +268,12 @@ export default function EditReport() {
                         </div>
                         <div className='flex justify-between gap-2'>
                             <div className="w-full">
-                                <label htmlFor="category" className='text-sm'>Category</label>
-                                <select {...register('category')} id="category" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+                                <label htmlFor="category_id" className='text-sm'>Category</label>
+                                <select {...register('category_id')} id="category_id" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
                                     <option value="">Select Category</option>
                                     {categories.map((res, key) => {
                                         return (
-                                            <option key={key} value={res.name}>{res.name}</option>
+                                            <option key={key} value={res.id}>{res.name}</option>
                                         )
                                     })}
                                 </select>
@@ -355,9 +356,8 @@ export default function EditReport() {
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
                         </div>
-                        <div className="w-full">
+                        {/* <div className="w-full">
                             <label htmlFor="methodology" className='text-sm'>Methodology</label>
-                            {/* <input {...register('methodology')} type="text" name="methodology" id="methodology" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Methodology" required /> */}
                             <JoditEditor
                                 ref={methodologyEditor}
                                 value={methodology}
@@ -366,8 +366,8 @@ export default function EditReport() {
                                 onBlur={newContent => setMethodology(newContent)} // preferred to use only this option to update the content for performance reasons
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
-                        </div>
-                        <div className="relative w-full">
+                        </div> */}
+                        {/* <div className="relative w-full">
                             {
                                 methodologyImgView &&
                                 <div className={`absolute overflow-clip shadow-md w-80 bg-white p-4 rounded-md border h-40 flex justify-center items-center left-0 bottom-[100%]`}>
@@ -376,7 +376,7 @@ export default function EditReport() {
                             }
                             <div htmlFor="methodology-img" className='text-sm'>Methodology Image <span className={`text-primary underline cursor-pointer ${!methodologyImg && 'hidden'}`} onMouseEnter={() => setMethodologyImgView(true)} onMouseLeave={() => setMethodologyImgView(false)}>Preview</span> </div>
                             <input type="file" onChange={(e) => handleFileChange(e, 4)} name="methodology-img" id="methodology-img" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
-                        </div>
+                        </div> */}
                         <div className="w-full">
                             <label htmlFor="meta_title" className='text-sm'>Meta Title</label>
                             <input {...register('meta_title')} type="text" name="meta_title" id="meta_title" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Meta Title" required />

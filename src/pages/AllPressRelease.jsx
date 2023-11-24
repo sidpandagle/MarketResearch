@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { apiUrl } from '../constants'
+import { apiUrl, toCapitalCase } from '../constants'
 import axios from 'axios';
 import { notifyError } from '../App';
 import moment from 'moment';
@@ -57,9 +57,12 @@ export default function AllPressRelease() {
       <SEO title={'Congruence Market Insights'} description={'Congruence Market Insights report gives an appropriate market research study of major industries like automotive, aerospace and defence, equipment and machinery, information and communications technology, semiconductors and more industry.'} keywords={'Market Research Reports, Industry Reports, Congruence Market Insights, Strategy and Stats, Business Consulting, Market Research Firm'} name='Congruence Market Research' type='article' />
       <div className="mb-6 md:text-3xl overflow-clip relative text-lg h-[200px] md:h-[300px] font-extrabold flex items-center justify-center bg-gradient text-white">
         {category.back_cover && <img loading="lazy" className='absolute flex items-center justify-center w-auto h-auto md:object-contain md:w-full' src={category.back_cover} alt="" />}
-        <div className='z-10 px-4 py-2 bg-slate-800 drop-shadow'>
-          {category.name && category.name.toUpperCase()}
-        </div>
+        {
+          category.name &&
+          <div className='z-10 px-4 py-2 bg-slate-800 drop-shadow'>
+            {category.name.toUpperCase()}
+          </div>
+        }
       </div>
       <div className="max-w-6xl px-4 mx-auto sm:px-6">
         <div className="py-2 text-center md:pt-10 md:text-left">
@@ -93,7 +96,7 @@ export default function AllPressRelease() {
                         </div>
                         <div className='flex flex-col gap-2 p-4 mb-6 border-2 rounded-md cursor-pointer group-hover:bg-slate-50'>
                           {/* <div className="font-semibold group-hover:text-primary group-hover:underline">{res.title.split(' ').filter((r, i) => i < 20).join(' ')}...</div> */}
-                          <div className="font-semibold group-hover:text-primary group-hover:underline">{res.url}</div>
+                          <div className="font-semibold group-hover:text-primary group-hover:underline">{toCapitalCase(res.url)}</div>
                           <div className="text-xs">{res.summary}...</div>
                         </div>
                       </div>

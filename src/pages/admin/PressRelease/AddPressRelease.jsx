@@ -110,9 +110,11 @@ export default function AddPressRelease() {
     };
 
     function onSubmit(formData) {
+        console.log(formData)
         const url = `${apiUrl}/press_release/`;
-        if (!reportList.find(res => res.url === reportName)) {
+        if (!reportList.find(res => {console.log(res, reportName);return res.url === reportName})) {
             notifyError('Enter Valid Report')
+            return;
         }
         formData['report_id'] = Number(reportList.find(res => {
             console.log(res.url, reportName)
@@ -199,12 +201,12 @@ export default function AddPressRelease() {
                         </div>
                         <div className='flex justify-between gap-2'>
                             <div className="w-full">
-                                <label htmlFor="category" className='text-sm'>Category</label>
-                                <select {...register('category')} id="category" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+                                <label htmlFor="category_id" className='text-sm'>Category</label>
+                                <select {...register('category_id')} id="category_id" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
                                     <option value="">Select Category</option>
                                     {categories.map((res, key) => {
                                         return (
-                                            <option key={key} value={res.name}>{res.name}</option>
+                                            <option key={key} value={res.id}>{res.name}</option>
                                         )
                                     })}
                                 </select>

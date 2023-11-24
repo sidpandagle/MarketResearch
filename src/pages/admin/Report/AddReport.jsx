@@ -24,13 +24,13 @@ export default function AddReport() {
     const [img1, setImg1] = useState('');
     const [img2, setImg2] = useState('');
     const [coverImg, setCoverImg] = useState('');
-    const [methodologyImg, setMethodologyImg] = useState('');
+    // const [methodologyImg, setMethodologyImg] = useState('');
     const [publishDate, setPublishDate] = useState(moment().format('YYYY-MM-DD'));
     const [faqList, setFaqList] = useState([]);
     const [question, setQuestion] = useState('');
     const [answer, setAnswer] = useState('');
     const [categories, setCategories] = useState([]);
-  
+
 
     const addFaq = () => {
         setFaqList([...faqList, { question: question, answer: answer }])
@@ -68,9 +68,10 @@ export default function AddReport() {
                         setImg2(res.data.secure_url);
                     } else if (type === 3) {
                         setCoverImg(res.data.secure_url);
-                    } else {
-                        setMethodologyImg(res.data.secure_url);
                     }
+                    // else {
+                    //     setMethodologyImg(res.data.secure_url);
+                    // }
                 })
                 // Cloudinary End
 
@@ -117,7 +118,7 @@ export default function AddReport() {
     } = useForm();
 
     const [description, setDescription] = useState('');
-    const [methodology, setMethodology] = useState('');
+    // const [methodology, setMethodology] = useState('');
     const [toc, setToc] = useState('');
     const [highlights, setHighlights] = useState('');
     const [summary, setSummary] = useState('');
@@ -126,19 +127,24 @@ export default function AddReport() {
         const url = `${apiUrl}/reports/`;
         axios.post(url,
             {
-                images: [{ 'img_file': img1, 'img_name': 'RPXXX_1' }, { 'img_file': img2, 'img_name': 'RPXXX_2' }, { 'img_file': methodologyImg, 'img_name': 'RPXXX_MT1' }],
+                images: [
+                    { 'img_file': img1, 'img_name': 'RPXXX_1' },
+                    { 'img_file': img2, 'img_name': 'RPXXX_2' },
+                    // { 'img_file': methodologyImg, 'img_name': 'RPXXX_MT1' }
+                ],
                 report: {
                     ...formData,
                     faqs: JSON.stringify(faqList),
                     summary: summary,
                     description: description,
-                    methodology: methodology,
+                    // methodology: methodology,
                     toc: toc,
                     highlights: highlights,
                     cover_img: coverImg,
                 }
             }
-            , {
+            ,
+            {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -160,12 +166,12 @@ export default function AddReport() {
         setUrl(e.target.value.replace(/\s/g, '-').toLowerCase());
     };
 
-    
-  const getCategoryList = () => {
-    getCategories().then(data => {
-      setCategories(data)
-    });
-  }
+
+    const getCategoryList = () => {
+        getCategories().then(data => {
+            setCategories(data)
+        });
+    }
 
     return (
         <div>
@@ -179,12 +185,12 @@ export default function AddReport() {
                         </div>
                         <div className='flex justify-between gap-2'>
                             <div className="w-full">
-                                <label htmlFor="category" className='text-sm'>Category</label>
-                                <select {...register('category')} id="category" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+                                <label htmlFor="category_id" className='text-sm'>Category</label>
+                                <select {...register('category_id')} id="category_id" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
                                     <option value="">Select Category</option>
                                     {categories.map((res, key) => {
                                         return (
-                                            <option key={key} value={res.name}>{res.name}</option>
+                                            <option key={key} value={res.id}>{res.name}</option>
                                         )
                                     })}
                                 </select>
@@ -245,9 +251,8 @@ export default function AddReport() {
                                 onChange={(newContent) => { console.log(newContent) }}
                             />
                         </div>
-                        <div className="w-full">
+                        {/* <div className="w-full">
                             <label htmlFor="methodology" className='text-sm'>Methodology</label>
-                            {/* <input {...register('methodology')} type="text" name="methodology" id="methodology" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Methodology" required /> */}
                             <JoditEditor
                                 ref={methodologyEditor}
                                 value={methodology}
@@ -260,7 +265,7 @@ export default function AddReport() {
                         <div className="w-full">
                             <label htmlFor="cover" className='text-sm'>Methodology Image</label>
                             <input type="file" onChange={(e) => handleFileChange(e, 4)} name="cover" id="cover" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " />
-                        </div>
+                        </div> */}
                         <div className="w-full">
                             <label htmlFor="meta_title" className='text-sm'>Meta Title</label>
                             <input {...register('meta_title')} type="text" name="meta_title" id="meta_title" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-600  block w-full p-2.5 " placeholder="Meta Title" required />

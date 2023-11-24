@@ -115,15 +115,16 @@ export default function EditPressRelease() {
                 // Assuming that pressReleaseData contains fields like description, methodology, toc, and highlights
                 setDescription(pressReleaseData.description);
 
-                const { title, category, meta_title, meta_desc, meta_keyword, pages, created_date, url, report_id, cover_img } = pressReleaseData;
+                const { title, category_id, meta_title, meta_desc, meta_keyword, pages, created_date, url, report_id, cover_img } = pressReleaseData;
                 setValue('title', title);
-                setValue('category', category);
+                setValue('category_id', category_id);
                 setValue('meta_title', meta_title);
                 setValue('meta_desc', meta_desc);
                 setValue('meta_keyword', meta_keyword);
                 setValue('pages', pages);
                 setValue('created_date', created_date);
-                setValue('url', url);
+                // setValue('url', url);
+                setUrl(url);
                 setCoverImg(cover_img);
                 setReportId(report_id);
                 getReportByReportId(report_id)
@@ -238,12 +239,12 @@ export default function EditPressRelease() {
                         </div>
                         <div className='flex justify-between gap-2'>
                             <div className="w-full">
-                                <label htmlFor="category" className='text-sm'>Category</label>
-                                <select {...register('category')} id="category" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
+                                <label htmlFor="category_id" className='text-sm'>Category</label>
+                                <select {...register('category_id')} id="category_id" className="bg-gray-50 outline-0 border border-gray-300 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 ">
                                     <option value="">Select Category</option>
                                     {categories.map((res, key) => {
                                         return (
-                                            <option key={key} value={res.name}>{res.name}</option>
+                                            <option key={key} value={res.id}>{res.name}</option>
                                         )
                                     })}
                                 </select>

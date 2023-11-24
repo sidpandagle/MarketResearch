@@ -120,3 +120,7 @@ export const getCategories = async () => {
         })
     }
 }
+
+export const toCapitalCase = (val) => {
+    return val.split('-').map(res => res[0]?.toUpperCase() + res.slice(1)).join(' ')
+}

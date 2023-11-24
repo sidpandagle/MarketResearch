@@ -11,6 +11,7 @@ import { apiUrl } from '../constants';
 import axios from 'axios';
 import moment from 'moment';
 import SEO from '../components/SEO';
+import Methodology from '../components/Methodology';
 
 export default function IndustryReport() {
 
@@ -38,16 +39,16 @@ export default function IndustryReport() {
   }, [reportUrl])
 
   const getReport = () => {
+    getPriceList();
     axios.get(`${apiUrl}/reports/url/${reportUrl}`)
       .then((res) => {
         setBlankImage(res.data.data);
+        getRelatedReports(res.data.data);
         return res
       })
       .then((res) => {
         getReportImages(res.data.data.id);
-        getRelatedReports(res.data.data);
       })
-    getPriceList();
   }
 
   const getPriceList = () => {
@@ -57,7 +58,7 @@ export default function IndustryReport() {
   };
 
   const getRelatedReports = (repData) => {
-    axios.get(`${apiUrl}/reports/category/${repData.category}?page=1&per_page=3`).then(res => {
+    axios.get(`${apiUrl}/reports/category/${repData.category_url}?page=1&per_page=3`).then(res => {
       if (res.data.data.length) {
         let filterData = res.data.data.filter(res => res.id !== repData.id);
         filterData = filterData.filter((r, i) => i < 2);
@@ -174,7 +175,7 @@ export default function IndustryReport() {
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
               </svg>
               <Link to={`/category/${report.category_url}`}>
-                <div className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{report.category}</div>
+                <div className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{report.category_name}</div>
               </Link>
             </div>
           </li>
@@ -196,12 +197,35 @@ export default function IndustryReport() {
             <div className="w-full">
               {/* <div className='p-4 text-white bg-[#2C3E50]'> */}
               <div className='p-4 font-semibold text-black bg-tertiary'>
-                <div className='mb-2 text-justify'>{report.title}</div>
-                <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
-                  <div className='pr-4 border-black border-r-[1px]'><span>Published:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
-                  <div className='pr-4 border-black border-r-[1px]'><span>Report Code:</span> CGN{report.category_url}{report.id}</div>
-                  <div ><span>Pages:</span> {report.pages}</div>
-                </div>
+                {
+                  report.title &&
+                  <div>
+                    <div className='mb-2 text-justify'>{report.title}</div>
+                    <div className='justify-end gap-4 py-4 text-sm text-center md:py-2 md:text-left md:flex '>
+                      <div className='pr-4 border-black border-r-[1px]'><span>Published:</span> {moment(report.created_date).format('MMMM YYYY')}</div>
+                      <div className='pr-4 border-black border-r-[1px]'><span>Report Code:</span> CGN{report.category_abr}{report.id}</div>
+                      <div ><span>Pages:</span> {report.pages}</div>
+                    </div>
+                  </div>
+                }
+                {
+                  !report.title &&
+                  <div className="flex mb-2">
+                    <div className="flex-shrink-0">
+                      <span className="block w-12 h-12 bg-gray-200 rounded-full " />
+                    </div>
+                    <div className="w-full mt-2 ms-4">
+                      <h3 className="h-4 bg-gray-200 rounded-full " style={{ width: '40%' }} />
+                      <ul className="mt-5 space-y-3">
+                        <li className="w-full h-4 bg-gray-200 rounded-full " />
+                        <li className="w-full h-4 bg-gray-200 rounded-full " />
+                        <li className="w-full h-4 bg-gray-200 rounded-full " />
+                        <li className="w-full h-4 bg-gray-200 rounded-full " />
+                      </ul>
+                    </div>
+                  </div>
+
+                }
               </div>
               <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} p-4 relative justify-between gap-2 bg-white md:flex`}>
                 <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-primary text-white' : ''}`}>Description</div>
@@ -232,7 +256,7 @@ export default function IndustryReport() {
                 }
                 {selectedTitle === 'Methodology' &&
                   <div>
-                    <div className='html-content methodology-content' dangerouslySetInnerHTML={{ __html: report.methodology }}></div>
+                    <Methodology />
                   </div>
                 }
                 {selectedTitle === 'Request' &&

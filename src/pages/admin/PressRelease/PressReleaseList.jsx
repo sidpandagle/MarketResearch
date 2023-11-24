@@ -117,7 +117,7 @@ export default function PressReleaseList() {
                                             CGNPR{res.abr}{res.id}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {res.category}
+                                            {res.category_name}
                                         </td>
                                         <td className="px-6 py-4">
                                             {res.title}

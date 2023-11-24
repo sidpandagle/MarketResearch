@@ -3,7 +3,7 @@ import { notifySuccess, notifyError } from '../../../App';
 import axios from 'axios';
 import "jodit";
 import "jodit/build/jodit.min.css";
-import { apiUrl } from '../../../constants';
+import { apiUrl, toCapitalCase } from '../../../constants';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -29,7 +29,7 @@ export default function ReportList() {
                         res.abr = 'XXX';
                         return res;
                     })
-                    setReportList(repList.reverse())
+                    setReportList(repList)
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -47,7 +47,7 @@ export default function ReportList() {
                     res.abr = 'XXX';
                     return res;
                 })
-                setReportList(repList.reverse())
+                setReportList(repList)
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -117,10 +117,10 @@ export default function ReportList() {
                                             CGNRP{res.abr}{res.id}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {res.category}
+                                            {res.category_name}
                                         </td>
                                         <td className="px-6 py-4">
-                                            {res.url}
+                                            {toCapitalCase(res.url)}
                                         </td>
                                         <td className="flex gap-4 px-6 py-4">
                                             <Link to={`/report/edit/${res.id}`}>

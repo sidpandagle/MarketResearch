@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
 import Privacy from "./Privacy";
 import Terms from "./Terms";
+import PlaceAnOrder from "./PlaceAnOrder";
 
 
 
@@ -13,7 +14,7 @@ const Footer = () => {
   const detailsList = [
     {
       id: 1,
-      title: 'Support',
+      title: 'Place An Order',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates. Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates.Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident a, tenetur molestiae eligendi eius blanditiis tempore adipisci odio quam quidem illum sed eaque. Fugit nam, repellat accusamus voluptatibus maiores voluptates.'
     },
     {
@@ -78,7 +79,7 @@ const Footer = () => {
                 <Link to='/contact'>
                   <div className="mb-2">Contact Us</div>
                 </Link>
-                <Link to='/all-press-release/1'>
+                <Link to='/all-press-release/agriculture'>
                   <div className="mb-2">Press Release</div>
                 </Link>
               </div>
@@ -120,8 +121,6 @@ const Footer = () => {
             {detailsList.map((r, i) => {
               return <div key={i} onClick={() => handleDetailsOpen(r.title)}>{r.title}</div>
             })}
-            {/* <div>Support</div>
-            <div>Support</div> */}
           </div>
         </div>
       </div>
@@ -159,7 +158,7 @@ const Footer = () => {
                 <svg height={24} width={24} onClick={handleDetailsClose} className="cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" strokeWidth={0} /><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" /><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#1C274C" /> </g></svg>
               </div>
               <div className='h-[82vh] overflow-auto text-sm md:text-md'>
-                {details.title === 'Support' && <div>Support</div>}
+                {details.title === 'Place An Order' && <PlaceAnOrder />}
                 {details.title === 'Privacy' && <Privacy />}
                 {details.title === 'Terms and Conditions' && <Terms />}
               </div>

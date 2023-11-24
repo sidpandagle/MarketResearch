@@ -44,7 +44,7 @@ const SearchList = () => {
               <div className="w-full mt-12 border md:mt-0">
                 {reportList.map((res, key) => {
                   return (
-                    <Link to={`/report/${res.id}`} key={key}>
+                    <Link to={`/industry-report/${res.url}`} key={key}>
                       <div className='group' >
                         <div className={`flex flex-col gap-2 p-4 ${key !== reportList.length - 1 && 'border-b-2'} cursor-pointer group-hover:bg-slate-50`}>
                           <div className="font-semibold group-hover:text-primary group-hover:underline">{res.title.split('').filter((res, i) => i < 160).join('')}... </div>

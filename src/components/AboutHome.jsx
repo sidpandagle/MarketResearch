@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 export default class AboutHome extends Component {
   render() {
     return (
-      <div className='relative flex justify-between py-12 text-white overflow-clip'>
-        <div className='absolute bottom-0 -z-10'>
-          <img src="/abstract.jpg" alt="bgimg" className='' />
-        </div>
+      <div className='relative py-12 text-white overflow-clip'>
+        <div className='absolute bottom-0 w-full h-full -z-10 bg-gradient'>
+                <img src="/abstract.jpg" alt="bgimg" className='hidden md:block' />
+            </div>
         <div className='max-w-6xl mx-auto sm:px-6'>
           <div className="mb-10 text-3xl font-extrabold text-center ">About Us</div>
           <div className="items-center text-center md:text-left md:flex">
@@ -22,7 +22,7 @@ export default class AboutHome extends Component {
 
             </div>
             <div className="p-10 pb-0 md:p-0 md:w-1/2">
-              <img loading="lazy" className='object-cover w-full rounded-lg h-72 brightness-110' src={'/others/about1.jpg'} alt="about-img" srcSet="" />
+              <img loading="lazy" className='object-cover w-full rounded-lg h-72 brightness-110' src={'/blurry/about_img.jpg'} alt="about-img" srcSet="" />
             </div>
           </div>
         </div>

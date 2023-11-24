@@ -10,7 +10,7 @@ import SEO from '../components/SEO';
 
 
 export default function PressRelease() {
-    const { pressReleaseId } = useParams();
+    const { pressReleaseUrl } = useParams();
     const [pressRelease, setPressRelease] = useState({});
     const [report, setReport] = useState({});
     const [formOpen, setFormOpen] = useState(false);
@@ -20,7 +20,7 @@ export default function PressRelease() {
 
 
     useEffect(() => {
-        axios.get(`${apiUrl}/press_release/${pressReleaseId}`)
+        axios.get(`${apiUrl}/press_release/url/${pressReleaseUrl}`)
             .then((res) => {
                 setPressRelease(res.data.data);
                 getReportByReportId(res.data.data.report_id)
@@ -57,8 +57,8 @@ export default function PressRelease() {
                                     <svg className="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                         <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="m1 9 4-4-4-4" />
                                     </svg>
-                                    <Link to={`/all-press-release/${pressRelease.catgory_id}`}>
-                                        <div className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{pressRelease.category}</div>
+                                    <Link to={`/all-press-release/${pressRelease.category_url}`}>
+                                        <div className="text-sm font-medium text-gray-700 ms-1 hover:text-blue-600 md:ms-2 ">{pressRelease.category_name}</div>
                                     </Link>
                                 </div>
                             </li>
@@ -103,7 +103,7 @@ export default function PressRelease() {
                                                 </div>
                                             </div>
                                             <div className='flex flex-col gap-4 mt-4 md:flex-row md:mt-0'>
-                                                <Link to={`/buy-now/${String(report?.id)}/1`}>
+                                                <Link to={`/buy-now/${pressRelease.report_id}/1`}>
                                                     <button className="inline-flex items-center justify-center gap-4 py-2 font-semibold text-white transition-all bg-indigo-500 border border-transparent rounded-md w-44 text-md hover:bg-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:ring-offset-2">
                                                         Buy Now
                                                     </button>
