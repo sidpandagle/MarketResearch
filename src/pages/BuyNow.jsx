@@ -127,7 +127,7 @@ export default function BuyNow() {
                                         </div>
                                         <div className='flex items-center justify-center p-4 text-sm'>
                                             {detailsList.map((r, i) => {
-                                                return <div key={i} onClick={() => handleDetailsOpen(r.title)} className={`px-3 ${r.id < 3 && 'border-r-2'} `}>{r.title}</div>
+                                                return <div key={i} onClick={() => handleDetailsOpen(r.title)} className={`px-3 cursor-pointer ${r.id < 3 && 'border-r-2'} `}>{r.title}</div>
                                             })}
                                         </div>
                                     </div>

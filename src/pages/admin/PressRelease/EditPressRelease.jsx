@@ -126,8 +126,10 @@ export default function EditPressRelease() {
                 // setValue('url', url);
                 setUrl(url);
                 setCoverImg(cover_img);
-                setReportId(report_id);
-                getReportByReportId(report_id)
+                if (reportId > 0) {
+                    setReportId(report_id);
+                    getReportByReportId(report_id)
+                }
             })
             .then(() => {
             })
@@ -146,7 +148,7 @@ export default function EditPressRelease() {
             formData['report_id'] = Number(reportList.find(res => {
                 console.log(res.url, reportName)
                 return res.url === reportName
-            })?.id);
+            })?.id) || 0;
         }
         console.log(
             {

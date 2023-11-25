@@ -112,14 +112,14 @@ export default function AddPressRelease() {
     function onSubmit(formData) {
         console.log(formData)
         const url = `${apiUrl}/press_release/`;
-        if (!reportList.find(res => {console.log(res, reportName);return res.url === reportName})) {
+        if (reportName && !reportList.find(res => {console.log(res, reportName);return res.url === reportName})) {
             notifyError('Enter Valid Report')
             return;
         }
         formData['report_id'] = Number(reportList.find(res => {
             console.log(res.url, reportName)
             return res.url === reportName
-        })?.id);
+        })?.id) || 0;
         console.log(
             {
                 ...formData,

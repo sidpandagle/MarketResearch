@@ -25,12 +25,12 @@ export default function LatestReports() {
 
     return (
         <div className='relative overflow-clip'>
-            {/* <img src="/hex.jpg" alt="bgimg" className='absolute top-0 left-0 z-0 object-contain' /> */}
+            {/* <img loading='lazy' src="/hex.jpg" alt="bgimg" className='absolute top-0 left-0 z-0 object-contain' /> */}
             {/* <div className='absolute top-0 left-0 z-0'>
-                <img src="/abstract.jpg" alt="bgimg" className='object-contain' />
+                <img loading='lazy' src="/abstract.jpg" alt="bgimg" className='object-contain' />
             </div> */}
             <div className='absolute w-full h-full -z-10 bg-gradient'>
-                <img src="/abstract.jpg" alt="bgimg" className='hidden md:block' />
+                <img loading='lazy' src="/abstract.jpg" alt="bgimg" className='hidden md:block' />
             </div>
             <div className="z-10 max-w-6xl py-12 mx-auto text-white md:pt-10 sm:px-6">
                 <div className='mb-8 text-3xl font-extrabold text-center'>Latest Reports</div>

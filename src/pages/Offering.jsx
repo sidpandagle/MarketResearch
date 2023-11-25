@@ -79,7 +79,7 @@ export default class Offering extends Component {
           <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-12 lg:px-6">
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
               <div className="text-gray-500 sm:text-lg -400">
-                <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Unlock industry reports and shared insights.</h2>
+                <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Unlock industry reports and shared insights</h2>
                 <p className="mb-2 font-light lg:text-xl">Access our syndicated reports for comprehensive industry insights, trends, and market analysis tailored for diverse sectors and businesses.</p>
                 <ul role="list" className="space-y-5 my-7 -700">
                   <li className="flex space-x-3">
@@ -130,7 +130,7 @@ export default class Offering extends Component {
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
               <img loading="lazy" className="hidden w-full mb-4 rounded-lg shadow-md lg:mb-0 lg:flex" src={'/others/custom2.jpg'} alt="feature image 2" />
               <div className="text-gray-500 sm:text-lg -400">
-                <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Tailored research solutions for unique business needs.</h2>
+                <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Tailored research solutions for unique business needs</h2>
                 <p className="mb-2 font-light lg:text-xl">Our custom research solutions offer personalized data analysis, in-depth market research, and strategic insights aligned with your specific business requirements.</p>
                 <ul role="list" className="space-y-5 my-7 -700">
                   <li className="flex space-x-3">
@@ -170,7 +170,7 @@ export default class Offering extends Component {
           <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-12 lg:px-6">
             <div className="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
               <div className="text-gray-500 sm:text-lg -400">
-                <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Expert guidance for data-driven business strategies.</h2>
+                <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 ">Expert guidance for data-driven business strategies</h2>
                 <p className="mb-2 font-light lg:text-xl">Engage with our consulting services for expert advice, strategic planning, and actionable recommendations based on our in-depth market analysis.</p>
                 <ul role="list" className="space-y-5 my-7 -700">
                   <li className="flex space-x-3">

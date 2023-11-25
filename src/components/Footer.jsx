@@ -114,12 +114,12 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="text-sm border-t border-slate-600">
-          <div className="px-12 py-8 md:w-3/5">Congruence Market Insights is a leading market research company dedicated to providing unparalleled insights and strategic intelligence. Our expert analysts deliver actionable data, empowering businesses to make informed decisions in a dynamic marketplace. Trust us to navigate your path to success.</div>
+        <div className="text-sm border-t cursor-default border-slate-600">
+          <div className="px-12 py-8 text-justify md:w-3/5">Congruence Market Insights is a leading market research company dedicated to providing unparalleled insights and strategic intelligence. Our expert analysts deliver actionable data, empowering businesses to make informed decisions in a dynamic marketplace. Trust us to navigate your path to success.</div>
           <div className="flex flex-col gap-8 px-12 py-8 md:flex-row md:items-end">
             <div>© 2023 Congruence</div>
             {detailsList.map((r, i) => {
-              return <div key={i} onClick={() => handleDetailsOpen(r.title)}>{r.title}</div>
+              return <div className="cursor-pointer" key={i} onClick={() => handleDetailsOpen(r.title)}>{r.title}</div>
             })}
           </div>
         </div>

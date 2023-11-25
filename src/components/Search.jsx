@@ -74,7 +74,7 @@ export default function Search() {
                     <div className="text-sm text-center md:w-5/6 md:text-lg" onClick={redirectToPressReleaseList}>Empower your business with data-driven strategies. Discover trends, analyze markets, and seize opportunities for sustainable success. Explore limitless possibilities today!</div>
                 </div>
                 <div className='flex items-center justify-center'>
-                    <div className='flex items-center justify-between overflow-hidden bg-white rounded-lg md:w-1/2 focus-within:shadow-lg'>
+                    <div className='flex items-center justify-between overflow-hidden bg-white rounded-lg focus-within:shadow-lg'>
                         <div className="flex items-center">
                             <div className="grid w-12 h-full text-gray-300 place-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
