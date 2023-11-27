@@ -62,8 +62,10 @@ export default function Search() {
         // <div className={`mx-auto py-12 bg-cover bg-bottom flex justify-center items-center bg-gradient-45 text-white`}>
         <div className={`relative mx-auto py-12 bg-cover overflow-clip bg-bottom flex justify-center items-center bg-gradient text-white`}>
             <video className='absolute bottom-0 z-10 hidden w-full brightness-[0.4] md:block' autoPlay muted loop id="myVideo">
-                {/* <source data-src="https://cdn.vantagemarketresearch.com/video/VMR_New_Video.webm" type="video/mp4" src="https://cdn.vantagemarketresearch.com/video/VMR_New_Video.webm" /> */}
                 <source data-src={"/sample.mp4"} type="video/mp4" src={"/sample.mp4"} />
+            </video>
+            <video className='absolute top-0 z-10 block w-full brightness-[0.4] md:hidden' autoPlay muted loop id="myVideo">
+                <source data-src={"/sample.mp4"} type="video/mp4" src={"/sample_vertical.mp4"} />
             </video>
 
             <div className='z-10 flex flex-col gap-8 px-4 text-center md:px-16 md:gap-8'>
