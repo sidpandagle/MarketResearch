@@ -31,6 +31,8 @@ export default function IndustryReport() {
   const handleDiscountFormClose = () => setDiscountFormOpen(false);
 
   const [license, setLicense] = useState('Single User License');
+  const [img1, setImg1] = useState('');
+  const [img2, setImg2] = useState('');
 
   const { reportUrl } = useParams();
 
@@ -101,23 +103,29 @@ export default function IndustryReport() {
 
   const getReportImages = (repId) => {
     axios.get(`${apiUrl}/report_images/RP${repId}`).then((response) => {
-      let img1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
-      let img2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
+      let image1 = response.data.data.find(res => res.img_name.includes('_1'))?.img_file || '';
+      let image2 = response.data.data.find(res => res.img_name.includes('_2'))?.img_file || '';
+
+      setImg1(image1);
+      setImg2(image2);
+
       setMethodologyImg(response.data.data.find(res => res.img_name.includes('_MT1'))?.img_file || '');
-
-      const descriptionImages = document.querySelectorAll('.description-content p span img');
-
-      if (descriptionImages.length > 0) {
-        descriptionImages[0].src = img1 ? img1 : '';
-        descriptionImages[0].style.height = 'auto';
-
-        if (descriptionImages.length > 1) {
-          descriptionImages[1].src = img2 ? img2 : '';
-          descriptionImages[1].style.height = 'auto';
-        }
-      }
-
+      setDescriptionImages(image1, image2);
     })
+  }
+  const setDescriptionImages = (image1, image2) => {
+
+    const descriptionImages = document.querySelectorAll('.description-content p span img');
+
+    if (descriptionImages.length > 0) {
+      descriptionImages[0].src = image1 ? image1 : img1;
+      descriptionImages[0].style.height = 'auto';
+
+      if (descriptionImages.length > 1) {
+        descriptionImages[1].src = image2 ? image2 : img2;
+        descriptionImages[1].style.height = 'auto';
+      }
+    }
   }
 
   const setMethodologyImgInDom = () => {
@@ -228,7 +236,12 @@ export default function IndustryReport() {
                 }
               </div>
               <div className={`${selectedTitle !== 'Request' && 'md:sticky top-0'} p-4 relative justify-between gap-2 bg-white md:flex`}>
-                <div onClick={() => scrollToTop('Description')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-primary text-white' : ''}`}>Description</div>
+                <div onClick={() => {
+                  scrollToTop('Description');
+                  setTimeout(() => {
+                    setDescriptionImages(img1, img2)
+                  })
+                }} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Description' ? 'font-bold bg-primary text-white' : ''}`}>Description</div>
                 <div onClick={() => scrollToTop('Table')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Table' ? 'font-bold bg-primary text-white' : ''}`}>Table Of Content</div>
                 <div onClick={() => scrollToTop('Highlights')} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Highlights' ? 'font-bold bg-primary text-white' : ''}`}>Highlights</div>
                 <div onClick={() => { scrollToTop('Methodology'); setMethodologyImgInDom(); }} className={`md:w-1/4 py-3 md:mb-0 mb-4 duration-200 text-sm flex justify-center items-center border rounded-sm cursor-pointer  ${selectedTitle === 'Methodology' ? 'font-bold bg-primary text-white' : ''}`}>Methodology</div>
