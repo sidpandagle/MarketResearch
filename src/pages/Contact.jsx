@@ -103,7 +103,7 @@ export default function Contact() {
                       <span className='mr-1 font-semibold'>
                         US Sales Office:
                       </span>
-                      4781 Canoga St, Montclair, California 91763, USA
+                      530 Lytton Ave, Palo Alto, California 94301, United States
                     </p>
                     <p className="text-base text-body-color">
                       <span className='mr-1 font-semibold'>
@@ -131,7 +131,7 @@ export default function Contact() {
                       Phone Number
                     </h4>
                     <p className="text-base text-body-color">
-                      (+62)81 414 257 9980
+                      (+1) 650-646-2623
                     </p>
                   </div>
                 </div>
